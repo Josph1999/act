@@ -11,9 +11,9 @@ export const Layout = (props) => {
 
   return (
     <>
-      <MainAppBar/>
+      {/* <MainAppBar/> */}
       {children}
-      <Footer/>
+      {/* <Footer/> */}
     </>
   );
 };
