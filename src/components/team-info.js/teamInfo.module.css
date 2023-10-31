@@ -1,0 +1,16 @@
+.mainContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding: 128px;
+
+}
+
+@media only screen and (max-width: 800px) {
+  .mainContainer {
+    padding: 20px;
+  }
+}

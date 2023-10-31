@@ -1,0 +1,31 @@
+.header span {
+  display: inline-block;
+  width: 430px;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.description p {
+  display: inline-block;
+  width: 450px;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.cardContainer {
+  width: 500px;
+}
+
+@media only screen and (max-width: 600px) {
+  .cardContainer {
+    width: 350px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .header span  {
+    width: 250px;
+  }
+}

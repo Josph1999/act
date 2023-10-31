@@ -1,0 +1,58 @@
+export const data = [
+  {
+    name_ka: "დავით ბეჟუაშვილი",
+    name_eng: "Davit Bezhuashvili",
+    position_ka: "დამფუძნებელი",
+    position_eng: "Founder",
+    photo: "/assets/DavitBezhuashvili.png",
+  },
+  {
+    name_ka: "გელა ბეჟუაშვილი",
+    name_eng: "Gela Bezhuashvili",
+    position_ka: "მმართველი",
+    position_eng: "Director",
+    photo: "/assets/GelaBezhuashvili.png",
+  },
+  {
+    name_ka: "თეა ჭეიშვილი",
+    name_eng: "Tea Tcheishvili",
+    position_ka: "მმართველის მოადგილე",
+    position_eng: "Deputy Governor",
+    photo: "/assets/TeaTcheishvili.png",
+  },
+  {
+    name_eng: "Manana Manjgaladze",
+    name_ka: "მანანა მანჯგალაძე",
+    position_ka: "ადმინისტრატორი",
+    position_eng: "Administrator",
+    photo: "/assets/MananaManjgaladze.png",
+  },
+  {
+    name_ka: "ნათია ბანძელაძე",
+    name_eng: "Natia Bandzeladze",
+    position_ka: "PR-მენეჯერი",
+    position_eng: "PR Manager",
+    photo: "/assets/NatiaBandzeladze.png",
+  },
+  {
+    name_ka: "ნია გელოვანი",
+    name_eng: "Nia Gelovani",
+    position_ka: "ფონდის განათლებისა და მეცნიერების პროექტების მართვის მენეჯერი",
+    position_eng: "Education and science project management manager of the Foundation",
+    photo: "/assets/NiaGelovani.png",
+  },
+  {
+    name_ka: "ნინო ფურცელაძე",
+    name_eng: "Nino Purtseladze",
+    position_ka: "ფინანსური მენეჯერი",
+    position_eng: "Finance Manager",
+    photo: "/assets/NinoPurtseladze.png",
+  },
+  {
+    name_ka: "ლევან თოთლაძე",
+    name_eng: "Levan Totladze",
+    position_ka: "იურისტი",
+    position_eng: "Lawyer",
+    photo: "/assets/LevanTotladze.png",
+  },
+];

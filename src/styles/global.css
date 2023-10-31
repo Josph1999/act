@@ -1,0 +1,61 @@
+.card-swiper {
+  width: 85vw !important;
+  overflow-y: visible;
+}
+
+.swiper-pagination {
+  bottom: -50px !important;
+}
+
+.swiper-pagination-bullet {
+  width: 15px;
+  height: 15px;
+}
+
+.swiper-pagination-bullet-active {
+  width: 30px;
+  border-radius: 10px;
+}
+
+@font-face {
+  font-family: "UpperCaseGeo";
+  src: url("../../public/fonts/bpg_nino_mtavruli_bold.ttf") format("truetype");
+}
+
+body {
+  font-family: 'UpperCaseGeo', sans-serif !important;
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.swiper-slide img:hover {
+  display: block;
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(0%);
+  cursor: pointer;
+}
