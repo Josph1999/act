@@ -292,7 +292,7 @@ export default function AddPartners() {
   return (
     <>
       <Head>
-        <title>DBEF | Add partners</title>
+        <title>ACT | Add partners</title>
       </Head>
       <Box
         sx={{

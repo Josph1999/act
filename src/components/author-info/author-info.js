@@ -265,7 +265,7 @@ export default function FounderInfo() {
               guide his endeavors. He leverages his resources to empower the
               country's youth, nurturing them into educated and engaged members
               of society. In 2015, he founded the David Bezhuashvili Education
-              Foundation (DBEF), a non-profit organization dedicated to
+              Foundation (ACT), a non-profit organization dedicated to
               supporting education and preserving cultural heritage.
             </Typography>
           )}

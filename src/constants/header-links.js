@@ -2,22 +2,22 @@ const Links = [
   {
     name_ka: "ფონდის შესახებ",
     name_eng: "About Foundation",
-    url: "/about",
+    url: "/",
   },
   {
     name_ka: "პროექტები",
     name_eng: "Projects",
-    url: "/projects",
+    url: "/",
   },
   {
     name_ka: "სიახლეები",
     name_eng: "News",
-    url: "/news",
+    url: "/",
   },
   {
     name_ka: "კონტაქტი",
     name_eng: "Contact",
-    url: "/contact",
+    url: "/",
   },
   {
     name_ka: "",

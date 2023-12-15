@@ -279,7 +279,7 @@ export default function AddCalculation() {
   return (
     <>
       <Head>
-        <title>DBEF | Add News</title>
+        <title>ACT | Add News</title>
       </Head>
       <Box
         sx={{

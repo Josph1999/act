@@ -158,7 +158,7 @@ export default function MainAppBar() {
         >
           {aboutData.map((item) => (
             <MenuItem
-              onClick={() => handleOpenPage(item.path)}
+              // onClick={() => handleOpenPage(item.path)}
               sx={{ fontFeatureSettings: "'case' on" }}
             >
               {renderLanguage(item.title_ka, item.title_eng)}
@@ -174,8 +174,8 @@ export default function MainAppBar() {
 
           <Button
             variant="contained"
-            sx={{ backgroundColor: "#10B981", fontFeatureSettings: "'case' on" }}
-            onClick={() => router.push('/donate')}
+            sx={{ fontFeatureSettings: "'case' on" }}
+            // onClick={() => router.push('/donate')}
           >
             {renderLanguage("დონაცია", "Donate")}
           </Button>

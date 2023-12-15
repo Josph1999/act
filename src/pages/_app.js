@@ -42,7 +42,7 @@ const App = (props) => {
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <title>DBEF</title>
+        <title>ACT</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <meta property="og:url" content="https://www.dbef.ge" />
         <meta

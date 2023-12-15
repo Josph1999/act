@@ -7,6 +7,7 @@ import News from "src/components/news/news";
 import MainAboutInfo from "src/components/main-about-info/main-about-info";
 import Projects from "src/components/projects/projects";
 import Partners from "src/components/partners/partners";
+import MissionAndVision from "src/components/mission-and-vision/mission-and-vision";
 
 const Page = () => {
   const [raffle, setRaffle] = useState(null);
@@ -16,12 +17,13 @@ const Page = () => {
   return (
     <>
       <Head>
-        <title>Main | DBEF</title>
+        <title>Main | ACT</title>
       </Head>
       <main>
         <>
           <MainSlider />
-          <News />
+          <MissionAndVision/>
+          <News/>
           <MainAboutInfo />
           <Projects />
           <Partners />

@@ -8,7 +8,7 @@ const Page = () => {
   return (
     <>
       <Head>
-        <title>DBEF | My Reports</title>
+        <title>ACT | My Reports</title>
       </Head>
       <MyPublishedreports />
     </>

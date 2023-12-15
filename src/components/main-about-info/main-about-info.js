@@ -10,13 +10,23 @@ import { useLanguage } from "src/contexts/language-context";
 import SeeMore from "../icons/SeeMore";
 import { useWindowWidth } from "../helpers/useWindowWidth";
 import { useRouter } from "next/router";
+import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useState } from "react";
+import TeamSlider from "../team-slider/team-slider";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 export default function MainAboutInfo() {
   const windowSize = useWindowWidth();
   const theme = useTheme();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = useState(0);
+
+  const [expanded, setExpanded] = useState(false);
+
+  const handleChange = (panel) => (event, newExpanded) => {
+    setExpanded(newExpanded ? panel : false);
+  };
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -33,99 +43,58 @@ export default function MainAboutInfo() {
   const { renderLanguage, renderFontFamily } = useLanguage();
   const router = useRouter();
 
-  return windowSize > 800 ? (
-    <Box
-      sx={{
-        backgroundColor: "#4338CA",
-        color: "white",
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "0px 128px",
-        alignItems: "center",
-        height: "350px",
-        marginTop: "128px",
-        overflow: "auto",
-      }}
-    >
-      {mainAboutData.map((item) => {
-        return (
-          <Box
-            sx={{
-              width: "300px",
-              display: "flex",
-              flexDirection: "column",
-              gap: "24px",
-              alignItems: "flex-start",
-            }}
-          >
-            {item.icon}
-            <Typography sx={{fontFeatureSettings: "'case' on"}}>
-              {renderLanguage(item.title_ka, item.title_eng)}
-            </Typography>
-            <Typography fontSize={16}>
-              {renderLanguage(
-                item.description_ka.substring(0, 130) + "...",
-                item.description_eng.substring(0, 130) + "..."
-              )}
-            </Typography>
-            <Button
-              sx={{ color: "white" }}
-              endIcon={<SeeMore color="#fff" />}
-              onClick={() => router.push(item.path)}
-            >
-              {renderLanguage("სრულად ნახვა", "See More")}
-            </Button>
-          </Box>
-        );
-      })}
-    </Box>
-  ) : (
-    <Box
-      sx={{
-        backgroundColor: "#4338CA",
-        color: "white",
-        padding: "20px",
-        marginTop: "30px",
-      }}
-    >
-      <AutoPlaySwipeableViews
-        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-        index={activeStep}
-        onChangeIndex={handleStepChange}
-        enableMouseEvents
+  return (
+    <Box sx={{display: 'flex', marginTop: '128px', width: '100%', paddingRight: '128px', gap: '26px'}}>
+      <Box
+        sx={{
+          backgroundColor: "#DEE7FB",
+          color: "white",
+          display: "flex",
+          flexDirection: "column",
+          padding: "64px 128px",
+          alignItems: "center",
+          overflow: "auto",
+          gap: "16px",
+        }}
       >
-        {mainAboutData.map((item) => {
+        {mainAboutData.map((item, idx) => {
           return (
-            <Box
+            <Accordion
               sx={{
-                width: "300px",
-                display: "flex",
-                flexDirection: "column",
-                gap: "24px",
-                alignItems: "flex-start",
+                color: "#232C65",
+                backgroundColor: "#DEE7FB",
+                boxShadow: "none",
+                border: "none",
+                width: "100%",
               }}
+              expanded={expanded === idx}
+              onChange={handleChange(idx)}
             >
-              {item.icon}
-              <Typography sx={{fontFeatureSettings: "'case' on"}}>
-                {renderLanguage(item.title_ka, item.title_eng)}
-              </Typography>
-              <Typography fontSize={16}>
-                {renderLanguage(
-                  item.description_ka.substring(0, 130) + "...",
-                  item.description_eng.substring(0, 130) + "..."
-                )}
-              </Typography>
-              <Button
-                sx={{ color: "white" }}
-                endIcon={<SeeMore color="#fff" />}
-                onClick={() => router.push(item.path)}
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+                sx={{ backgroundColor: "#DEE7FB" }}
               >
-                სრულად ნახვა
-              </Button>
-            </Box>
+                <Typography
+                  sx={{
+                    fontFeatureSettings: "'case' on",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {renderLanguage(item.title_ka, item.title_eng)}
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{ borderBottom: "1px solid #232C65" }}>
+                <Typography>
+                  {renderLanguage(item.description_ka, item.description_eng)}
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
           );
         })}
-      </AutoPlaySwipeableViews>
+      </Box>
+      <TeamSlider />
     </Box>
   );
 }

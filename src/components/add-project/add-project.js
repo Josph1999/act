@@ -337,7 +337,7 @@ export default function AddProjects() {
   return (
     <>
       <Head>
-        <title>DBEF | Add projects</title>
+        <title>ACT | Add projects</title>
       </Head>
       <Box
         sx={{

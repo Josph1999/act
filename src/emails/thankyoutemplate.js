@@ -588,7 +588,7 @@ export default function ThankYouTemplate(){
                                                 difference! Thank you for being
                                                 a part of our family. Your
                                                 belief in our mission fuels our
-                                                progress.<br></br> Warm regards, DBEF
+                                                progress.<br></br> Warm regards, ACT
                                                 Team
                                               </p>
                                             </td>

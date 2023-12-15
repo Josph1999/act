@@ -36,24 +36,16 @@ export default function NewsCard({ news, idx }) {
 
   return (
     <Box
-      onClick={() => router.push(`/news/${news?.id}`)}
+      // onClick={() => router.push(`/news/${news?.id}`)}
       sx={{
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
         alignItems: "flex-start",
-        width: "384px",
+        width: "100%",
         gap: "20px",
         cursor: "pointer",
-        height: "544px",
         "@media (max-width: 800px)": {
           padding: "20px",
-        },
-        "@media (max-width: 1410px)": {
-          display: idx === 2 ? 'none' : 'block',
-        },
-        "@media (max-width: 700px)": {
-          display:'block',
         },
       }}
     >
@@ -61,34 +53,18 @@ export default function NewsCard({ news, idx }) {
         sx={{
           width: "100%",
           backgroundImage: `url(${news?.photos?.[0].url})`,
-          height: "224px",
+          height: "279px",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       ></Box>
-      <Typography sx={{fontFeatureSettings: "'case' on"}} color="#BDBDBD">
-        {renderDate(news.created_at)}
-      </Typography>
-      <Typography sx={{fontFeatureSettings: "'case' on"}} fontWeight={700} height='50px'>
+      <Typography sx={{ fontFeatureSettings: "'case' on"}} fontWeight={700} height='50px' >
         {renderLanguage(
-          news?.title_ka.substring(0, 68)  + '...',
-          news?.title_eng.substring(0, 68)  + '...'
+          news?.title_ka.substring(0, 68) + "...",
+          news?.title_eng.substring(0, 68) + "..."
         )}
       </Typography>
-      <Typography height='130px'>
-        {renderLanguage(
-          parse(news?.description_ka.substring(0, 146) + '...'),
-          parse(news?.description_eng.substring(0, 146) + '...')
-        )}
-      </Typography>
-
-      <Button
-        endIcon={<SeeMore />}
-        onClick={() => router.push(`/news/${news?.id}`)}
-      >
-        {renderLanguage("სრულად ნახვა", "See More")}
-      </Button>
     </Box>
   );
 }

@@ -8,7 +8,7 @@ const Page = () => (
   <>
     <Head>
       <title>
-        Settings | DBEF
+        Settings | ACT
       </title>
     </Head>
     <Box

@@ -14,7 +14,7 @@ export const Layout = (props) => {
       <MainAppBar/>
       {children}
       <Analytics />
-      <Footer/>
+      {/* <Footer/> */}
     </>
   );
 };

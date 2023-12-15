@@ -7,5 +7,5 @@ export const FooterKa = () => {
 
   const fillColor = theme.palette.primary.main;
 
-  return <Image alt="DBEF Logo" src={logo} height={48} />;
+  return <Image alt="ACT Logo" src={logo} height={48} />;
 };

@@ -89,7 +89,7 @@ export default function MainSlider() {
               sx={{
                 color: "white",
                 textAlign: "left",
-                fontFamily: 'FiraGo',
+                fontFamily: "FiraGo",
                 fontFeatureSettings: "'case' on",
                 "@media (max-width: 800px)": {
                   fontSize: "32px",
@@ -99,13 +99,15 @@ export default function MainSlider() {
                 },
               }}
             >
-              {renderLanguage("დავით ბეჟუაშვილის", "David Bezhuashvili")} <br />{" "}
-              {renderLanguage("განათლების ფონდი", "Education Foundation")}
+              {renderLanguage("მოქმედება", "Action")} <br />{" "}
+              {renderLanguage("საზოგადოებრივი", "For Community")}
+              <br />
+              {renderLanguage("ცვლილებებისთვის", "Transformation")}
             </Typography>
             <Typography variant="h6" fontWeight={500} sx={{ color: "white" }}>
               {renderLanguage(
-                "განათლება განვითარებული, თანამედროვე, დემოკრატიული ქვეყნის",
-                "Education is the main value of a developed, modern"
+                "ACT საქართველო უმთავრესად ორიენტირებულია საზოგადოებრივი კეთილდღეობის გაძლიერებაზე და მოწყვლადი ჯგუფების მხარდაჭერაზე.",
+                "ACT Georgia is primarily focused on strengthening public welfare and supporting vulnerable groups."
               )}{" "}
               <br />{" "}
               {renderLanguage("მთავარი ღირებულებაა", "democratic country")}

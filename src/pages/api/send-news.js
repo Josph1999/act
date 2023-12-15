@@ -35,7 +35,7 @@ export default async function handler(req, res) {
       const msg = {
         to: subscriber.email,
         from: process.env.NEXT_PUBLIC_FROM,
-        subject: "DBEF News!",
+        subject: "ACT News!",
         html: NewsLetter(data),
       };
 

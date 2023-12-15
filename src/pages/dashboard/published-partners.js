@@ -7,7 +7,7 @@ const Page = () => {
   return (
     <>
       <Head>
-        <title>DBEF | My Partners</title>
+        <title>ACT | My Partners</title>
       </Head>
       <MyPublishedpartners />
     </>

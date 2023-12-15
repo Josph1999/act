@@ -80,7 +80,7 @@ const MyPublishedProjects = () => {
   return (
     <>
       <Head>
-        <title>Published Projects | DBEF</title>
+        <title>Published Projects | ACT</title>
       </Head>
       <Box
         component="main"
