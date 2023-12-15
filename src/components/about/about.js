@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 import LeftIcon from "../icons/LeftIcon";
 import { useLanguage } from "src/contexts/language-context";
 import AboutInfo from "../about-info/about-info";
-import AuthorInfo from "../author-info/author-info";
+import FounderInfo from "../author-info/author-info";
 import TeamInfo from "../team-info.js/team-info";
-import YearCalculation from "../year-calculation/year-calculation";
+import AnnualReports from "../year-calculation/year-calculation";
 import { useWindowWidth } from "../helpers/useWindowWidth";
 import MobileAbout from "../mobile-about/mobile-about";
 import { useRouter } from "next/router";
@@ -24,8 +24,6 @@ export default function About() {
   };
 
   const router = useRouter();
-  // str.replace(/\s/g, '')
-  console.log("ROUTER QUERY:", router.query);
 
   useEffect(() => {
     if (router.query.data) {
@@ -56,25 +54,39 @@ export default function About() {
       case "About Foundation":
         component = <AboutInfo />;
         break;
-      case "Year Calculation":
-        component = <YearCalculation />;
+      case "Annual Reports":
+        component = <AnnualReports />;
         break;
       case "Team":
         component = <TeamInfo />;
         break;
-      case "Author":
-        component = <AuthorInfo />;
+      case "Founder":
+        component = <FounderInfo />;
         break;
     }
 
     return component;
   };
 
+  const renderPadding = () => {
+    if (selected < 1) {
+      return "0px 0px 0px 128px";
+    }
+    if (aboutData[selected]?.title_eng === "Annual Reports") {
+      return "0px 128px 0px 0px";
+    }
+  };
+
   return (
     <>
       {windowSize > 800 ? (
         <>
-          <Box className={styles.mainContainer}>
+          <Box
+            className={styles.mainContainer}
+            sx={{
+              padding: renderPadding(),
+            }}
+          >
             {selected > 0 && (
               <Box
                 sx={{
@@ -89,7 +101,7 @@ export default function About() {
               >
                 <Box
                   sx={{
-                    backgroundImage: `linear-gradient(53deg, #000 0%, rgba(0, 0, 0, 0.00) 95.77%), url(${
+                    backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%), url(${
                       aboutData[selected - 1].picture
                     })`,
                     height: "466px",
@@ -102,7 +114,13 @@ export default function About() {
                 ></Box>
                 {selected > 0 && (
                   <Button startIcon={<LeftIcon />} onClick={handlePrev}>
-                    <Typography sx={{ color: "#047852" }}>
+                    <Typography
+                      sx={{
+                        color: "#047852",
+                        fontFeatureSettings: "'case' on",
+                        textTransform: "uppercase",
+                      }}
+                    >
                       {renderLanguage(
                         aboutData[selected - 1]?.title_ka,
                         aboutData[selected - 1]?.title_eng
@@ -114,14 +132,13 @@ export default function About() {
             )}
             <Box
               sx={{
-                backgroundImage: `url(${aboutData[selected].picture})`,
+                backgroundImage: `linear-gradient(350deg, #000 7.62%, rgba(0, 0, 0, 0.00) 50%), url(${aboutData[selected].picture})`,
                 height: "546px",
-                width: "800px",
+                width: "100%",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 transition: "0.5s",
-                position: "relative",
               }}
             >
               {" "}
@@ -129,11 +146,12 @@ export default function About() {
                 sx={{
                   fontSize: "24px",
                   color: "white",
-                  position: "absolute",
-                  bottom: 40,
+                  marginTop: "480px",
                   left: 0,
                   right: 0,
                   textAlign: "center",
+                  fontFeatureSettings: "'case' on",
+                  textTransform: "uppercase",
                 }}
               >
                 {renderLanguage(
@@ -167,7 +185,13 @@ export default function About() {
                     }
                     onClick={handleNext}
                   >
-                    <Typography sx={{ color: "#047852" }}>
+                    <Typography
+                      sx={{
+                        color: "#047852",
+                        fontFeatureSettings: "'case' on",
+                        textTransform: "uppercase",
+                      }}
+                    >
                       {renderLanguage(
                         aboutData[selected + 1]?.title_ka,
                         aboutData[selected + 1]?.title_eng

@@ -6,7 +6,12 @@ import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import { useAuth } from "src/hooks/use-auth";
 import DefaultSelect from "src/components/select";
 import { QuillEditor } from "src/components/quill/quill-editor";
-import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import {
+  deleteObject,
+  getDownloadURL,
+  ref,
+  uploadBytesResumable,
+} from "firebase/storage";
 import { v4 as uuid } from "uuid";
 import { useCallback, useEffect, useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
@@ -14,10 +19,20 @@ import { db, storage } from "src/firebase/firebase";
 import styles from "./add-news.module.css";
 import ImageReorderApp from "../image-order/image-order";
 import { toast } from "react-toastify";
-import { collection, deleteDoc, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { useRouter } from "next/router";
 import { useLanguage } from "src/contexts/language-context";
 import LoaderModal from "../loader-modal/loader-modal";
+import axios from "axios";
+import LinkChips from "../link-chips/link-chips";
 
 export default function AddNews() {
   const small_id = uuid().slice(0, 8);
@@ -27,6 +42,7 @@ export default function AddNews() {
   const [news, setNews] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [adding, setAdding] = useState(false);
+  const [chipData, setChipData] = useState([]);
   const router = useRouter();
   const { renderLanguage } = useLanguage();
 
@@ -44,19 +60,35 @@ export default function AddNews() {
     validationSchema: Yup.object({
       title_ka: Yup.string()
         .max(255)
-        .required(renderLanguage("სათაური ქართულად სავალდებულოა", "Title on Georgian is required")),
+        .required(
+          renderLanguage(
+            "სათაური ქართულად სავალდებულოა",
+            "Title on Georgian is required"
+          )
+        ),
       title_eng: Yup.string()
         .max(255)
         .required(
-          renderLanguage("სათაური ინგლისურად სავალდებულოა", "Title on English is required")
+          renderLanguage(
+            "სათაური ინგლისურად სავალდებულოა",
+            "Title on English is required"
+          )
         ),
       description_ka: Yup.string().required(
-        renderLanguage("აღწერა ქართულად სავალდებულოა", "Description on Georgian is required")
+        renderLanguage(
+          "აღწერა ქართულად სავალდებულოა",
+          "Description on Georgian is required"
+        )
       ),
       description_eng: Yup.string().required(
-        renderLanguage("აღწერა ინგლისურად სავალდებულოა", "Description on English is required")
+        renderLanguage(
+          "აღწერა ინგლისურად სავალდებულოა",
+          "Description on English is required"
+        )
       ),
-      photos: Yup.array().required(renderLanguage("ფოტოები სავალდებულოა!", "Photos are required")),
+      photos: Yup.array().required(
+        renderLanguage("ფოტოები სავალდებულოა!", "Photos are required")
+      ),
     }),
     onSubmit: async (values, helpers) => {
       try {
@@ -71,7 +103,13 @@ export default function AddNews() {
             return;
           }
           setAdding(true);
-          const { title_ka, title_eng, description_ka, description_eng, photos } = values;
+          const {
+            title_ka,
+            title_eng,
+            description_ka,
+            description_eng,
+            photos,
+          } = values;
 
           for (let i = 0; i < photos.length; i++) {
             photos[i]["priority"] = i;
@@ -87,12 +125,16 @@ export default function AddNews() {
             photos,
             created_at: news.created_at,
             updated_at: new Date(),
+            mediaLinks: chipData,
           });
           setAdding(false);
           toast.success(
-            renderLanguage("სიახლე წარმატებით დარედაქტირდა!", "News has succesfully been edited")
+            renderLanguage(
+              "სიახლე წარმატებით დარედაქტირდა!",
+              "News has succesfully been edited"
+            )
           );
-          router.push("/dashboard/published-news");
+          // router.push("/dashboard/published-news");
           return;
         }
         if (imageList.length < 1) {
@@ -106,14 +148,17 @@ export default function AddNews() {
         }
         setAdding(true);
 
-        const { title_ka, title_eng, description_ka, description_eng, photos } = values;
+        const { title_ka, title_eng, description_ka, description_eng, photos } =
+          values;
         for (let i = 0; i < photos.length; i++) {
           photos[i]["priority"] = i;
         }
 
         const todosRef = collection(db, "news");
 
-        await setDoc(doc(todosRef, uuid()), {
+        const docId = uuid();
+
+        await setDoc(doc(todosRef, docId), {
           title_ka,
           title_eng,
           description_ka,
@@ -121,12 +166,31 @@ export default function AddNews() {
           photos,
           created_at: new Date(),
           updated_at: new Date(),
+          mediaLinks: chipData,
         });
         setAdding(false);
         toast.success(
-          renderLanguage("სიახლე წარმატებით დაემატა!", "News has succesfully been added")
+          renderLanguage(
+            "სიახლე წარმატებით დაემატა!",
+            "News has succesfully been added"
+          )
         );
-        router.push("/dashboard/published-news");
+        const emailRef = collection(db, "subscriptions");
+
+        await axios.post(
+          process.env.NEXT_PUBLIC_API_URL + `/send-news?link=news&id=${docId}`,
+          {
+            title_ka,
+            title_eng,
+            description_ka,
+            description_eng,
+            photos,
+            created_at: new Date(),
+            updated_at: new Date(),
+          }
+        );
+
+        // router.push("/dashboard/published-news");
       } catch (err) {
         helpers.setStatus({ success: false });
         helpers.setErrors({ submit: err.message });
@@ -154,12 +218,16 @@ export default function AddNews() {
         formik.setFieldValue("description_eng", data?.description_eng);
         setImageList(data?.photos);
         setNews(data);
+        setChipData(data?.mediaLinks || []);
       } else {
         toast.error(renderLanguage("სიახლე არ მოიძებნა!", "News not found!"));
       }
     } catch (error) {
       toast.error(
-        renderLanguage("შეცდომა დოკუმენტის ძებნის დროს", "Error while searching for document")
+        renderLanguage(
+          "შეცდომა დოკუმენტის ძებნის დროს",
+          "Error while searching for document"
+        )
       );
     }
   }, [edit, id]);
@@ -183,14 +251,17 @@ export default function AddNews() {
           "state_changed",
 
           (snapshot) => {
-            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            const progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             setPercentage(progress);
             switch (snapshot.state) {
               case "paused":
                 setStatus(renderLanguage("ატვირთვა დაპაუზდა", "Upload paused"));
                 break;
               case "running":
-                setStatus(renderLanguage("ფოტოები იტვირთება", "Upload in proccess"));
+                setStatus(
+                  renderLanguage("ფოტოები იტვირთება", "Upload in proccess")
+                );
                 break;
               default:
                 break;
@@ -233,10 +304,18 @@ export default function AddNews() {
 
     deleteObject(photoRef)
       .then(() => {
-        return renderLanguage("ფოტო წარმატებით წაიშალა", "photo has been deleted");
+        return renderLanguage(
+          "ფოტო წარმატებით წაიშალა",
+          "photo has been deleted"
+        );
       })
       .catch((error) => {
-        toast.error(renderLanguage("შეცდომა ფოტოს წაშლის დროს!", "Error while deleting photo!"));
+        toast.error(
+          renderLanguage(
+            "შეცდომა ფოტოს წაშლის დროს!",
+            "Error while deleting photo!"
+          )
+        );
       });
   };
 
@@ -251,13 +330,19 @@ export default function AddNews() {
       await deleteDoc(docRef);
 
       toast.success(
-        renderLanguage("სიახლე წარმატებით წაიშალა!", "News has succesfully been deleted!")
+        renderLanguage(
+          "სიახლე წარმატებით წაიშალა!",
+          "News has succesfully been deleted!"
+        )
       );
       setDeleting(false);
       router.push("/dashboard/published-news");
     } catch (error) {
       toast.error(
-        renderLanguage("შეცდომა დოკუმენტის წაშლის დროს", "Error while deleting document!")
+        renderLanguage(
+          "შეცდომა დოკუმენტის წაშლის დროს",
+          "Error while deleting document!"
+        )
       );
     }
   };
@@ -265,7 +350,7 @@ export default function AddNews() {
   return (
     <>
       <Head>
-        <title>Dbef | Add News</title>
+        <title>DBEF | Add News</title>
       </Head>
       <Box
         sx={{
@@ -282,7 +367,10 @@ export default function AddNews() {
             width: "100%",
           }}
         >
-          <Typography variant="h4" sx={{ textAlign: "center", marginBottom: "40px" }}>
+          <Typography
+            variant="h4"
+            sx={{ textAlign: "center", marginBottom: "40px" }}
+          >
             {edit
               ? renderLanguage("სიახლის რედაქტირება", "Edit news")
               : renderLanguage("სიახლის დამატება", "Add News")}
@@ -300,9 +388,14 @@ export default function AddNews() {
             <Box>
               <Box
                 className={styles.photoUpload}
-                style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
                 sx={{
-                  backgroundImage: imageList.length > 0 && `url(${imageList[0]?.url})`,
+                  backgroundImage:
+                    imageList.length > 0 && `url(${imageList[0]?.url})`,
                 }}
               >
                 <label className={styles.addPhotos} htmlFor="file-input">
@@ -335,27 +428,43 @@ export default function AddNews() {
               )}
 
               <Typography>
-                {percentage === 100 || percentage === null ? null : `${status} ${percentage} %`}
+                {percentage === 100 || percentage === null
+                  ? null
+                  : `${status} ${percentage} %`}
               </Typography>
             </Box>
             <Box>
               <form noValidate onSubmit={formik.handleSubmit}>
                 <Stack spacing={3}>
                   <TextField
-                    error={!!(formik.touched.title_ka && formik.errors.title_ka)}
+                    error={
+                      !!(formik.touched.title_ka && formik.errors.title_ka)
+                    }
                     fullWidth
-                    helperText={formik.touched.title_ka && formik.errors.title_ka}
-                    label={renderLanguage("სათაური ქართულად", "Title on Georgian")}
+                    helperText={
+                      formik.touched.title_ka && formik.errors.title_ka
+                    }
+                    label={renderLanguage(
+                      "სათაური ქართულად",
+                      "Title on Georgian"
+                    )}
                     name="title_ka"
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.title_ka}
                   />
                   <TextField
-                    error={!!(formik.touched.title_eng && formik.errors.title_eng)}
+                    error={
+                      !!(formik.touched.title_eng && formik.errors.title_eng)
+                    }
                     fullWidth
-                    helperText={formik.touched.title_eng && formik.errors.title_eng}
-                    label={renderLanguage("სათაური ინგლისურად", "Title on English")}
+                    helperText={
+                      formik.touched.title_eng && formik.errors.title_eng
+                    }
+                    label={renderLanguage(
+                      "სათაური ინგლისურად",
+                      "Title on English"
+                    )}
                     name="title_eng"
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
@@ -364,7 +473,10 @@ export default function AddNews() {
                   <QuillEditor
                     formik={formik}
                     value={formik.values.description_ka}
-                    placeholder={renderLanguage("აღწერა ქართულად", "Description on Georgian")}
+                    placeholder={renderLanguage(
+                      "აღწერა ქართულად",
+                      "Description on Georgian"
+                    )}
                     name="description_ka"
                     type="description_ka"
                     sx={{ width: "370px" }}
@@ -377,11 +489,15 @@ export default function AddNews() {
                   <QuillEditor
                     formik={formik}
                     value={formik.values.description_eng}
-                    placeholder={renderLanguage("აღწერა ინგლისურად", "Description on English")}
+                    placeholder={renderLanguage(
+                      "აღწერა ინგლისურად",
+                      "Description on English"
+                    )}
                     name="description_eng"
                     type="description_eng"
                     sx={{ width: "370px" }}
                   />
+                  <LinkChips chipData={chipData} setChipData={setChipData} />
                   {formik.errors.description_eng && (
                     <Typography color="error" sx={{ mt: 3 }} variant="body2">
                       {formik.errors.description_eng}
@@ -394,7 +510,13 @@ export default function AddNews() {
                   </Typography>
                 )}
 
-                <Button fullWidth size="large" sx={{ mt: 3 }} type="submit" variant="contained">
+                <Button
+                  fullWidth
+                  size="large"
+                  sx={{ mt: 3 }}
+                  type="submit"
+                  variant="contained"
+                >
                   {edit
                     ? renderLanguage("სიახლის რედაქტირება", "Edit news")
                     : renderLanguage("სიახლის დამატება", "Add News")}

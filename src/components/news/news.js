@@ -5,9 +5,11 @@ import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "src/firebase/firebase";
 import { useRouter } from "next/router";
 import { useLanguage } from "src/contexts/language-context";
+import { useWindowWidth } from "../helpers/useWindowWidth";
 
 export default function News() {
   const [loading, setLoading] = useState(false);
+
   const [news, setNews] = useState([]);
 
   const router = useRouter();
@@ -42,6 +44,7 @@ export default function News() {
     <Box
       padding="0px 128px"
       sx={{
+        marginTop: "50px",
         "@media (max-width: 800px)": {
           padding: "0px",
           marginTop: "20px",
@@ -49,12 +52,22 @@ export default function News() {
         },
       }}
     >
-      <Box >
-        <Typography fontFamily={renderFontFamily()} fontSize={32} fontWeight={600}>
+      <Box
+        sx={{
+          "@media (max-width: 800px)": {
+            padding: "10px 20px",
+          },
+        }}
+      >
+        <Typography
+          sx={{ fontFeatureSettings: "'case' on" }}
+          fontSize={32}
+          fontWeight={600}
+        >
           {renderLanguage("სიახლეები", "News")}
         </Typography>
         <Typography
-          fontFamily={renderFontFamily()}
+          sx={{ fontFeatureSettings: "'case' on" }}
           color="#2F2F2F"
           fontWeight={300}
         >
@@ -74,18 +87,26 @@ export default function News() {
           marginTop: "40px",
         }}
       >
-        {news.map((item) => (
-          <NewsCard news={item} />
+        {news?.map((item, idx) => (
+          <NewsCard news={item} idx={idx} />
         ))}
       </Box>
       <Box
-        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "20px",
+        }}
         marginTop={10}
       >
         <Button
-          variant="outlined"
+          variant="contained"
           sx={{
-            fontFamily: renderFontFamily(),
+            fontFeatureSettings: "'case' on",
+            "@media (max-width: 800px)": {
+              width: "100%",
+            },
           }}
           onClick={() => router.push("/news")}
         >

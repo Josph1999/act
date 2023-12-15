@@ -30,9 +30,39 @@ export const items = [
     )
   },
   {
+    title_ka: 'გამომწერები',
+    title_eng: "Subscribers",
+    path: '/dashboard/subscribers',
+    icon: (
+      <SvgIcon fontSize="small">
+        <UsersIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    title_ka: 'გამოქვეყნებული პარტნიორები',
+    title_eng: "Published Partners",
+    path: '/dashboard/published-partners',
+    icon: (
+      <SvgIcon fontSize="small">
+        <UsersIcon />
+      </SvgIcon>
+    )
+  },
+  {
     title_ka: 'გამოქვეყნებული პროექტები',
     title_eng: "Published Projects",
     path: '/dashboard/published-projects',
+    icon: (
+      <SvgIcon fontSize="small">
+        <UsersIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    title_ka: 'გამოქვეყნებული რეპორტები',
+    title_eng: "Published Projects",
+    path: '/dashboard/published-reports',
     icon: (
       <SvgIcon fontSize="small">
         <UsersIcon />
@@ -63,6 +93,16 @@ export const items = [
     title_ka: 'პარტნიორის დამატება',
     title_eng: "Add Partner",
     path: '/dashboard/add-partner',
+    icon: (
+      <SvgIcon fontSize="small">
+        <CogIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    title_ka: 'წლიური ანგარიშის დამატება',
+    title_eng: "Add Calculation",
+    path: '/dashboard/add-calculation',
     icon: (
       <SvgIcon fontSize="small">
         <CogIcon />

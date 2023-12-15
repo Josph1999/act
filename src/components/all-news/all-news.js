@@ -6,7 +6,7 @@ import { db } from "src/firebase/firebase";
 import NewsCard from "../news/news-card/news-card";
 
 export default function AllNews() {
-  const rowsPerPage = 12;
+  const rowsPerPage = 9;
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [news, setNews] = useState([]);
@@ -17,7 +17,7 @@ export default function AllNews() {
     let documentSnapshots;
 
     documentSnapshots = await getDocs(
-      query(newsRef, orderBy("created_at", "desc"), limit(12))
+      query(newsRef, orderBy("created_at", "desc"))
     );
 
     setLoading(true);
@@ -49,21 +49,22 @@ export default function AllNews() {
         sx={{
           width: "100%",
           height: "385px",
-          backgroundImage: `url(/assets/NewsBackground.png)`,
+          backgroundImage: `linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.00) 50%), url(/assets/NewsBack.png)`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "center top",
           display: "flex",
           alignItems: "center",
         }}
       >
         <Typography
-          fontFamily={renderFontFamily()}
+          // sx={{fontFeatureSettings: "'case' on"}}
+          sx={{fontFeatureSettings: "'case' on"}}
           fontSize={32}
           color="white"
           marginLeft={10}
         >
-          {renderLanguage("ყველა სიახლე", "All News")}
+          {renderLanguage("ყველა სიახლე", "Articles")}
         </Typography>
       </Box>
       <Box>

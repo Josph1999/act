@@ -5,8 +5,9 @@ import SeeMore from "src/components/icons/SeeMore";
 import { useLanguage } from "src/contexts/language-context";
 import { Dates } from "../constants";
 import { useRouter } from "next/router";
+import parse from "html-react-parser";
 
-export default function NewsCard({ news }) {
+export default function NewsCard({ news, idx }) {
   const { renderLanguage, renderFontFamily } = useLanguage();
 
   const router = useRouter();
@@ -48,6 +49,12 @@ export default function NewsCard({ news }) {
         "@media (max-width: 800px)": {
           padding: "20px",
         },
+        "@media (max-width: 1410px)": {
+          display: idx === 2 ? 'none' : 'block',
+        },
+        "@media (max-width: 700px)": {
+          display:'block',
+        },
       }}
     >
       <Box
@@ -60,22 +67,20 @@ export default function NewsCard({ news }) {
           backgroundPosition: "center",
         }}
       ></Box>
-      <Typography fontFamily={renderFontFamily()} color="#BDBDBD">
+      <Typography sx={{fontFeatureSettings: "'case' on"}} color="#BDBDBD">
         {renderDate(news.created_at)}
       </Typography>
-      <Typography fontFamily={renderFontFamily()} fontWeight={700}>
+      <Typography sx={{fontFeatureSettings: "'case' on"}} fontWeight={700} height='50px'>
         {renderLanguage(
-          news?.title_ka.substring(0, 68),
-          news?.title_eng.substring(0, 68)
+          news?.title_ka.substring(0, 68)  + '...',
+          news?.title_eng.substring(0, 68)  + '...'
         )}
-        ...
       </Typography>
-      <Typography>
+      <Typography height='130px'>
         {renderLanguage(
-          news?.title_ka.substring(0, 146),
-          news?.title_eng.substring(0, 146)
+          parse(news?.description_ka.substring(0, 146) + '...'),
+          parse(news?.description_eng.substring(0, 146) + '...')
         )}
-        ...
       </Typography>
 
       <Button

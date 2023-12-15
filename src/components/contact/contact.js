@@ -17,10 +17,10 @@ export default function Contact() {
         },
       }}
     >
-      <Typography fontFamily={renderFontFamily()} fontSize={32}>
+      <Typography sx={{fontFeatureSettings: "'case' on"}} fontSize={32}>
         {renderLanguage("კონტაქტი", "Contact")}
       </Typography>
-      <Typography fontFamily={renderFontFamily()}>
+      <Typography sx={{fontFeatureSettings: "'case' on"}}>
         {renderLanguage(
           "ინფორმაციის მისაღებად ან ნებისმიერ სხვა საკითხთან დაკავშირებით, დაგვიკავშირდით: ",
           "For information or any other matter, contact us:"
@@ -41,7 +41,7 @@ export default function Contact() {
           variant="outlined"
         >
           <a
-            href={`tel:+995322122115`}
+            href={`tel:+995577770306`}
             style={{
               color: "#4338CA",
               textDecoration: "none",
@@ -56,7 +56,7 @@ export default function Contact() {
               },
             }}
           >
-            <PhoneIcon color="#4338CA"/> (+995 32) 212 21 15
+            <PhoneIcon color="#4338CA"/> (+995)577 770 306
           </a>
         </Button>
         <Button
@@ -84,7 +84,7 @@ export default function Contact() {
       </Box>
       <GoogleMaps />
       <Box sx={{ backgroundColor: "#4338CA", padding: "32px", color: '#fff' }}>
-        <Typography fontFamily={renderFontFamily()}>
+        <Typography sx={{fontFeatureSettings: "'case' on"}}>
           {renderLanguage(
             "ქ. თბილისი, გაზაფხულის ქუჩა, N18",
             "St. N18, Gazapkhuli Street, Tbilisi"

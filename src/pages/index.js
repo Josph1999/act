@@ -1,14 +1,8 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
 import Head from "next/head";
-import { useCallback, useEffect, useState } from "react";
-import { rafflesApi } from "src/api/raffles";
-import BuyTicketModal from "src/components/buy-ticket.js/buy-ticket";
-import Categories from "src/components/categories/categories";
-import HotRaffles from "src/components/hot-raffles/hot-raffles";
+import { useState } from "react";
 import MainSlider from "src/components/main-slider/main-slider";
 import { Layout } from "src/layouts/main/layout";
-import Winners from "src/components/winners/winners";
 import News from "src/components/news/news";
 import MainAboutInfo from "src/components/main-about-info/main-about-info";
 import Projects from "src/components/projects/projects";
@@ -22,17 +16,19 @@ const Page = () => {
   return (
     <>
       <Head>
-        <title>Main | ACT</title>
+        <title>Main | DBEF</title>
       </Head>
-      <main
-      >
+      <main>
         <>
-          {/* <MainSlider />
-          <News/>
-          <MainAboutInfo/>
-          <Projects/>
-          <Partners/> */}
-          <h1>საიტი მუშავდება!</h1>
+          <MainSlider />
+          <News />
+          <MainAboutInfo />
+          <Projects />
+          <Partners />
+          <script
+            src="https://donorbox.org/widget.js"
+            paypalExpress="true"
+          ></script>
         </>
       </main>
     </>

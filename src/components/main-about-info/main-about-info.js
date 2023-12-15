@@ -59,7 +59,7 @@ export default function MainAboutInfo() {
             }}
           >
             {item.icon}
-            <Typography fontFamily={renderFontFamily()}>
+            <Typography sx={{fontFeatureSettings: "'case' on"}}>
               {renderLanguage(item.title_ka, item.title_eng)}
             </Typography>
             <Typography fontSize={16}>
@@ -106,7 +106,7 @@ export default function MainAboutInfo() {
               }}
             >
               {item.icon}
-              <Typography fontFamily={renderFontFamily()}>
+              <Typography sx={{fontFeatureSettings: "'case' on"}}>
                 {renderLanguage(item.title_ka, item.title_eng)}
               </Typography>
               <Typography fontSize={16}>

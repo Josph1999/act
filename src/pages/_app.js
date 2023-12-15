@@ -20,8 +20,11 @@ import "swiper/css/navigation";
 import "../styles/global.css";
 import localFont from "next/font/local";
 import { LanguageProvider } from "src/contexts/language-context";
+import "fontsource-firago";
 
-const notoSans = Noto_Sans_Georgian({ subsets: ["georgian", "latin",  "latin-ext"] });
+const notoSans = Noto_Sans_Georgian({
+  subsets: ["georgian", "latin", "latin-ext"],
+});
 // const notoSans = localFont({ src: '../../public/fonts/bpg_nino_mtavruli_bold.ttf' })
 const clientSideEmotionCache = createEmotionCache();
 
@@ -39,17 +42,17 @@ const App = (props) => {
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <title>Dbef</title>
+        <title>DBEF</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
-        <meta property="og:url" content="http://dev.georaffle.ge" />
+        <meta property="og:url" content="https://www.dbef.ge" />
         <meta
           property="og:image"
-          content="https://firebasestorage.googleapis.com/v0/b/georaffal.appspot.com/o/351167312_231335983016667_6199886828236786293_n.png?alt=media&token=73a15ccc-6708-45a0-aec8-46c305178872"
+          content="https://www.dbef.ge/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FFooterKa.77e41d8e.png&w=128&q=75"
         />
       </Head>
       <style jsx global>{`
         body {
-          font-family: ${notoSans.style.fontFamily} !important;
+          font-family: FiraGo !important;
         }
       `}</style>
       <LocalizationProvider dateAdapter={AdapterDateFns}>

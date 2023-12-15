@@ -38,7 +38,7 @@ export default function AdminNewsCard({ news }) {
         component="img"
         height="194"
         image={news?.photos?.[0]?.url || ""}
-        alt="Dbef news"
+        alt="DBEF news"
       />
       <CardContent sx={{ height: "155px", maxHeight: "155px", overflow: "hidden" }}>
         <Typography variant="body2" color="text.secondary">

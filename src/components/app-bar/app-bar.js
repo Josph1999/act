@@ -29,16 +29,20 @@ import { useRouter } from "next/router";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import MainLogo from "../icons/MainLogo";
+import DonateModal from "../donate/donate";
 
 export default function MainAppBar() {
   const windowWidth = useWindowWidth();
-  const { language, changeLanguage } = useLanguage();
+  const { language, changeLanguage, renderLanguage, renderFontFamily } =
+    useLanguage();
   const [openDrawer, setOpenDrawer] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [menuAnchorEl, setMenuAnchorEl] = React.useState(null);
+
+  const [openDonate, setOpenDonate] = useState(false);
+
   const openMenu = Boolean(menuAnchorEl);
   const handleClick = (event) => {
-    console.log("THIS WORKS:");
     setMenuAnchorEl(event.currentTarget);
   };
 
@@ -50,29 +54,39 @@ export default function MainAppBar() {
     setAnchorEl(null);
   };
 
-  const { renderLanguage, renderFontFamily } = useLanguage();
-
   const router = useRouter();
   const handleOpenPage = (page) => {
     router.push(page);
     setMenuAnchorEl(null);
   };
+
   return (
     <AppBar
       position="fixed"
       sx={{
         backgroundColor: "#fff",
         zIndex: "99",
-        padding: "0px 128px",
-        "@media (max-width: 800px)": {
+        padding:
+          router.pathname === "/projects/[id]" ||
+          router.pathname === "/news/[id]"
+            ? "0px 256px"
+            : "0px 128px",
+        transition: "0.5s",
+        "@media (max-width: 980px)": {
           padding: "20px",
         },
       }}
     >
       <Toolbar
-        sx={{ display: "flex", justifyContent: "space-between", width: "100%" }}
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          width: "100%",
+          paddingLeft: "0px !important",
+          paddingRight: "0px !important",
+        }}
       >
-        {windowWidth < 800 ? null : (
+        {windowWidth < 980 ? null : (
           <Link href={"/"}>
             <IconButton
               size="large"
@@ -86,12 +100,14 @@ export default function MainAppBar() {
           </Link>
         )}
         <Box>
-          {windowWidth < 800 ? (
+          {windowWidth < 980 ? (
             <IconButton onClick={() => setOpenDrawer(true)}>
               <MenuIcon />
             </IconButton>
           ) : (
-            <Box marginLeft="-320px">
+            <Box
+             
+            >
               {HeaderLinks.map(({ name_ka, name_eng, url }) =>
                 name_ka !== "ფონდის შესახებ" ? (
                   <Link href={url} key={name_ka}>
@@ -99,7 +115,7 @@ export default function MainAppBar() {
                       sx={{
                         color: "black",
                         cursor: "pointer",
-                        fontFamily: renderFontFamily(),
+                        fontFeatureSettings: "'case' on",
                       }}
                       fontWeight={500}
                     >
@@ -117,7 +133,7 @@ export default function MainAppBar() {
                     sx={{
                       color: "black",
                       cursor: "pointer",
-                      fontFamily: renderFontFamily(),
+                      fontFeatureSettings: "'case' on",
                     }}
                     fontWeight={500}
                     endIcon={
@@ -141,21 +157,26 @@ export default function MainAppBar() {
           }}
         >
           {aboutData.map((item) => (
-            <MenuItem onClick={() => handleOpenPage(item.path)}>
+            <MenuItem
+              onClick={() => handleOpenPage(item.path)}
+              sx={{ fontFeatureSettings: "'case' on" }}
+            >
               {renderLanguage(item.title_ka, item.title_eng)}
             </MenuItem>
           ))}
         </Menu>
         <Box>
-          <Tooltip title="Language">
-            <IconButton onClick={handleOpenMenu}>
-              <SvgIcon fontSize="small">
-                <LanguageIcon />
-              </SvgIcon>
-            </IconButton>
-          </Tooltip>
+          <Button
+            onClick={handleOpenMenu}
+            startIcon={<LanguageIcon />}
+            endIcon={<ArrowDropDownIcon />}
+          ></Button>
 
-          <Button variant="contained" sx={{}}>
+          <Button
+            variant="contained"
+            sx={{ backgroundColor: "#10B981", fontFeatureSettings: "'case' on" }}
+            onClick={() => router.push('/donate')}
+          >
             {renderLanguage("დონაცია", "Donate")}
           </Button>
         </Box>
@@ -167,8 +188,9 @@ export default function MainAppBar() {
           MenuListProps={{
             "aria-labelledby": "basic-button",
           }}
+          sx={{ padding: "10px" }}
         >
-          <FormControl>
+          <FormControl sx={{ padding: "10px" }}>
             <RadioGroup
               aria-labelledby="demo-radio-buttons-group-label"
               defaultValue="female"

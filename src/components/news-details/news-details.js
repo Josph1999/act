@@ -11,11 +11,19 @@ import { useCallback, useEffect, useState } from "react";
 import { useLanguage } from "src/contexts/language-context";
 import { useRouter } from "next/router";
 import { db } from "src/firebase/firebase";
-import { Box, Typography } from "@mui/material";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Typography,
+} from "@mui/material";
 import { toast } from "react-toastify";
 import Image from "next/image";
 import { Dates } from "../news/constants";
 import parser from "html-react-parser";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import NewsLinks from "../news-links/news-links";
 
 export default function NewsDetails() {
   const [loading, setLoading] = useState(false);
@@ -81,7 +89,7 @@ export default function NewsDetails() {
       <Box
         marginTop={7}
         sx={{
-          padding: "128px",
+          padding: "50px 256px",
           paddingBottom: "20px",
           "@media (max-width: 800px)": {
             padding: "20px",
@@ -90,7 +98,7 @@ export default function NewsDetails() {
         }}
       >
         <Typography
-          fontFamily={renderFontFamily()}
+          sx={{ fontFeatureSettings: "'case' on" }}
           fontSize={20}
           textAlign="center"
         >
@@ -117,7 +125,11 @@ export default function NewsDetails() {
           <Box
             sx={{ backgroundColor: "#4338CA", padding: "18px", width: "200px" }}
           >
-            <Typography fontFamily={renderFontFamily()} textAlign="center">
+            <Typography
+              sx={{ fontFeatureSettings: "'case' on" }}
+              textAlign="center"
+              color="#FFF"
+            >
               {renderDate(news?.created_at)}
             </Typography>
           </Box>
@@ -125,7 +137,7 @@ export default function NewsDetails() {
       </Box>
       <Box
         sx={{
-          padding: "128px",
+          padding: "50px 256px",
           "@media (max-width: 800px)": {
             padding: "20px",
             marginTop: "20px",
@@ -140,6 +152,47 @@ export default function NewsDetails() {
             )
           )}
         </Typography>
+      </Box>
+      <Box
+        sx={{
+          padding: "20px 256px",
+          "@media (max-width: 800px)": {
+            padding: "20px",
+            marginTop: "20px",
+          },
+        }}
+      >
+        {news?.mediaLinks && news?.mediaLinks.length > 0 ? <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            sx={{ backgroundColor: "#4338CA", color: "white" }}
+          >
+            <Typography
+              sx={{
+                fontFeatureSettings: "'case' on",
+                textTransform: "uppercase",
+              }}
+            >
+              {renderLanguage("მედია ლინკები", "Media Links")}
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                gap: "20px",
+                flexWrap: "wrap",
+              }}
+            >
+              {news?.mediaLinks?.map((item) => (
+                <NewsLinks data={item} />
+              ))}
+            </Box>
+          </AccordionDetails>
+        </Accordion> : null}
       </Box>
       <Box
         sx={{

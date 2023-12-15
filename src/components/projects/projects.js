@@ -16,6 +16,7 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import { useRouter } from "next/router";
+import SeeMore from "../icons/SeeMore";
 
 export default function Projects() {
   const windowSize = useWindowWidth();
@@ -67,10 +68,10 @@ export default function Projects() {
         },
       }}
     >
-      <Typography sx={{ fontFamily: renderFontFamily(), fontSize: "32px" }}>
+      <Typography sx={{ fontFeatureSettings: "'case' on", fontSize: "32px" }}>
         {renderLanguage("პროექტები", "Projects")}
       </Typography>
-      <Typography sx={{ fontFamily: renderFontFamily(), color: "#111927" }}>
+      <Typography sx={{ fontFeatureSettings: "'case' on", color: "#111927" }}>
         {renderLanguage(
           "დასრულებული და მიმდინარე პროექტები",
           "Completed and ongoing projects"
@@ -80,9 +81,9 @@ export default function Projects() {
         <Box
           sx={{
             display: "flex",
-            justifyContent: 'space-between',
+            justifyContent: "space-between",
             marginTop: "32px",
-            gap: '128px',
+            gap: "128px",
             flexWrap: "no-wrap",
           }}
         >
@@ -91,7 +92,7 @@ export default function Projects() {
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
-              gap: '50px',
+              gap: "50px",
             }}
           >
             {projects.map((item) => (
@@ -104,7 +105,7 @@ export default function Projects() {
                         paddingLeft: "32px",
                         cursor: "pointer",
                         width: "500px",
-                        overflow: 'hidden',
+                        overflow: "hidden",
                         transition:
                           "border-left-color 0.3s, height 0.3s, padding-left 0.3s",
                       }
@@ -112,7 +113,7 @@ export default function Projects() {
                         height: "112px",
                         cursor: "pointer",
                         width: "500px",
-                        overflow: 'hidden',
+                        overflow: "hidden",
                         transition:
                           "border-left-color 0.3s, height 0.3s, padding-left 0.3s",
                         "&:hover": {
@@ -125,7 +126,7 @@ export default function Projects() {
                 key={item.id}
                 onClick={() => setSelected(item)}
               >
-                <Typography fontFamily={renderFontFamily()} fontWeight={600}>
+                <Typography sx={{fontFeatureSettings: "'case' on"}} fontWeight={600}>
                   {renderLanguage(
                     item.title_ka.substring(0, 80) + "...",
                     item.title_eng.substring(0, 80) + "..."
@@ -146,68 +147,131 @@ export default function Projects() {
                 objectFit: "cover",
                 borderRadius: "32px",
                 transition: "opacity 0.5s ease-in-out",
-                width: '100%',
-                opacity: selected ? 1 : 0, 
+                width: "100%",
+                opacity: selected ? 1 : 0,
               }}
               src={selected?.photos?.[0]?.url}
               width={0}
               height={512}
               loading="lazy"
             />
+            <Box
+              marginTop={3}
+              width="100%"
+              display="flex"
+              justifyContent="center"
+            >
+              <Button
+                variant="outlined"
+                onClick={() => router.push(`/projects/${selected?.id}`)}
+                endIcon={<SeeMore />}
+                sx={{
+                  width: '100%'
+                }}
+              >
+                {renderLanguage("სრულად ნახვა", "See More")}
+              </Button>
+            </Box>
           </Box>
         </Box>
       ) : (
-        <Box>
-          <Box borderTop="4px solid #4338CA" paddingTop={5} marginTop={5}>
-            <Typography fontFamily={renderFontFamily()} fontWeight={600}>
-              {renderLanguage(
-                projects?.[activeStep]?.title_ka.substring(0, 80) + "...",
-                projects?.[activeStep]?.title_eng.substring(0, 80) + "..."
-              )}
-            </Typography>
-            <Typography>
-              {renderLanguage(
-                parse(
-                  projects?.[activeStep]?.description_ka.substring(0, 150) +
-                    "..."
-                ),
-                parse(
-                  projects?.[activeStep]?.description_eng.substring(0, 150) +
-                    "..."
-                )
-              )}
-            </Typography>
+        <>
+          <Box>
+            <Box borderTop="4px solid #4338CA" paddingTop={5} marginTop={5}>
+              <Typography sx={{fontFeatureSettings: "'case' on"}} fontWeight={600}>
+                {renderLanguage(
+                  projects?.[activeStep]?.title_ka.substring(0, 80) + "...",
+                  projects?.[activeStep]?.title_eng.substring(0, 80) + "..."
+                )}
+              </Typography>
+              <Typography>
+                {renderLanguage(
+                  parse(
+                    projects?.[activeStep]?.description_ka.substring(0, 150) +
+                      "..."
+                  ),
+                  parse(
+                    projects?.[activeStep]?.description_eng.substring(0, 150) +
+                      "..."
+                  )
+                )}
+              </Typography>
+            </Box>
+            <SwipeableViews
+              axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+              index={activeStep}
+              onChangeIndex={handleStepChange}
+              enableMouseEvents
+            >
+              {projects.map((step, index) => (
+                <div key={step.label}>
+                  {Math.abs(activeStep - index) <= 2 ? (
+                    <Box
+                      component="img"
+                      sx={{
+                        height: 255,
+                        display: "block",
+                        maxWidth: 400,
+                        overflow: "hidden",
+                        width: "100%",
+                        objectFit: "cover",
+                      }}
+                      src={step?.photos?.[0].url}
+                      alt={step?.photos?.[0].name}
+                    />
+                  ) : null}
+                </div>
+              ))}
+            </SwipeableViews>
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "10px",
+              }}
+            >
+              <MobileStepper
+                steps={projects.length || 1}
+                position="static"
+                activeStep={activeStep}
+              />
+            </Box>
           </Box>
-          <SwipeableViews
-            axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-            index={activeStep}
-            onChangeIndex={handleStepChange}
-            enableMouseEvents
+          <Box
+            marginTop={3}
+            width="100%"
+            display="flex"
+            justifyContent="center"
           >
-            {projects.map((step, index) => (
-              <div key={step.label}>
-                {Math.abs(activeStep - index) <= 2 ? (
-                  <Box
-                    component="img"
-                    sx={{
-                      height: 255,
-                      display: "block",
-                      maxWidth: 400,
-                      overflow: "hidden",
-                      width: "100%",
-                      objectFit: "cover",
-                    }}
-                    src={step?.photos?.[0].url}
-                    alt={step?.photos?.[0].name}
-                  />
-                ) : null}
-              </div>
-            ))}
-          </SwipeableViews>
-        </Box>
+            <Button
+              variant="outlined"
+              onClick={() => router.push(`/projects/${selected?.id}`)}
+              endIcon={<SeeMore />}
+              sx={{
+                fontFeatureSettings: "'case' on",
+                "@media (max-width: 800px)": {
+                  width: "100%",
+                },
+              }}
+            >
+              {renderLanguage("სრულად ნახვა", "See More")}
+            </Button>
+          </Box>
+        </>
       )}
-      <Box marginTop={13} width="100%" display="flex" justifyContent="center">
-        <Button variant="outlined" onClick={() => router.push(`/projects`)}>
+
+      <Box marginTop={10} width="100%" display="flex" justifyContent="center">
+        <Button
+          variant="contained"
+          onClick={() => router.push(`/projects`)}
+          sx={{
+            fontFeatureSettings: "'case' on",
+            "@media (max-width: 800px)": {
+              width: "100%",
+            },
+          }}
+        >
           {renderLanguage("ყველა პროექტი", "All Projects")}
         </Button>
       </Box>

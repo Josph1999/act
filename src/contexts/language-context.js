@@ -23,7 +23,7 @@ export const LanguageProvider = ({ children }) => {
       return "UpperCaseGeo";
     }
 
-    return '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"';
+    return 'FiraGO"';
   };
 
   return (

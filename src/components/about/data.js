@@ -10,8 +10,8 @@ export const aboutData = [
     id: 2,
     picture: '/assets/davitBezhuashvili.png',
     title_ka: 'დამფუძნებელი',
-    title_eng: 'Author',
-    path: '/about?data=Author'
+    title_eng: 'Founder',
+    path: '/about?data=Founder'
   },
   {
     id: 3,
@@ -22,9 +22,9 @@ export const aboutData = [
   },
   {
     id: 4,
-    picture: '/assets/YearCalculation.png',
+    picture: '/assets/AnnualReports.png',
     title_ka: 'წლიური ანგარიში',
-    title_eng: 'Year Calculation',
-    path: '/about?data=YearCalculation'
+    title_eng: 'Annual Reports',
+    path: '/about?data=AnnualReports'
   }
 ]

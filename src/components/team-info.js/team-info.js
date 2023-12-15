@@ -2,9 +2,13 @@ import { Box, Typography } from "@mui/material";
 import styles from "./teamInfo.module.css";
 import { data } from "./data";
 import { useLanguage } from "src/contexts/language-context";
+import { useRouter } from "next/router";
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 export default function TeamInfo() {
   const { renderLanguage, language } = useLanguage();
+
+  const router = useRouter()
 
   return (
     <Box className={styles.mainContainer}>
@@ -22,7 +26,9 @@ export default function TeamInfo() {
               "@media (max-width: 800px)": {
                 marginTop: "20px",
               },
+
             }}
+     
           >
             <Box
               sx={{
@@ -34,12 +40,20 @@ export default function TeamInfo() {
               }}
             >
               <Box
+                     onClick={() => item.id ? router.push(`/about/${item.id}`) : null}
                 sx={{
                   width: "336px",
                   padding: "24px",
                   backgroundColor: "white",
                   fontFamily: "UpperCaseGeo",
                   backgroundColor: "#E2E0FF",
+                  cursor: 'pointer',
+                  transition: '0.5s',
+                  '&:hover': {
+                      marginTop: '-20px',
+                      backgroundColor: "#E2E0BF",
+                      
+                  }
                 }}
               >
                 <Typography
@@ -49,9 +63,13 @@ export default function TeamInfo() {
                       language === "GEO"
                         ? "UpperCaseGeo"
                         : `"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '15px'
+                        
                   }}
                 >
-                  {renderLanguage(item.name_ka, item.name_eng)}
+                  {renderLanguage(item.name_ka, item.name_eng)} {' '} { item.id ? <OpenInNewIcon/> : null}
                 </Typography>
                 <br></br>
                 <Typography

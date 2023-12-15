@@ -32,7 +32,7 @@ export default function ResponsiveDrawer({ open, onClose }) {
   const handleOpenPage = (page) => {
     router.push(page);
     setMenuAnchorEl(null);
-    onClose()
+    onClose();
   };
 
   return (
@@ -71,43 +71,42 @@ export default function ResponsiveDrawer({ open, onClose }) {
           <MainLogo />
         </Box>
         <Divider sx={{ borderColor: "neutral.700" }} />
-        <Box display="flex" flexDirection="column">
+        <Box display="flex" flexDirection="column" alignItems="flex-start">
           {Links.map(({ name_ka, name_eng, url }) =>
             name_ka !== "ფონდის შესახებ" ? (
-              <Link href={url} key={name_ka}>
-                <Button
-                  sx={{
-                    color: "black",
-                    cursor: "pointer",
-                    fontFamily: renderFontFamily(),
-                  }}
-                  fontWeight={500}
-                >
-                  {renderLanguage(name_ka, name_eng)}
-                </Button>
-              </Link>
+              <Button
+                sx={{
+                  color: "black",
+                  cursor: "pointer",
+                  fontFeatureSettings: "'case' on",
+                }}
+                fontWeight={500}
+                onClick={() => {
+                  router.push(url);
+                  onClose();
+                }}
+              >
+                {renderLanguage(name_ka, name_eng)}
+              </Button>
             ) : (
-              <Link>
-                <Button
-                  id="basic-button"
-                  aria-controls={openMenu ? "basic-menu" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={openMenu ? "true" : undefined}
-                  onClick={handleClick}
-                  variant="h6"
-                  sx={{
-                    color: "black",
-                    cursor: "pointer",
-                    fontFamily: renderFontFamily(),
-                  }}
-                  fontWeight={500}
-                  endIcon={
-                    openMenu ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />
-                  }
-                >
-                  {renderLanguage(name_ka, name_eng)}
-                </Button>
-              </Link>
+              <Button
+                id="basic-button"
+                aria-controls={openMenu ? "basic-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={openMenu ? "true" : undefined}
+                onClick={handleClick}
+                variant="h6"
+                sx={{
+                  color: "black",
+                  cursor: "pointer",
+                  fontFeatureSettings: "'case' on",
+                  paddingLeft: "15px",
+                }}
+                fontWeight={500}
+                endIcon={openMenu ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+              >
+                {renderLanguage(name_ka, name_eng)}
+              </Button>
             )
           )}
         </Box>
@@ -122,7 +121,10 @@ export default function ResponsiveDrawer({ open, onClose }) {
         }}
       >
         {aboutData.map((item) => (
-          <MenuItem onClick={() => handleOpenPage(item.path)}>
+          <MenuItem
+            onClick={() => handleOpenPage(item.path)}
+            sx={{ fontFeatureSettings: "'case' on" }}
+          >
             {renderLanguage(item.title_ka, item.title_eng)}
           </MenuItem>
         ))}

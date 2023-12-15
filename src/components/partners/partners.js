@@ -52,16 +52,15 @@ export default function Partners() {
         sx={{
           padding: "0px 128px",
           paddingBottom: '50px',
-          marginTop: 20,
           "@media (max-width: 800px)": {
             padding: "30px",
           },
         }}
       >
-        <Typography fontSize={32} fontFamily={renderFontFamily()}>
+        <Typography fontSize={32} sx={{fontFeatureSettings: "'case' on"}}>
           {renderLanguage("პარტნიორები", "Partners")}
         </Typography>
-        <Typography fontFamily={renderFontFamily()}>
+        <Typography sx={{fontFeatureSettings: "'case' on"}}>
           {renderLanguage(
             "პარტნიორი ორგანიზაციები, რომლებთანაც ფონდი თანამშრომლობს",
             "Partner organizations with which the Foundation cooperates"
