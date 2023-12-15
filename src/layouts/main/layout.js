@@ -13,7 +13,7 @@ export const Layout = (props) => {
     <>
       <MainAppBar/>
       {children}
-      <Analytics />
+      {/* <Analytics /> */}
       {/* <Footer/> */}
     </>
   );
