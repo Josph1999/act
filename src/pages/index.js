@@ -8,6 +8,7 @@ import MainAboutInfo from "src/components/main-about-info/main-about-info";
 import Projects from "src/components/projects/projects";
 import Partners from "src/components/partners/partners";
 import MissionAndVision from "src/components/mission-and-vision/mission-and-vision";
+import Subscribe from "src/components/subscribe/subscribe";
 
 const Page = () => {
   const [raffle, setRaffle] = useState(null);
@@ -22,11 +23,12 @@ const Page = () => {
       <main>
         <>
           <MainSlider />
-          <MissionAndVision/>
-          <News/>
+          <MissionAndVision />
+          <News />
           <MainAboutInfo />
           <Projects />
           <Partners />
+          <Subscribe />
           <script
             src="https://donorbox.org/widget.js"
             paypalExpress="true"

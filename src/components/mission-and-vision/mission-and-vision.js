@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { useLanguage } from "src/contexts/language-context";
-import missionAndVision from "../../../public/assets/MissionAndVision.jpeg";
+// import missionAndVision from "/assets/MissionAndVision.jpeg";
 
 export default function MissionAndVision() {
   const { renderLanguage } = useLanguage();
@@ -13,10 +13,11 @@ export default function MissionAndVision() {
           padding: "64px 128px",
           color: "white",
           display: "flex",
-          gap: "20px",
+          gap: "16px",
+          width: '100%'
         }}
       >
-        <Box sx={{ padding: "24px", backgroundColor: "#232C65" }}>
+        <Box sx={{ padding: "24px", backgroundColor: "#232C65", width: '100%' }}>
           <Typography
             sx={{
               fontFeatureSettings: "'case' on",
@@ -46,7 +47,7 @@ export default function MissionAndVision() {
           </Typography>
         </Box>
 
-        <Image src={missionAndVision} width={584} height={406} />
+        <img src="/assets/MissionAndVision.jpeg" style={{width: '50%', objectFit: 'cover'}}/>
       </Box>
     </>
   );

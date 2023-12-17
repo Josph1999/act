@@ -52,7 +52,7 @@ const App = (props) => {
       </Head>
       <style jsx global>{`
         body {
-          font-family: FiraGo !important;
+          font-family: UpperCaseGeo !important;
         }
       `}</style>
       <LocalizationProvider dateAdapter={AdapterDateFns}>

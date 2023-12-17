@@ -105,9 +105,7 @@ export default function MainAppBar() {
               <MenuIcon />
             </IconButton>
           ) : (
-            <Box
-             
-            >
+            <Box sx={{display: 'flex'}}>
               {HeaderLinks.map(({ name_ka, name_eng, url }) =>
                 name_ka !== "ფონდის შესახებ" ? (
                   <Link href={url} key={name_ka}>
@@ -144,6 +142,22 @@ export default function MainAppBar() {
                   </Button>
                 )
               )}
+              |
+              <Box>
+                <Button
+                  onClick={handleOpenMenu}
+                  startIcon={<LanguageIcon />}
+                  endIcon={<ArrowDropDownIcon />}
+                ></Button>
+
+                <Button
+                  variant="contained"
+                  sx={{ fontFeatureSettings: "'case' on" }}
+                  // onClick={() => router.push('/donate')}
+                >
+                  {renderLanguage("დონაცია", "Donate")}
+                </Button>
+              </Box>
             </Box>
           )}
         </Box>
@@ -165,21 +179,7 @@ export default function MainAppBar() {
             </MenuItem>
           ))}
         </Menu>
-        <Box>
-          <Button
-            onClick={handleOpenMenu}
-            startIcon={<LanguageIcon />}
-            endIcon={<ArrowDropDownIcon />}
-          ></Button>
 
-          <Button
-            variant="contained"
-            sx={{ fontFeatureSettings: "'case' on" }}
-            // onClick={() => router.push('/donate')}
-          >
-            {renderLanguage("დონაცია", "Donate")}
-          </Button>
-        </Box>
         <Menu
           id="basic-menu"
           anchorEl={anchorEl}

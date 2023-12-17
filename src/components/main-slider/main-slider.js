@@ -89,7 +89,7 @@ export default function MainSlider() {
               sx={{
                 color: "white",
                 textAlign: "left",
-                fontFamily: "FiraGo",
+                fontFamily: "UpperCaseGeo",
                 fontFeatureSettings: "'case' on",
                 "@media (max-width: 800px)": {
                   fontSize: "32px",

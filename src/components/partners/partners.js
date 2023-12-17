@@ -47,20 +47,19 @@ export default function Partners() {
   }, []);
 
   return (
-    <>
+    <Box sx={{padding: '128px'}}>
       <Box
         sx={{
-          padding: "0px 128px",
-          paddingBottom: '50px',
+          paddingBottom: "50px",
           "@media (max-width: 800px)": {
             padding: "30px",
           },
         }}
       >
-        <Typography fontSize={32} sx={{fontFeatureSettings: "'case' on"}}>
+        <Typography fontSize={32} sx={{ fontFeatureSettings: "'case' on" }}>
           {renderLanguage("პარტნიორები", "Partners")}
         </Typography>
-        <Typography sx={{fontFeatureSettings: "'case' on"}}>
+        <Typography sx={{ fontFeatureSettings: "'case' on" }}>
           {renderLanguage(
             "პარტნიორი ორგანიზაციები, რომლებთანაც ფონდი თანამშრომლობს",
             "Partner organizations with which the Foundation cooperates"
@@ -100,6 +99,41 @@ export default function Partners() {
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+      <Box sx={{ marginTop: "16px" }}></Box>
+      <Swiper
+        className="mySwiper"
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+          reverseDirection: true,
+        }}
+        modules={[Autoplay]}
+        breakpoints={{
+          360: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 5,
+            spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 8,
+            spaceBetween: 50,
+          },
+        }}
+        pagination={{
+          type: "fraction",
+        }}
+      >
+        {partners.reverse().map((item) => (
+          <SwiperSlide>
+            <a target="_blank" href={item.url} rel="noopener noreferrer">
+              <img src={item?.photos?.[0]?.url} width={30} height={30} />
+            </a>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </Box>
   );
 }
