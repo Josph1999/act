@@ -23,6 +23,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import MainLogo from "../icons/MainLogo";
 import FooterLogo from "../icons/FooterLogo";
+import FooterLogoEng from "../icons/FooterLogoEng";
 
 export default function Footer() {
   const { renderFontFamily, renderLanguage, language } = useLanguage();
@@ -46,7 +47,7 @@ export default function Footer() {
         sx={{ display: "flex", width: "100%", justifyContent: "space-between" }}
       >
         <Box>
-          <FooterLogo />
+          {language === "ENG" ? <FooterLogoEng /> : <FooterLogo />}
           <Box
             sx={{
               display: "flex",
@@ -99,7 +100,7 @@ export default function Footer() {
                 fontSize: "16px",
                 fontFeatureSettings: "'case' on",
                 color: "white",
-                marginBottom: '16px'
+                marginBottom: "16px",
               }}
             >
               {renderLanguage(`ფონდი`, "Foundation")}
