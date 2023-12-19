@@ -41,10 +41,24 @@ export default function Footer() {
         display: "flex",
         flexDirection: "column",
         gap: "64px",
+        "@media (max-width: 760px)": {
+          padding: "24px",
+        },
       }}
     >
       <Box
-        sx={{ display: "flex", width: "100%", justifyContent: "space-between" }}
+        sx={{
+          display: "flex",
+          width: "100%",
+          justifyContent: "space-between",
+          "@media (max-width: 1224px)": {
+            flexWrap: "wrap",
+            gap: "32px",
+          },
+          "@media (max-width: 760px)": {
+            justifyContent: "center",
+          },
+        }}
       >
         <Box>
           {language === "ENG" ? <FooterLogoEng /> : <FooterLogo />}
@@ -93,7 +107,17 @@ export default function Footer() {
             </a>
           </Box>
         </Box>
-        <Box sx={{ display: "flex", gap: "64px" }}>
+        <Box
+          sx={{
+            display: "flex",
+            gap: "64px",
+            "@media (max-width: 760px)": {
+              flexWrap: "wrap",
+              width: "100%",
+              justifyContent: "center",
+            },
+          }}
+        >
           <Box>
             <Typography
               sx={{
@@ -101,6 +125,9 @@ export default function Footer() {
                 fontFeatureSettings: "'case' on",
                 color: "white",
                 marginBottom: "16px",
+                "@media (max-width: 760px)": {
+                  textAlign: "center",
+                },
               }}
             >
               {renderLanguage(`ფონდი`, "Foundation")}
@@ -148,6 +175,9 @@ export default function Footer() {
                 fontFeatureSettings: "'case' on",
                 display: "flex",
                 alignItems: "center",
+                "@media (max-width: 760px)": {
+                  justifyContent: "center",
+                },
               }}
             >
               {renderLanguage(`კონტაქტი`, "Contact")}

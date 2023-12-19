@@ -1,8 +1,8 @@
-export default function MainLogo() {
+export default function MainLogo({ width, height }) {
   return (
     <svg
-      width="48"
-      height="48"
+      width={width ? width : "48"}
+      height={height ? height : "48"}
       viewBox="0 0 48 48"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

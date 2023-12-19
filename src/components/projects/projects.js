@@ -17,6 +17,7 @@ import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import { useRouter } from "next/router";
 import SeeMore from "../icons/SeeMore";
+import styles from "./projects.module.css";
 
 export default function Projects() {
   const windowSize = useWindowWidth();
@@ -70,21 +71,66 @@ export default function Projects() {
           padding: "0px 30px",
           marginTop: 10,
         },
+        "@media (max-width: 760px)": {
+          padding: "0px 24px",
+          marginTop: 10,
+        },
       }}
     >
       <Box>
-        <Box>
-          <Typography
+        {windowSize > 900 ? (
+          <Box>
+            <Typography
+              sx={{
+                fontFeatureSettings: "'case' on",
+                fontSize: "20px",
+                fontWeight: 700,
+              }}
+            >
+              {renderLanguage("პროექტები", "Projects")}
+            </Typography>
+          </Box>
+        ) : (
+          <Box
             sx={{
-              fontFeatureSettings: "'case' on",
-              fontSize: "20px",
-              fontWeight: 700,
+              display: "flex",
+              width: "100%",
+              justifyContent: "space-between",
+              padding: "0px 24px",
             }}
           >
-            {renderLanguage("პროექტები", "Projects")}
-          </Typography>
-        </Box>
-        <Box sx={{ display: "flex", marginTop: "48px" }}>
+            <Typography
+              sx={{
+                fontFeatureSettings: "'case' on",
+                fontSize: "20px",
+                fontWeight: 700,
+              }}
+            >
+              {renderLanguage("პროექტები", "Projects")}
+            </Typography>
+            <Button
+              sx={{
+                fontFeatureSettings: "'case' on",
+                fontSize: "16px",
+                fontWeight: 100,
+                padding: "0px",
+                borderRadius: "0px",
+                borderBottom: "1px solid #232C65",
+              }}
+            >
+              {renderLanguage("ყველა პროექტი", "All Projects")}
+            </Button>
+          </Box>
+        )}
+        <Box
+          sx={{
+            display: "flex",
+            marginTop: "48px",
+            "@media (max-width: 760px)": {
+              padding: "0px 24px",
+            },
+          }}
+        >
           <IconButton size="small">
             {theme.direction === "rtl" ? (
               <KeyboardArrowRight />
@@ -120,9 +166,9 @@ export default function Projects() {
             objectFit: "cover",
             transition: "opacity 0.5s ease-in-out",
             width: "384px",
-            opacity: selected ? 1 : 0,
             marginTop: "16px",
           }}
+          className={styles.imageStyles}
           src={projects[0]?.photos?.[0]?.url}
           width={0}
           height={512}
@@ -130,49 +176,59 @@ export default function Projects() {
         />
       </Box>
       <Box>
-        <Box sx={{display: 'flex', width: '384px', justifyContent: 'flex-end'}}>
-          <Button
-            sx={{
-              fontFeatureSettings: "'case' on",
-              fontSize: "16px",
-              fontWeight: 100,
-              padding: "0px",
-              borderRadius: "0px",
-              borderBottom: "1px solid #232C65",
-            }}
-          >
-            {renderLanguage("ყველა პროექტი", "All Projects")}
-          </Button>
-        </Box>
-        <Box sx={{ marginTop: "155px" }}>
-          <Typography
-            sx={{
-              width: "384px",
-              fontFeatureSettings: "'case' on",
-              fontSize: "16px",
-              fontWeight: 700,
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              maxHeight: "50px",
-            }}
-          >
-            {renderLanguage(projects[1]?.title_ka, projects[1]?.title_eng)}
-          </Typography>
-          <img
-            style={{
-              objectFit: "cover",
-              transition: "opacity 0.5s ease-in-out",
-              width: "384px",
-              opacity: selected ? 1 : 0,
-              marginTop: "16px",
-            }}
-            src={projects[1]?.photos?.[0]?.url}
-            width={0}
-            height={512}
-            loading="lazy"
-          />
-        </Box>
+        {windowSize > 900 ? (
+          <>
+            <Box
+              sx={{
+                display: "flex",
+                width: "384px",
+                justifyContent: "flex-end",
+              }}
+            >
+              <Button
+                sx={{
+                  fontFeatureSettings: "'case' on",
+                  fontSize: "16px",
+                  fontWeight: 100,
+                  padding: "0px",
+                  borderRadius: "0px",
+                  borderBottom: "1px solid #232C65",
+                }}
+              >
+                {renderLanguage("ყველა პროექტი", "All Projects")}
+              </Button>
+            </Box>
+            <Box sx={{ marginTop: "155px" }}>
+              <Typography
+                sx={{
+                  width: "384px",
+                  fontFeatureSettings: "'case' on",
+                  fontSize: "16px",
+                  fontWeight: 700,
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  maxHeight: "50px",
+                }}
+              >
+                {renderLanguage(projects[1]?.title_ka, projects[1]?.title_eng)}
+              </Typography>
+              <img
+                style={{
+                  objectFit: "cover",
+                  transition: "opacity 0.5s ease-in-out",
+                  width: "384px",
+                  opacity: selected ? 1 : 0,
+                  marginTop: "16px",
+                }}
+                src={projects[1]?.photos?.[0]?.url}
+                width={0}
+                height={512}
+                loading="lazy"
+              />
+            </Box>
+          </>
+        ) : null}
       </Box>
     </Box>
   );

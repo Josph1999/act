@@ -47,7 +47,9 @@ export default function Partners() {
   }, []);
 
   return (
-    <Box sx={{padding: '128px'}}>
+    <Box sx={{ padding: "128px", "@media (max-width: 800px)": {
+      padding: "24px",
+    }, }}>
       <Box
         sx={{
           paddingBottom: "50px",
@@ -78,12 +80,12 @@ export default function Partners() {
             slidesPerView: 2,
             spaceBetween: 20,
           },
-          768: {
-            slidesPerView: 5,
+          920: {
+            slidesPerView: 3,
             spaceBetween: 40,
           },
-          1024: {
-            slidesPerView: 8,
+          1224: {
+            slidesPerView: 6,
             spaceBetween: 50,
           },
         }}
@@ -113,12 +115,13 @@ export default function Partners() {
             slidesPerView: 2,
             spaceBetween: 20,
           },
-          768: {
-            slidesPerView: 5,
+          920: {
+            slidesPerView: 3,
             spaceBetween: 40,
           },
-          1024: {
-            slidesPerView: 8,
+
+          1224: {
+            slidesPerView: 6,
             spaceBetween: 50,
           },
         }}

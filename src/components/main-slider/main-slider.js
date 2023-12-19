@@ -80,7 +80,7 @@ export default function MainSlider() {
                 justifyContent: "flex-start",
                 alignItems: "left",
                 textAlign: "left",
-                paddingLeft: "30px",
+                paddingLeft: "24px",
               },
             }}
           >
@@ -104,7 +104,16 @@ export default function MainSlider() {
               <br />
               {renderLanguage("ცვლილებებისთვის", "Transformation")}
             </Typography>
-            <Typography variant="h6" fontWeight={500} sx={{ color: "white" }}>
+            <Typography
+              variant="h6"
+              fontWeight={500}
+              sx={{
+                color: "white",
+                "@media (min-width: 800px)": {
+                  width: '384px'
+                },
+              }}
+            >
               {renderLanguage(
                 "ACT საქართველო უმთავრესად ორიენტირებულია საზოგადოებრივი კეთილდღეობის გაძლიერებაზე და მოწყვლადი ჯგუფების მხარდაჭერაზე.",
                 "ACT Georgia is primarily focused on strengthening public welfare and supporting vulnerable groups."

@@ -73,7 +73,7 @@ export default function MainAppBar() {
             : "0px 128px",
         transition: "0.5s",
         "@media (max-width: 980px)": {
-          padding: "20px",
+          padding: "24px",
         },
       }}
     >
@@ -101,11 +101,31 @@ export default function MainAppBar() {
         )}
         <Box>
           {windowWidth < 980 ? (
-            <IconButton onClick={() => setOpenDrawer(true)}>
-              <MenuIcon />
-            </IconButton>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "16px",
+              }}
+            >
+              <IconButton onClick={() => setOpenDrawer(true)}>
+                <MenuIcon />
+              </IconButton>
+              <Link href={"/"}>
+                <IconButton
+                  size="large"
+                  edge="start"
+                  color="inherit"
+                  aria-label="menu"
+                  sx={{ mr: 2 }}
+                >
+                  <MainLogo width={"32px"} height={"32px"} />
+                </IconButton>
+              </Link>
+            </Box>
           ) : (
-            <Box sx={{display: 'flex'}}>
+            <Box sx={{ display: "flex" }}>
               {HeaderLinks.map(({ name_ka, name_eng, url }) =>
                 name_ka !== "ფონდის შესახებ" ? (
                   <Link href={url} key={name_ka}>
@@ -161,6 +181,23 @@ export default function MainAppBar() {
             </Box>
           )}
         </Box>
+        {windowWidth < 980 ? (
+          <Box>
+            <Button
+              onClick={handleOpenMenu}
+              startIcon={<LanguageIcon />}
+              endIcon={<ArrowDropDownIcon />}
+            ></Button>
+
+            <Button
+              variant="contained"
+              sx={{ fontFeatureSettings: "'case' on" }}
+              // onClick={() => router.push('/donate')}
+            >
+              {renderLanguage("დონაცია", "Donate")}
+            </Button>
+          </Box>
+        ) : null}
         <Menu
           id="basic-menu"
           anchorEl={menuAnchorEl}

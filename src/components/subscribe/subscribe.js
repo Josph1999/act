@@ -5,13 +5,22 @@ export default function Subscribe() {
   const { renderLanguage } = useLanguage();
 
   return (
-    <Box sx={{ padding: "64px 128px", backgroundColor: "#F0F5FE" }}>
+    <Box sx={{ padding: "64px 128px", backgroundColor: "#F0F5FE",  "@media (max-width: 760px)": {
+      padding: '24px'
+    }, }}>
       <Box
         sx={{
           width: "100%",
           display: "flex",
           alignItems: "center",
           gap: "256px",
+          "@media (max-width: 1224px)": {
+            flexWrap: 'wrap',
+            gap: '16px'
+          },
+          "@media (max-width: 760px)": {
+            padding: '24px'
+          },
         }}
       >
         <Typography

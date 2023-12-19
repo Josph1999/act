@@ -32,13 +32,25 @@ function TeamSlider() {
   };
 
   return (
-    <Box sx={{ maxWidth: "484px", flexGrow: 1 }}>
+    <Box
+      sx={{
+        maxWidth: "484px",
+        flexGrow: 1,
+        "@media (max-width: 760px)": {
+          width: "100%",
+          maxWidth: "100%",
+        },
+      }}
+    >
       <Typography
         sx={{
           fontFeatureSettings: "'case' on",
           fontSize: "20px",
           fontWeight: 700,
           marginBottom: "16px",
+          "@media (max-width: 760px)": {
+            padding: '24px'
+          },
         }}
       >
         გუნდი
@@ -56,6 +68,10 @@ function TeamSlider() {
               <Box
                 component="img"
                 sx={{
+                  "@media (max-width: 760px)": {
+                    width: "100%",
+                    maxWidth: "100%",
+                  },
                   objectFit: "cover",
                   width: "484px",
                   display: "block",
@@ -74,6 +90,10 @@ function TeamSlider() {
           marginTop: "16px",
           display: "flex",
           justifyContent: "space-between",
+          marginBottom: "16px",
+          "@media (max-width: 760px)": {
+            padding: '24px'
+          },
         }}
       >
         <Box sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
@@ -93,7 +113,11 @@ function TeamSlider() {
           </Typography>
         </Box>
         <Box sx={{ display: "flex" }}>
-          <IconButton size="small" onClick={handleBack} disabled={activeStep === 0}>
+          <IconButton
+            size="small"
+            onClick={handleBack}
+            disabled={activeStep === 0}
+          >
             {theme.direction === "rtl" ? (
               <KeyboardArrowRight />
             ) : (

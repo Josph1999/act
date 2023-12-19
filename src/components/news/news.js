@@ -45,21 +45,24 @@ export default function News() {
       padding="0px 128px"
       sx={{
         marginTop: "50px",
-        "@media (max-width: 800px)": {
-          padding: "0px",
+        "@media (max-width: 920px)": {
+          padding: "64px 64px",
           marginTop: "20px",
-          padding: "0px",
+        },
+        "@media (max-width: 760px)": {
+          padding: "24px",
+          marginTop: "20px",
         },
       }}
     >
       <Box
         sx={{
-          display: 'flex',
+          display: "flex",
           "@media (max-width: 800px)": {
             padding: "10px 20px",
           },
-          justifyContent: 'space-between',
-          alignItems: 'center'
+          justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
         <Typography
@@ -70,7 +73,11 @@ export default function News() {
           {renderLanguage("სიახლეები", "News")}
         </Typography>
         <Button
-          sx={{ fontFeatureSettings: "'case' on", borderRadius: '0px', borderBottom: '1px solid #232C65' }}
+          sx={{
+            fontFeatureSettings: "'case' on",
+            borderRadius: "0px",
+            borderBottom: "1px solid #232C65",
+          }}
           fontSize={16}
           fontWeight={600}
         >
@@ -83,26 +90,32 @@ export default function News() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          gap: '16px',
+          gap: "16px",
           marginTop: "40px",
+          "@media (max-width: 760px)": {
+            flexWrap: "wrap",
+          },
         }}
       >
-        {news?.map((item, idx) => (
+        {news?.map((item, idx) =>
           idx === 0 || idx === 1 ? <NewsCard news={item} idx={idx} /> : null
-        ))}
+        )}
       </Box>
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          gap: '16px',
-          marginTop:'32px'
+          gap: "16px",
+          marginTop: "32px",
+          "@media (max-width: 760px)": {
+            flexWrap: "wrap",
+          },
         }}
       >
-        {news?.map((item, idx) => (
-         idx === 2 || idx === 3 ? <NewsCard news={item} idx={idx} /> : null
-        ))}
+        {news?.map((item, idx) =>
+          idx === 2 || idx === 3 ? <NewsCard news={item} idx={idx} /> : null
+        )}
       </Box>
     </Box>
   );
