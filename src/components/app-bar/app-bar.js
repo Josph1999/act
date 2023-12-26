@@ -201,6 +201,7 @@ export default function MainAppBar() {
         <Menu
           id="basic-menu"
           anchorEl={menuAnchorEl}
+          disableScrollLock
           open={openMenu}
           onClose={() => setMenuAnchorEl(null)}
           MenuListProps={{
@@ -222,6 +223,7 @@ export default function MainAppBar() {
           anchorEl={anchorEl}
           open={open}
           onClose={handleCloseMenu}
+          disableScrollLock
           MenuListProps={{
             "aria-labelledby": "basic-button",
           }}

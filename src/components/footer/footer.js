@@ -12,16 +12,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import PhoneIcon from "../icons/PhoneIcon";
 import MailIcon from "../icons/MailIcon";
-import GeoLogo from "../icons/LogoKa";
-import EngLogo from "../icons/LogoEng";
-import { useRouter } from "next/router";
 import TwiterIcon from "../icons/Twitter";
-import { FooterKa } from "../footer-geo/footer-geo";
-import { FooterEng } from "../footer-eng/footer-eng";
-import { useState } from "react";
-import axios from "axios";
-import { toast } from "react-toastify";
-import MainLogo from "../icons/MainLogo";
 import FooterLogo from "../icons/FooterLogo";
 import FooterLogoEng from "../icons/FooterLogoEng";
 

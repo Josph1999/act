@@ -5,9 +5,18 @@ export default function Subscribe() {
   const { renderLanguage } = useLanguage();
 
   return (
-    <Box sx={{ padding: "64px 128px", backgroundColor: "#F0F5FE",  "@media (max-width: 760px)": {
-      padding: '24px'
-    }, }}>
+    <Box
+      sx={{
+        padding: "64px 128px",
+        backgroundColor: "#F0F5FE",
+        "@media (max-width: 760px)": {
+          padding: "24px !important",
+        },
+        "@media (max-width: 1000px)": {
+          padding: "64px",
+        },
+      }}
+    >
       <Box
         sx={{
           width: "100%",
@@ -15,11 +24,11 @@ export default function Subscribe() {
           alignItems: "center",
           gap: "256px",
           "@media (max-width: 1224px)": {
-            flexWrap: 'wrap',
-            gap: '16px'
+            flexWrap: "wrap",
+            gap: "16px",
           },
           "@media (max-width: 760px)": {
-            padding: '24px'
+            padding: "24px",
           },
         }}
       >
@@ -33,7 +42,7 @@ export default function Subscribe() {
             `Subscribe to news about the organization's activities`
           )}
         </Typography>
-        <Box sx={{display: 'flex', width: '100%', gap: '16px'}}>
+        <Box sx={{ display: "flex", width: "100%", gap: "16px" }}>
           <TextField
             fullWidth
             id="standard-basic"

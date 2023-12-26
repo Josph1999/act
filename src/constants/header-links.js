@@ -7,12 +7,12 @@ const Links = [
   {
     name_ka: "პროექტები",
     name_eng: "Projects",
-    url: "/",
+    url: "/projects",
   },
   {
     name_ka: "სიახლეები",
     name_eng: "News",
-    url: "/",
+    url: "/news",
   },
   {
     name_ka: "კონტაქტი",

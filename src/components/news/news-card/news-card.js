@@ -7,36 +7,20 @@ import { Dates } from "../constants";
 import { useRouter } from "next/router";
 import parse from "html-react-parser";
 
-export default function NewsCard({ news, idx }) {
-  const { renderLanguage, renderFontFamily } = useLanguage();
+export default function NewsCard({ news, idx, type }) {
+  const { renderLanguage } = useLanguage();
 
   const router = useRouter();
 
-  const options = {
-    day: "numeric",
-    month: "long",
-    hour: "numeric",
-    minute: "numeric",
-    year: "numeric",
-    hour12: false,
-  };
-
-  const renderDate = (dateObj) => {
-    const formattedDateTime = dateObj.toLocaleDateString("en-US", options);
-
-    const [month, day, year, at, time] = formattedDateTime.split(" ");
-
-    const date = `${day} ${renderLanguage(
-      Dates[month.toLocaleLowerCase()],
-      month
-    )} ${year}`;
-
-    return date;
-  };
+  console.log("type:",type)
 
   return (
     <Box
-      // onClick={() => router.push(`/news/${news?.id}`)}
+      onClick={() =>
+        router.push(
+          type === "project" ? `/projects/${news?.id}` : `/news/${news?.id}`
+        )
+      }
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -44,9 +28,6 @@ export default function NewsCard({ news, idx }) {
         width: "100%",
         gap: "20px",
         cursor: "pointer",
-        "@media (max-width: 800px)": {
-          padding: "20px",
-        },
       }}
     >
       <Box
@@ -59,7 +40,11 @@ export default function NewsCard({ news, idx }) {
           backgroundPosition: "center",
         }}
       ></Box>
-      <Typography sx={{ fontFeatureSettings: "'case' on"}} fontWeight={700} height='50px' >
+      <Typography
+        sx={{ fontFeatureSettings: "'case' on" }}
+        fontWeight={700}
+        height="50px"
+      >
         {renderLanguage(
           news?.title_ka.substring(0, 68) + "...",
           news?.title_eng.substring(0, 68) + "..."

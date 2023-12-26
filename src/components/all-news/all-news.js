@@ -1,16 +1,21 @@
-import { Box, Pagination, Typography } from "@mui/material";
+import { Box, Grid, Pagination, Typography } from "@mui/material";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { useCallback, useEffect, useState } from "react";
 import { useLanguage } from "src/contexts/language-context";
 import { db } from "src/firebase/firebase";
 import NewsCard from "../news/news-card/news-card";
+import Subscribe from "../subscribe/subscribe";
+import { useWindowWidth } from "../helpers/useWindowWidth";
 
 export default function AllNews() {
-  const rowsPerPage = 9;
+  const rowsPerPage = 10;
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [news, setNews] = useState([]);
   const { renderLanguage, renderFontFamily } = useLanguage();
+
+  const windowWidth = useWindowWidth();
+
   const getNews = useCallback(async () => {
     const newsRef = collection(db, "news");
 
@@ -48,46 +53,89 @@ export default function AllNews() {
       <Box
         sx={{
           width: "100%",
-          height: "385px",
-          backgroundImage: `linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.00) 50%), url(/assets/NewsBack.png)`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundPosition: "center top",
-          display: "flex",
           alignItems: "center",
+          color: "black",
+          padding: "32px 128px",
+          "@media (max-width: 1000px)": {
+            padding: "32px 64px",
+            marginTop: "20px",
+          },
+          "@media (max-width: 760px)": {
+            padding: "24px !important",
+          },
         }}
       >
         <Typography
-          // sx={{fontFeatureSettings: "'case' on"}}
-          sx={{fontFeatureSettings: "'case' on"}}
-          fontSize={32}
-          color="white"
-          marginLeft={10}
+          sx={{ fontFeatureSettings: "'case' on" }}
+          fontSize={34}
+          color="#232C65"
         >
           {renderLanguage("ყველა სიახლე", "Articles")}
         </Typography>
-      </Box>
-      <Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            marginTop: "40px",
-            justifyContent: "center",
-            gap: "20px",
-          }}
+        <Typography
+          sx={{ fontFeatureSettings: "'case' on" }}
+          fontSize={16}
+          color="#232C65"
         >
-          {paginatedNews.map((item) => (
-            <NewsCard news={item} />
-          ))}
-        </Box>
+          {renderLanguage(
+            "ბოლო სიახლეები ACT ისგან",
+            "The latest news about Aisit Georgia"
+          )}
+        </Typography>
+      </Box>
+      <Subscribe />
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          gap: "16px",
+          padding: "0px 128px",
+          marginTop: "40px",
+          "@media (max-width: 1000px)": {
+            padding: "0px 64px",
+            marginTop: "20px",
+          },
+          "@media (max-width: 760px)": {
+            padding: "24px !important",
+          },
+        }}
+      >
+        {windowWidth > 760 ? (
+          <Grid
+            container
+            rowSpacing={1}
+            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+          >
+            {paginatedNews.map((item, idx) => (
+              <Grid item xs={6}>
+                {" "}
+                <NewsCard news={item} />
+              </Grid>
+            ))}
+          </Grid>
+        ) : (
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              marginTop: "40px",
+              justifyContent: "center",
+              gap: "32px",
+            }}
+          >
+            {paginatedNews.map((item, idx) => (
+              <NewsCard news={item} />
+            ))}
+          </Box>
+        )}
       </Box>
       <Box
         sx={{
           display: "flex",
           justifyContent: "center",
           marginTop: "60px",
+          marginBottom: '60px'
         }}
       >
         <Pagination

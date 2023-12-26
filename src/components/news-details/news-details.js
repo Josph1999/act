@@ -16,6 +16,7 @@ import {
   AccordionDetails,
   AccordionSummary,
   Box,
+  IconButton,
   Typography,
 } from "@mui/material";
 import { toast } from "react-toastify";
@@ -24,6 +25,8 @@ import { Dates } from "../news/constants";
 import parser from "html-react-parser";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import NewsLinks from "../news-links/news-links";
+import { ArrowBack } from "@mui/icons-material";
+import Subscribe from "../subscribe/subscribe";
 
 export default function NewsDetails() {
   const [loading, setLoading] = useState(false);
@@ -89,110 +92,84 @@ export default function NewsDetails() {
       <Box
         marginTop={7}
         sx={{
-          padding: "50px 256px",
+          padding: "64px 128px",
           paddingBottom: "20px",
-          "@media (max-width: 800px)": {
-            padding: "20px",
+          "@media (max-width: 1000px)": {
+            padding: "64px",
+            marginTop: 10,
+          },
+          "@media (max-width: 760px)": {
+            padding: "24px",
             marginTop: 10,
           },
         }}
       >
-        <Typography
-          sx={{ fontFeatureSettings: "'case' on" }}
-          fontSize={20}
-          textAlign="center"
-        >
-          {renderLanguage(news?.title_ka, news?.title_eng)}
-        </Typography>
-        <Box sx={{ marginTop: 6 }}>
-          {" "}
-          <Image
-            width={0}
-            height={0}
-            sizes="100vw"
-            style={{ width: "100%", height: "600px", objectFit: "cover" }}
-            src={news?.photos?.[0]?.url}
-            alt={news?.photos?.[0]?.name}
-          />
-        </Box>
         <Box
+        
           sx={{
             display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "flex-end",
+            gap: "16px",
+            "@media (max-width: 760px)": {
+              flexWrap: "wrap",
+              marginTop: "20px",
+            },
           }}
         >
+          {" "}
+          <Box sx={{ display: "flex", gap: "16px", width: "100%" }}>
+            <ArrowBack
+              onClick={() => router.push("/news")}
+              style={{ cursor: "pointer" }}
+            />
+
+            <Box sx={{width: '100%'}}>
+              <Typography
+                sx={{
+                  fontFeatureSettings: "'case' on",
+                  "@media (max-width: 760px)": {
+                    fontSize: "20px",
+                  },
+                }}
+                fontSize={28}
+              >
+                {renderLanguage(news?.title_ka, news?.title_eng)}
+              </Typography>
+              <Typography
+                sx={{ fontFeatureSettings: "'case' on", marginTop: "24px" }}
+                fontSize={16}
+                textAlign="left"
+              >
+                {renderDate(news?.created_at)}
+              </Typography>
+            </Box>
+          </Box>
           <Box
-            sx={{ backgroundColor: "#4338CA", padding: "18px", width: "200px" }}
+            sx={{
+              "@media (max-width: 760px)": {
+                marginTop: "24px",
+              },
+            }}
           >
-            <Typography
-              sx={{ fontFeatureSettings: "'case' on" }}
-              textAlign="center"
-              color="#FFF"
-            >
-              {renderDate(news?.created_at)}
+            {" "}
+            <Image
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{ width: "100%", height: "540px", objectFit: "cover" }}
+              loading="lazy"
+              src={news?.photos?.[0]?.url}
+              alt={news?.photos?.[0]?.name}
+            />
+            <Typography color="black !important">
+              {parser(
+                renderLanguage(
+                  news?.description_ka || "",
+                  news?.description_eng || ""
+                )
+              )}
             </Typography>
           </Box>
         </Box>
-      </Box>
-      <Box
-        sx={{
-          padding: "50px 256px",
-          "@media (max-width: 800px)": {
-            padding: "20px",
-            marginTop: "20px",
-          },
-        }}
-      >
-        <Typography color="black !important">
-          {parser(
-            renderLanguage(
-              news?.description_ka || "",
-              news?.description_eng || ""
-            )
-          )}
-        </Typography>
-      </Box>
-      <Box
-        sx={{
-          padding: "20px 256px",
-          "@media (max-width: 800px)": {
-            padding: "20px",
-            marginTop: "20px",
-          },
-        }}
-      >
-        {news?.mediaLinks && news?.mediaLinks.length > 0 ? <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-            sx={{ backgroundColor: "#4338CA", color: "white" }}
-          >
-            <Typography
-              sx={{
-                fontFeatureSettings: "'case' on",
-                textTransform: "uppercase",
-              }}
-            >
-              {renderLanguage("მედია ლინკები", "Media Links")}
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Box
-              sx={{
-                width: "100%",
-                display: "flex",
-                gap: "20px",
-                flexWrap: "wrap",
-              }}
-            >
-              {news?.mediaLinks?.map((item) => (
-                <NewsLinks data={item} />
-              ))}
-            </Box>
-          </AccordionDetails>
-        </Accordion> : null}
       </Box>
       <Box
         sx={{
@@ -209,9 +186,16 @@ export default function NewsDetails() {
         }}
       >
         {news?.photos?.map((item) => (
-          <Image width={384} height={224} src={item?.url} alt={item.name} />
+          <Image
+            width={384}
+            height={224}
+            src={item?.url}
+            alt={item.name}
+            style={{ objectFit: "cover" }}
+          />
         ))}
       </Box>
+      <Subscribe />
     </>
   );
 }
