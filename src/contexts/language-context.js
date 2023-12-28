@@ -19,10 +19,6 @@ export const LanguageProvider = ({ children }) => {
   };
 
   const renderFontFamily = () => {
-    if (language === "KA") {
-      return "UpperCaseGeo";
-    }
-
     return 'FiraGO"';
   };
 

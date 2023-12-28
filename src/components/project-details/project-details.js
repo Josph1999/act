@@ -24,16 +24,20 @@ import parser from "html-react-parser";
 import { Dates } from "../news/constants";
 import NewsLinks from "../news-links/news-links";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import NewsCard from "../news/news-card/news-card";
+import Subscribe from "../subscribe/subscribe";
+import { useWindowWidth } from "../helpers/useWindowWidth";
 
 export default function ProjectsDetails() {
   const [loading, setLoading] = useState(false);
   const [projects, setProjects] = useState([]);
+  const [moreProjects, setMoreProjects] = useState([]);
   const { renderLanguage, renderFontFamily } = useLanguage();
 
   const router = useRouter();
 
   const { id } = router.query;
-
+  const windowSize = useWindowWidth();
   const getDocumentById = useCallback(async () => {
     try {
       const docRef = doc(db, "projects", id);
@@ -60,7 +64,53 @@ export default function ProjectsDetails() {
     }
   }, [id]);
 
+  const getProjects = useCallback(async () => {
+    const projectsRef = collection(db, "projects");
+
+    let documentSnapshots;
+
+    documentSnapshots = await getDocs(query(projectsRef));
+
+    setLoading(true);
+
+    const projectsData = documentSnapshots.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+      created_at: doc.data().created_at.toDate(),
+    }));
+
+    function generateUniqueRandomNumbers(min, max, count) {
+      if (max - min + 1 < count) {
+        throw new Error("Cannot generate unique numbers, range is too small");
+      }
+
+      const uniqueNumbers = new Set();
+
+      while (uniqueNumbers.size < count) {
+        const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+        uniqueNumbers.add(randomNum);
+      }
+
+      return Array.from(uniqueNumbers);
+    }
+
+    const randomNumbers = generateUniqueRandomNumbers(
+      1,
+      projectsData.length - 2,
+      3
+    );
+
+    const filteredProjectData = projectsData.filter((item) => item.id !== id);
+
+    setMoreProjects([
+      filteredProjectData[randomNumbers[0]],
+      filteredProjectData[randomNumbers[1]],
+      filteredProjectData[randomNumbers[2]],
+    ]);
+    setLoading(false);
+  }, []);
   useEffect(() => {
+    getProjects();
     getDocumentById();
   }, [id]);
 
@@ -89,133 +139,190 @@ export default function ProjectsDetails() {
   return (
     <>
       <Box
-        marginTop={7}
         sx={{
-          padding: "50px 256px",
-          paddingBottom: "20px",
-          "@media (max-width: 800px)": {
-            padding: "20px",
-            marginTop: 10,
+          marginTop: "120px",
+          padding: "64px 128px",
+          "@media (max-width: 1200px)": {
+            padding: "64px 64px",
+          },
+          "@media (max-width: 980px)": {
+            padding: "64px 64px",
+            flexDirection: "column",
+          },
+          "@media (max-width: 760px)": {
+            padding: "24px 24px",
           },
         }}
       >
         <Typography
-          sx={{ fontFeatureSettings: "'case' on" }}
-          fontSize={20}
-          textAlign="center"
+          sx={{
+            fontFeatureSettings: "'case' on",
+            width: "70%",
+            "@media (max-width: 980px)": {
+              width: "100%",
+            },
+          }}
+          fontSize={28}
+          textAlign="left"
         >
           {renderLanguage(projects?.title_ka, projects?.title_eng)}
         </Typography>
-        <Box sx={{ marginTop: 6 }}>
-          {" "}
-          <Image
-            width={0}
-            height={0}
-            sizes="100vw"
-            style={{ width: "100%", height: "600px", objectFit: "cover" }}
-            src={projects?.photos?.[0]?.url}
-            alt={projects?.photos?.[0]?.name}
-          />
-        </Box>
+        <Typography
+          sx={{ fontFeatureSettings: "'case' on" }}
+          textAlign="left"
+          color="#232C65"
+        >
+          {renderDate(projects?.created_at)}
+        </Typography>
         <Box
           sx={{
+            gap: "16px",
             display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "flex-end",
+            "@media (max-width: 980px)": {
+              flexDirection: "column",
+            },
           }}
         >
-          <Box
-            sx={{ backgroundColor: "#4338CA", padding: "18px", width: "200px" }}
-          >
-            <Typography
-              sx={{ fontFeatureSettings: "'case' on" }}
-              textAlign="center"
-              color="white"
+          <Box sx={{ width: "100%" }}>
+            <Box>
+              <Box>
+                {" "}
+                <Image
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  style={{ width: "100%", height: "600px", objectFit: "cover" }}
+                  src={projects?.photos?.[0]?.url}
+                  alt={projects?.photos?.[0]?.name}
+                />
+              </Box>
+            </Box>
+            <Box
+              sx={{
+                "@media (max-width: 800px)": {
+                  marginTop: "20px",
+                },
+              }}
             >
-              {renderDate(projects?.created_at)}
+              <Typography color="black !important">
+                {parser(
+                  renderLanguage(
+                    projects?.description_ka || "",
+                    projects?.description_eng || ""
+                  )
+                )}
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                "@media (max-width: 800px)": {
+                  padding: "20px",
+                  marginTop: "20px",
+                },
+              }}
+            >
+              {projects?.mediaLinks && projects?.mediaLinks.length > 0 ? (
+                <Accordion>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                    sx={{ backgroundColor: "#4338CA", color: "white" }}
+                  >
+                    <Typography
+                      sx={{
+                        fontFeatureSettings: "'case' on",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      {renderLanguage("მედია ლინკები", "Media Links")}
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Box
+                      sx={{
+                        width: "100%",
+                        display: "flex",
+                        gap: "20px",
+                        flexWrap: "wrap",
+                      }}
+                    >
+                      {projects?.mediaLinks?.map((item) => (
+                        <NewsLinks data={item} />
+                      ))}
+                    </Box>
+                  </AccordionDetails>
+                </Accordion>
+              ) : null}
+            </Box>
+            <Typography
+              sx={{ fontFeatureSettings: "'case' on", marginTop: "40px" }}
+              fontSize={28}
+              textAlign="left"
+            >
+              {renderLanguage("გალერია", "GALLERY")}
             </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: "20px",
+                flexWrap: "wrap",
+                marginBottom: "64px",
+                marginTop: "20px",
+              }}
+            >
+              {projects?.photos?.map((item) => (
+                <>
+                  <Image
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    style={{
+                      width: windowSize < 761 ? "100%" : "320px",
+                      height: "224px",
+                      objectFit: "cover",
+                      "@media (max-width: 800px)": {
+                        marginTop: "20px",
+                      },
+                    }}
+                    src={item?.url}
+                    alt={item.name}
+                  />
+                </>
+              ))}
+            </Box>
+          </Box>
+          <Box
+            sx={{
+              width: "550px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "16px",
+              "@media (max-width: 980px)": {
+                width: "100%",
+              },
+            }}
+          >
+            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+              <Box
+                sx={{ width: "80%", borderBottom: "1px solid #9BBDF5" }}
+              ></Box>
+            </Box>
+
+            <Typography
+              fontSize={24}
+              sx={{ fontFeatureSettings: "'case' on", textAlign: "right" }}
+            >
+              {renderLanguage("მეტი პროექტი", "MORE PROJECTS")}
+            </Typography>
+            {moreProjects.map((item) => (
+              <NewsCard news={item} type="project" />
+            ))}
           </Box>
         </Box>
       </Box>
-      <Box
-        sx={{
-          padding: "50px 256px",
-          "@media (max-width: 800px)": {
-            padding: "20px",
-            marginTop: "20px",
-          },
-        }}
-      >
-        <Typography color="black !important">
-          {parser(
-            renderLanguage(
-              projects?.description_ka || "",
-              projects?.description_eng || ""
-            )
-          )}
-        </Typography>
-      </Box>
-      <Box
-        sx={{
-          padding: "20px 256px",
-          "@media (max-width: 800px)": {
-            padding: "20px",
-            marginTop: "20px",
-          },
-        }}
-      >
-        {projects?.mediaLinks && projects?.mediaLinks.length > 0 ? (
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-              sx={{ backgroundColor: "#4338CA", color: "white" }}
-            >
-              <Typography
-                sx={{
-                  fontFeatureSettings: "'case' on",
-                  textTransform: "uppercase",
-                }}
-              >
-                {renderLanguage("მედია ლინკები", "Media Links")}
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Box
-                sx={{
-                  width: "100%",
-                  display: "flex",
-                  gap: "20px",
-                  flexWrap: "wrap",
-                }}
-              >
-                {projects?.mediaLinks?.map((item) => (
-                  <NewsLinks data={item} />
-                ))}
-              </Box>
-            </AccordionDetails>
-          </Accordion>
-        ) : null}
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: "20px",
-          flexWrap: "wrap",
-          padding: "128px",
-          "@media (max-width: 800px)": {
-            padding: "20px",
-            marginTop: "20px",
-          },
-        }}
-      >
-        {projects?.photos?.map((item) => (
-          <Image width={384} height={224} src={item?.url} alt={item.name} />
-        ))}
-      </Box>
+      <Subscribe />
     </>
   );
 }

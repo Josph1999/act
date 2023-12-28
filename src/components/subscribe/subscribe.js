@@ -27,9 +27,6 @@ export default function Subscribe() {
             flexWrap: "wrap",
             gap: "16px",
           },
-          "@media (max-width: 760px)": {
-            padding: "24px",
-          },
         }}
       >
         <Typography

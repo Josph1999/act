@@ -22,10 +22,11 @@ export default function Footer() {
   return (
     <Box
       sx={{
-        backgroundImage: `url(assets/FooterEng.jpeg)`,
+        backgroundImage: `url(assets/FooterEng.png)`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",
+        backgroundColor: "#232C65",
         transition: "0.5s",
         width: "100%",
         padding: "64px 128px",

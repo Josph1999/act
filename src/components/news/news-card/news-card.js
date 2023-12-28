@@ -12,8 +12,6 @@ export default function NewsCard({ news, idx, type }) {
 
   const router = useRouter();
 
-  console.log("type:",type)
-
   return (
     <Box
       onClick={() =>
