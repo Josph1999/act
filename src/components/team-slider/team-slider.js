@@ -9,15 +9,15 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
-import { data } from "../team-info.js/data";
 import { useLanguage } from "src/contexts/language-context";
 import { IconButton } from "@mui/material";
+import { teamInfo } from "../about/data";
 
 function TeamSlider() {
   const theme = useTheme();
   const { renderLanguage } = useLanguage();
   const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = data.length;
+  const maxSteps = teamInfo.length;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -62,7 +62,7 @@ function TeamSlider() {
         onChangeIndex={handleStepChange}
         enableMouseEvents
       >
-        {data.map((step, index) => (
+        {teamInfo.map((step, index) => (
           <div key={step.label}>
             {Math.abs(activeStep - index) <= 2 ? (
               <Box
@@ -78,7 +78,7 @@ function TeamSlider() {
                   overflow: "hidden",
                   height: "554px",
                 }}
-                src={step.photo}
+                src={step.image}
                 alt={step.name_eng}
               />
             ) : null}
@@ -101,14 +101,14 @@ function TeamSlider() {
             sx={{ fontFeatureSettings: "'case' on", fontWeight: 700 }}
           >
             {renderLanguage(
-              data[activeStep].name_ka,
-              data[activeStep].name_eng
+              teamInfo[activeStep].name_ka,
+              teamInfo[activeStep].name_eng
             )}
           </Typography>
           <Typography sx={{ fontSize: "12px", fontWeight: "400px" }}>
             {renderLanguage(
-              data[activeStep].position_ka,
-              data[activeStep].position_eng
+              teamInfo[activeStep].position_ka,
+              teamInfo[activeStep].position_eng
             )}
           </Typography>
         </Box>

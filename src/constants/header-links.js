@@ -1,7 +1,7 @@
 const Links = [
   {
     name_ka: "ფონდის შესახებ",
-    name_eng: "About Foundation",
+    name_eng: "About Us",
     url: "/about",
   },
   {

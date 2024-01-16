@@ -1,5 +1,20 @@
-import { Box, Button, Typography } from "@mui/material";
-import { aboutData, goals, valuesData } from "./data";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Button,
+  Typography,
+} from "@mui/material";
+import {
+  aboutData,
+  additionalFocus,
+  coreData,
+  goals,
+  targetGroups,
+  teamInfo,
+  valuesData,
+} from "./data";
 import styles from "./about.module.css";
 import { useEffect, useState } from "react";
 import LeftIcon from "../icons/LeftIcon";
@@ -11,6 +26,8 @@ import AnnualReports from "../year-calculation/year-calculation";
 import { useWindowWidth } from "../helpers/useWindowWidth";
 import MobileAbout from "../mobile-about/mobile-about";
 import { useRouter } from "next/router";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Subscribe from "../subscribe/subscribe";
 
 export default function About() {
   const [selected, setSelected] = useState(0);
@@ -77,10 +94,19 @@ export default function About() {
     }
   };
 
+  useEffect(() => {
+    const targetElement = document.getElementById(router.query.data);
+
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [router.query.data]);
+
   return (
     <>
       <Box>
         <Box
+          id="AboutUs"
           sx={{
             padding: "128px",
             "@media (max-width: 1000px)": {
@@ -96,7 +122,7 @@ export default function About() {
           <Typography
             sx={{
               fontFeatureSettings: "'case' on",
-              fontSize: "40px",
+              fontSize: "30px",
               textTransform: "uppercase",
               fontWeight: 600,
             }}
@@ -130,6 +156,7 @@ aiming to uplift their overall well-being and quality of life.`
           ></Box>
         </Box>
         <Box
+          id="MissionAndVision"
           sx={{
             color: "white",
             backgroundColor: "#232C65",
@@ -145,7 +172,7 @@ aiming to uplift their overall well-being and quality of life.`
           <Typography
             sx={{
               fontFeatureSettings: "'case' on",
-              fontSize: "40px",
+              fontSize: "30px",
               textTransform: "uppercase",
               fontWeight: 600,
             }}
@@ -184,6 +211,7 @@ opportunities, and the support necessary to build fulfilling lives and contribut
           </Typography>
         </Box>
         <Box
+          id="Values"
           sx={{
             display: "flex",
             padding: "128px 0px",
@@ -209,7 +237,7 @@ opportunities, and the support necessary to build fulfilling lives and contribut
                   textTransform: "uppercase",
                   writingMode: "vertical-rl",
                   transform: "rotate(180deg)",
-                  fontSize: "40px",
+                  fontSize: "30px",
                 }}
               >
                 {renderLanguage(`ღირებულებები`, `Values`)}
@@ -221,7 +249,7 @@ opportunities, and the support necessary to build fulfilling lives and contribut
                 sx={{
                   fontFeatureSettings: "'case' on",
                   textTransform: "uppercase",
-                  fontSize: "40px",
+                  fontSize: "30px",
                 }}
               >
                 {renderLanguage(`ღირებულებები`, `Values`)}
@@ -336,6 +364,7 @@ opportunities, and the support necessary to build fulfilling lives and contribut
           </Box>
         </Box>
         <Box
+          id="UnitedNationsSustainableDevelopment"
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -352,7 +381,7 @@ opportunities, and the support necessary to build fulfilling lives and contribut
           <Typography
             sx={{
               fontFeatureSettings: "'case' on",
-              fontSize: "40px",
+              fontSize: "30px",
               textTransform: "uppercase",
               fontWeight: 600,
             }}
@@ -525,6 +554,372 @@ Goals (SDGs), particularly:`
             </Box>
           </Box>
         </Box>
+        <Box
+          id="CoreActivities"
+          sx={{
+            display: "flex",
+            padding: "128px 0px",
+            width: "100%",
+            justifyContent: "center",
+            backgroundImage: `url(/assets/Core.png)`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+            backgroundPosition: "center",
+            marginTop: "32px",
+            "@media (max-width: 1200px)": {
+              flexDirection: "column",
+              padding: "64px",
+            },
+            "@media (max-width: 1000px)": {
+              padding: "64px 64px",
+            },
+            "@media (max-width: 760px)": {
+              padding: "24px !important",
+            },
+          }}
+        >
+          {windowSize > 1200 ? (
+            <Box sx={{ height: "530px" }}>
+              <Typography
+                sx={{
+                  fontFeatureSettings: "'case' on",
+                  textTransform: "uppercase",
+                  writingMode: "vertical-rl",
+                  transform: "rotate(180deg)",
+                  fontSize: "30px",
+                }}
+              >
+                {renderLanguage(`ძირითადი აქტივობები`, `CORE ACTIVITIES`)}
+              </Typography>
+            </Box>
+          ) : (
+            <Box>
+              <Typography
+                sx={{
+                  fontFeatureSettings: "'case' on",
+                  textTransform: "uppercase",
+                  fontSize: "30px",
+                }}
+              >
+                {renderLanguage(`ღირებულებები`, `Values`)}
+              </Typography>
+            </Box>
+          )}
+
+          <Box
+            sx={{
+              display: "flex",
+              gap: "16px",
+              "@media (max-width: 1200px)": {
+                flexDirection: "column",
+              },
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                gap: "16px",
+                flexDirection: "column",
+              }}
+            >
+              {coreData.map((item, idx) =>
+                idx % 2 === 0 ? (
+                  <Accordion
+                    sx={{
+                      width: "480px",
+                      borderRadius: "8px",
+                      backgroundColor: "rgba(252, 252, 252, 0.75)",
+                      "@media (max-width: 1200px)": {
+                        width: "100%",
+                      },
+                    }}
+                  >
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1-content"
+                      id="panel1-header"
+                    >
+                      <Typography
+                        sx={{
+                          fontWeight: 500,
+                          fontSize: "20px",
+                        }}
+                      >
+                        {renderLanguage(item.title_ka, item.title_eng)}
+                      </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Typography>
+                        {renderLanguage(
+                          item.description_ka,
+                          item.description_eng
+                        )}
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+                ) : null
+              )}
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                gap: "16px",
+                flexDirection: "column",
+              }}
+            >
+              {coreData.map((item, idx) =>
+                idx % 2 !== 0 ? (
+                  <Accordion
+                    sx={{
+                      width: "480px",
+                      borderRadius: "8px",
+                      backgroundColor: "rgba(252, 252, 252, 0.75)",
+                      "@media (max-width: 1200px)": {
+                        width: "100%",
+                      },
+                    }}
+                  >
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1-content"
+                      id="panel1-header"
+                    >
+                      <Typography
+                        sx={{
+                          fontWeight: 500,
+                          fontSize: "20px",
+                        }}
+                      >
+                        {renderLanguage(item.title_ka, item.title_eng)}
+                      </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Typography>
+                        {renderLanguage(
+                          item.description_ka,
+                          item.description_eng
+                        )}
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+                ) : null
+              )}
+            </Box>
+          </Box>
+        </Box>
+        <Box
+          id="TargetGroups"
+          sx={{
+            padding: "128px",
+            "@media (max-width: 1200px)": {
+              padding: "64px",
+            },
+            "@media (max-width: 760px)": {
+              padding: "24px !important",
+            },
+          }}
+        >
+          <Typography
+            sx={{
+              fontFeatureSettings: "'case' on",
+              fontSize: "30px",
+              textTransform: "uppercase",
+              fontWeight: 600,
+            }}
+          >
+            {renderLanguage("სამიზნე ჯგუფები", "Target Groups")}
+          </Typography>
+          <Typography>
+            {renderLanguage(
+              `ACT Georgia-ში ჩვენი ორგანიზაციული ჩარჩო მრავალფეროვან ჯგუფებთან თანამშრომლობისთვის ეფუძნება ყოვლისმომცველს
+მეთოდოლოგია, რომელიც აერთიანებს პრაქტიკულ დახმარებას, მძლავრ კვლევებს და ჰუმანიტარულ ინიციატივებს. ჩვენი ურყევი თავდადება
+საიმედოობა და პროფესიონალიზმი გაძლიერებულია ჩვენი მაღალკვალიფიციური გუნდის წევრების ღრმა გამოცდილებით,
+თითოეულ მათგანს აქვს დიდი გამოცდილება და ურყევი ვალდებულება ჩვენი მისიის მიმართ.
+`,
+              `At ACT Georgia, our organizational framework for engaging with diverse groups is grounded in a comprehensive
+methodology that integrates practical aid, robust research, and humanitarian initiatives. Our unwavering dedication
+to reliability and professionalism is bolstered by the profound expertise of our highly skilled team members,
+each bringing a wealth of experience and unwavering commitment to our mission.`
+            )}
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              gap: "16px",
+              marginTop: "32px",
+              "@media (max-width: 1000px)": {
+                flexDirection: "column",
+              },
+            }}
+          >
+            {targetGroups.map((item) => (
+              <Box key={item.id}>
+                <Box
+                  sx={{
+                    backgroundImage: `url(${item.image})`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.75) 100%), url(${item.image})`,
+                    height: "300px",
+                    padding: "16px",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "flex-end",
+                    width: "100%",
+                  }}
+                >
+                  <Typography
+                    color="white"
+                    sx={{
+                      position: "relative",
+                      top: "0px",
+                      fontFeatureSettings: "'case' on",
+                      fontSize: "16px",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {renderLanguage(item.title_ka, item.title_eng)}
+                  </Typography>
+                </Box>
+                <Typography sx={{ padding: "16px" }}>
+                  {" "}
+                  {renderLanguage(item.description_ka, item.description_eng)}
+                </Typography>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+        <Box
+          sx={{
+            padding: "0px 128px",
+            "@media (max-width: 1000px)": {
+              padding: "0px 64px",
+            },
+            "@media (max-width: 760px)": {
+              padding: "0px 24px !important",
+            },
+          }}
+        >
+          <Typography
+            sx={{
+              fontFeatureSettings: "'case' on",
+              fontSize: "20px",
+              textTransform: "uppercase",
+              fontWeight: 600,
+            }}
+          >
+            {renderLanguage("დამატებითი ფოკუსი", "Additional Focus")}
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              gap: "16px",
+              "@media (max-width: 1000px)": {
+                flexDirection: "column",
+              },
+            }}
+          >
+            {additionalFocus.map((item) => (
+              <Box
+                sx={{
+                  borderTop: "1px solid #C4D7F9",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "8px",
+                  padding: "16px",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontFeatureSettings: "'case' on",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {renderLanguage(item.title_ka, item.title_eng)}
+                </Typography>
+                <Typography>
+                  {renderLanguage(item.description_ka, item.description_eng)}
+                </Typography>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+        <Box
+          id="ExecutiveTeam"
+          sx={{
+            padding: "128px",
+            "@media (max-width: 1000px)": {
+              padding: "64px",
+            },
+            "@media (max-width: 760px)": {
+              padding: "24px !important",
+            },
+          }}
+        >
+          <Typography
+            sx={{
+              fontFeatureSettings: "'case' on",
+              fontSize: "30px",
+              textTransform: "uppercase",
+              fontWeight: 600,
+            }}
+          >
+            {renderLanguage("აღმასრულებელი გუნდი", "EXECUTIVE TEAM")}
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              gap: "16px",
+              "@media (max-width: 1000px)": {
+                flexDirection: "column",
+              },
+            }}
+          >
+            {teamInfo.map((item) => (
+              <Box
+                key={item.id}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "24px",
+                  "@media (max-width: 1000px)": {
+                    flexDirection: "column",
+                    textAlign: "center",
+                  },
+                }}
+              >
+                <Box
+                  sx={{
+                    width: "268px",
+                    backgroundImage: `url(${item.image})`,
+                    height: "544px",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    marginTop: "32px",
+                  }}
+                ></Box>
+                <Box>
+                  <Typography
+                    sx={{
+                      fontFeatureSettings: "'case' on",
+                      fontSize: "24px",
+                      textTransform: "uppercase",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {renderLanguage(item.name_ka, item.name_eng)}
+                  </Typography>
+                  <Typography>
+                    {renderLanguage(item.position_ka, item.position_eng)}
+                  </Typography>
+                </Box>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+        <Subscribe />
       </Box>
     </>
   );

@@ -122,7 +122,7 @@ export default function ResponsiveDrawer({ open, onClose }) {
       >
         {aboutData.map((item) => (
           <MenuItem
-            onClick={() => handleOpenPage(item.demo_path)}
+            onClick={() => handleOpenPage(item.path)}
             sx={{ fontFeatureSettings: "'case' on" }}
           >
             {renderLanguage(item.title_ka, item.title_eng)}
