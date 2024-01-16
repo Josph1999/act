@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
-import { aboutData } from "./data";
+import { aboutData, goals, valuesData } from "./data";
 import styles from "./about.module.css";
 import { useEffect, useState } from "react";
 import LeftIcon from "../icons/LeftIcon";
@@ -79,151 +79,452 @@ export default function About() {
 
   return (
     <>
-      {windowSize > 800 ? (
-        <>
-          <Box
-            className={styles.mainContainer}
+      <Box>
+        <Box
+          sx={{
+            padding: "128px",
+            "@media (max-width: 1000px)": {
+              padding: "64px",
+              marginTop: "70px",
+            },
+            "@media (max-width: 760px)": {
+              padding: "24px !important",
+              marginTop: "100px",
+            },
+          }}
+        >
+          <Typography
             sx={{
-              padding: renderPadding(),
+              fontFeatureSettings: "'case' on",
+              fontSize: "40px",
+              textTransform: "uppercase",
+              fontWeight: 600,
             }}
           >
-            {selected > 0 && (
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "flex-end",
-                  alignItems: "flex-end",
-                  marginTop: "53px",
-                  cursor: "pointer",
-                }}
-                onClick={handlePrev}
-              >
-                <Box
-                  sx={{
-                    backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%), url(${
-                      aboutData[selected - 1].picture
-                    })`,
-                    height: "466px",
-                    width: "250px",
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    transition: "0.5s",
-                  }}
-                ></Box>
-                {selected > 0 && (
-                  <Button startIcon={<LeftIcon />} onClick={handlePrev}>
-                    <Typography
-                      sx={{
-                        color: "#047852",
-                        fontFeatureSettings: "'case' on",
-                        textTransform: "uppercase",
-                      }}
-                    >
-                      {renderLanguage(
-                        aboutData[selected - 1]?.title_ka,
-                        aboutData[selected - 1]?.title_eng
-                      )}
-                    </Typography>
-                  </Button>
-                )}
-              </Box>
+            {renderLanguage("ჩვენს შესახებ", "About Us")}
+          </Typography>
+          <Typography>
+            {renderLanguage(
+              `ACT Georgia არის დამოუკიდებელი არასამთავრობო ორგანიზაცია, რომელიც დაარსდა 2023 წელს
+თბილისი, საქართველო. ACT Georgia უპირველეს ყოვლისა ფოკუსირებულია საზოგადოებრივი კეთილდღეობის გაძლიერებაზე და დაუცველი თემების მხარდაჭერაზე, რომლებიც გავლენას ახდენენ სხვადასხვა გამოწვევებით, როგორიცაა ომები, კონფლიქტები, არასტაბილურობა, სიღარიბე, შეზღუდული შესაძლებლობები და რესურსებზე შეზღუდული წვდომა. The
+ორგანიზაცია ამას აღწევს ცოდნის გავრცელებით, საგანმანათლებლო ინიციატივებით,
+გაძლიერების პროგრამები, პროფესიული განვითარების დახმარება და პოლიტიკის ადვოკატირება,
+მიზნად ისახავს მათი საერთო კეთილდღეობისა და ცხოვრების ხარისხის ამაღლებას.`,
+              `ACT Georgia is an independent non-governmental organization established in 2023 in
+Tbilisi, Georgia. ACT Georgia primarily focuses on enhancing public welfare and supporting vulnerable communities impacted by various challenges such as wars, conflicts, instability, poverty, limited pportunities, and restricted access to resources. The
+organization achieves this through knowledge dissemination, educational initiatives,
+empowerment programs, professional development assistance, and policy advocacy,
+aiming to uplift their overall well-being and quality of life.`
             )}
-            <Box
-              sx={{
-                backgroundImage: `linear-gradient(350deg, #000 7.62%, rgba(0, 0, 0, 0.00) 50%), url(${aboutData[selected].picture})`,
-                height: "546px",
-                width: "100%",
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                transition: "0.5s",
-              }}
-            >
-              {" "}
+          </Typography>
+          <Box
+            sx={{
+              width: "100%",
+              backgroundImage: `url(/assets/AboutBack.png)`,
+              height: "300px",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              marginTop: "32px",
+            }}
+          ></Box>
+        </Box>
+        <Box
+          sx={{
+            color: "white",
+            backgroundColor: "#232C65",
+            padding: "128px 128px",
+            "@media (max-width: 1000px)": {
+              padding: "64px 64px",
+            },
+            "@media (max-width: 760px)": {
+              padding: "24px !important",
+            },
+          }}
+        >
+          <Typography
+            sx={{
+              fontFeatureSettings: "'case' on",
+              fontSize: "40px",
+              textTransform: "uppercase",
+              fontWeight: 600,
+            }}
+          >
+            {renderLanguage("მისია და ხედვა", "Mission and Vision")}
+          </Typography>
+          <Typography>
+            {renderLanguage(
+              `ACT Georgia ეძღვნება კომპლექსური გამოწვევების შეფასებას და მათ მოგვარებას
+ლტოლვილები, იძულებით გადაადგილებული პირები (დევნილები) და ომებით, კონფლიქტებით, პოლიტიკური არასტაბილურობით, ეკონომიკური შეზღუდვებითა და სტიქიური უბედურებებით დაზარალებული თემები საქართველოში.
+ყოვლისმომცველი შეფასებითა და ინკლუზიური მიდგომით, ჩვენ პრიორიტეტს ვაძლევთ საჭიროებებს
+ტვინების გადინების ყოვლისმომცველი საკითხით დაზარალებული ახალგაზრდები. ურყევი ვალდებულებით,
+ჩვენ ვცდილობთ გავანათლოთ, გავაძლიეროთ და გავაძლიეროთ გამძლეობა ამ თემებში,
+მტკიცედ უჭერს მხარს მათ ფუნდამენტურ უფლებებსა და კეთილდღეობას. გულში ჩვენი
+მისიაა სასიცოცხლო რესურსების თანაბარი ხელმისაწვდომობის უზრუნველსაყოფად და ისეთი გარემოს შექმნა, რომელიც ხელს უწყობს უამრავ შესაძლებლობებს, აძლევს ინდივიდებს უფლებას შექმნან აზრიანი ცხოვრება და აქტიური წვლილი შეიტანონ უფრო ინკლუზიურ და პერსპექტიულ გლობალურ მომავალში.`,
+              `ACT Georgia is dedicated to assessing and addressing complex challenges faced by
+refugees, internally displaced persons (IDPs), and communities affected by wars, conflicts, political instability, economic constraints, and natural disasters in Georgia.
+Through comprehensive evaluation and an inclusive approach, we prioritize the needs
+of youth affected by the pervasive issue of brain drain. With nwavering commitment,
+we strive to educate, empower, and foster resilience within these communities,
+staunchly advocating for their fundamental rights and well-being. At the heart of our
+mission is the drive to ensure equal access to vital resources and create an environment that fosters ample opportunities, empowering individuals to construct meaningful lives and contribute actively to a more inclusive and promising global future.`
+            )}
+          </Typography>
+          <Typography sx={{ marginTop: "16px" }}>
+            {renderLanguage(
+              `ჩვენი ხედვაა შევქმნათ ქვეყანა, სადაც ყველა დაუცველი თემი, მათ შორის ლტოლვილები,
+დევნილებს და მარგინალიზებულ ჯგუფებს შეუძლიათ აყვავდნენ რთული გარემოებების მიუხედავად. ჩვენ
+წარმოიდგინეთ მომავალი, სადაც ყველა ინდივიდს ექნება თანაბარი წვდომა რესურსებზე, საგანმანათლებლო
+შესაძლებლობები და მხარდაჭერა, რომელიც აუცილებელია სრულფასოვანი ცხოვრების შესაქმნელად და პოზიტიური წვლილისთვის მათ თემებში. ჩვენი საქმიანობით, ჩვენ ვცდილობთ ხელი შევუწყოთ საზოგადოებას, რომელიც მხარს უჭერს ინკლუზიურობას, გამძლეობასა და გაძლიერებას, რაც საბოლოოდ მიგვიყვანს უფრო აყვავებულ და სამართლიან საქართველომდე.`,
+              `Our vision is to create a country where all vulnerable communities, including refugees,
+IDPs, and marginalized groups, can thrive despite challenging circumstances. We
+envision a future where every individual has equal access to resources, educational
+opportunities, and the support necessary to build fulfilling lives and contribute positively to their communities. Through our work, we strive to foster a society that champions inclusivity, resilience, and empowerment, ultimately leading to a more prosperous and equitable Georgia.`
+            )}
+          </Typography>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            padding: "128px 0px",
+            width: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+            "@media (max-width: 1200px)": {
+              flexDirection: "column",
+            },
+            "@media (max-width: 1000px)": {
+              padding: "64px 64px",
+            },
+            "@media (max-width: 760px)": {
+              padding: "24px !important",
+            },
+          }}
+        >
+          {windowSize > 1200 ? (
+            <Box sx={{ height: "616px" }}>
               <Typography
                 sx={{
-                  fontSize: "24px",
-                  color: "white",
-                  marginTop: "480px",
-                  left: 0,
-                  right: 0,
-                  textAlign: "center",
                   fontFeatureSettings: "'case' on",
                   textTransform: "uppercase",
+                  writingMode: "vertical-rl",
+                  transform: "rotate(180deg)",
+                  fontSize: "40px",
                 }}
               >
-                {renderLanguage(
-                  aboutData[selected]?.title_ka,
-                  aboutData[selected]?.title_eng
-                )}
+                {renderLanguage(`ღირებულებები`, `Values`)}
               </Typography>
             </Box>
-            {selected < aboutData.length - 1 && (
-              <Box
-                sx={{ marginTop: "53px", cursor: "pointer" }}
-                onClick={handleNext}
+          ) : (
+            <Box>
+              <Typography
+                sx={{
+                  fontFeatureSettings: "'case' on",
+                  textTransform: "uppercase",
+                  fontSize: "40px",
+                }}
               >
-                <Box
-                  sx={{
-                    backgroundImage: `linear-gradient(53deg, #000 0%, rgba(0, 0, 0, 0.00) 95.77%), url(${
-                      aboutData[selected + 1].picture
-                    })`,
-                    height: "466px",
-                    width: "250px",
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    transition: "0.5s",
-                  }}
-                ></Box>
-                {selected <= aboutData.length - 1 && (
-                  <Button
-                    endIcon={
-                      <LeftIcon style={{ transform: "rotateY(180deg)" }} />
-                    }
-                    onClick={handleNext}
+                {renderLanguage(`ღირებულებები`, `Values`)}
+              </Typography>
+            </Box>
+          )}
+
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+            <Box
+              sx={{
+                display: "flex",
+                gap: "16px",
+                "@media (max-width: 1200px)": {
+                  flexDirection: "column",
+                },
+              }}
+            >
+              {valuesData.map((item, idx) =>
+                idx === 0 || idx === 1 ? (
+                  <Box
+                    key={item.id}
+                    sx={{
+                      width: "480px",
+                      height: "300px",
+                      padding: "32px",
+                      backgroundColor: "#F0F5FE",
+                      "@media (max-width: 1200px)": {
+                        width: "100%",
+                        padding: "64px",
+                      },
+                      "@media (max-width: 1000px)": {
+                        padding: "64px",
+                      },
+                      "@media (max-width: 760px)": {
+                        padding: "24px !important",
+                      },
+                    }}
                   >
                     <Typography
                       sx={{
-                        color: "#047852",
-                        fontFeatureSettings: "'case' on",
-                        textTransform: "uppercase",
+                        display: "flex",
+                        gap: "12px",
+                        fontWeight: 500,
+                        fontSize: "20px",
+                        alignItems: "center",
                       }}
                     >
+                      {item.icon}{" "}
+                      {renderLanguage(item.title_ka, item.title_eng)}
+                    </Typography>
+                    <Typography sx={{ color: "black", marginTop: "16px" }}>
                       {renderLanguage(
-                        aboutData[selected + 1]?.title_ka,
-                        aboutData[selected + 1]?.title_eng
+                        item.description_ka,
+                        item.description_eng
                       )}
                     </Typography>
-                  </Button>
-                )}
-              </Box>
-            )}
+                  </Box>
+                ) : null
+              )}
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                gap: "16px",
+                "@media (max-width: 1200px)": {
+                  flexDirection: "column",
+                },
+              }}
+            >
+              {valuesData.map((item, idx) =>
+                idx === 2 || idx === 3 ? (
+                  <Box
+                    key={item.id}
+                    sx={{
+                      width: "480px",
+                      height: "300px",
+                      padding: "32px",
+                      backgroundColor: "#F0F5FE",
+                      "@media (max-width: 1200px)": {
+                        width: "100%",
+                      },
+                      "@media (max-width: 1000px)": {
+                        padding: "64px",
+                      },
+                      "@media (max-width: 760px)": {
+                        padding: "24px !important",
+                      },
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        display: "flex",
+                        gap: "12px",
+                        fontWeight: 500,
+                        fontSize: "20px",
+                        alignItems: "center",
+                      }}
+                    >
+                      {item.icon}{" "}
+                      {renderLanguage(item.title_ka, item.title_eng)}
+                    </Typography>
+                    <Typography sx={{ color: "black", marginTop: "16px" }}>
+                      {renderLanguage(
+                        item.description_ka,
+                        item.description_eng
+                      )}
+                    </Typography>
+                  </Box>
+                ) : null
+              )}
+            </Box>
           </Box>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "16px",
+            padding: "128px 128px",
+            "@media (max-width: 1000px)": {
+              padding: "64px 64px",
+            },
+            "@media (max-width: 760px)": {
+              padding: "24px !important",
+            },
+          }}
+        >
+          <Typography
+            sx={{
+              fontFeatureSettings: "'case' on",
+              fontSize: "40px",
+              textTransform: "uppercase",
+              fontWeight: 600,
+            }}
+          >
+            {renderLanguage(
+              `გაეროს მდგრადი განვითარება`,
+              `United Nations Sustainable Development`
+            )}
+          </Typography>
+          <Typography
+            sx={{
+              fontFeatureSettings: "'case' on",
+              textTransform: "uppercase",
+              fontWeight: 500,
+            }}
+          >
+            {renderLanguage(
+              `ACT Georgia-ს ინიციატივები მჭიდროდ შეესაბამება გაეროს მდგრად განვითარებას
+მიზნები (SDGs), კერძოდ:`,
+              `ACT Georgia's initiatives are closely aligned with the United Nations Sustainable Development
+Goals (SDGs), particularly:`
+            )}
+          </Typography>
           <Box
             sx={{
               display: "flex",
-              width: "100%",
-              gap: "900px",
-              justifyContent: "center",
-              alignItems: "center",
-              marginTop: "-30px",
+              flexDirection: "column",
+              gap: "16px",
+              "@media (max-width: 1200px)": {
+                display: "flex",
+                flexDirection: "row",
+                gap: "16px",
+              },
+              "@media (max-width: 900px)": {
+                display: "flex",
+                flexDirection: "column",
+                gap: "16px",
+              },
             }}
-          ></Box>
-        </>
-      ) : (
-        <Box sx={{ marginTop: 10 }}>
-          <MobileAbout
-            aboutData={aboutData}
-            activeStep={selected}
-            setActiveStep={setSelected}
-          />
+          >
+            <Box
+              sx={{
+                display: "flex",
+                gap: "16px",
+                "@media (max-width: 1200px)": {
+                  flexDirection: "column",
+                },
+              }}
+            >
+              <Box
+                sx={{
+                  width: "404px",
+                  "@media (max-width: 1200px)": {
+                    width: "100%",
+                  },
+                  padding: "24px",
+                  height: "300px",
+                  backgroundImage: `url(/assets/Goals.png)`,
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "contain",
+                  backgroundPosition: "center",
+                }}
+              ></Box>
+              {goals.map((item, idx) =>
+                idx < 3 ? (
+                  <Box
+                    sx={{
+                      width: "404px",
+                      padding: "24px",
+                      height: "300px",
+                      backgroundColor: "#C4D7F9",
+                      "@media (max-width: 1200px)": {
+                        width: "100%",
+                      },
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        fontFeatureSettings: "'case' on",
+                        textTransform: "uppercase",
+                        fontWeight: 500,
+                        fontSize: "20px",
+                      }}
+                    >
+                      {renderLanguage(item.goal_ka, item.goal_eng)}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontFeatureSettings: "'case' on",
+                        textTransform: "uppercase",
+                        fontWeight: 500,
+                        fontSize: "20px",
+                      }}
+                    >
+                      {renderLanguage(item.title_ka, item.title_eng)}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontFeatureSettings: "'case' on",
+                        textTransform: "uppercase",
+                        fontWeight: 500,
+                      }}
+                    >
+                      {renderLanguage(
+                        item.description_ka,
+                        item.description_eng
+                      )}
+                    </Typography>
+                  </Box>
+                ) : null
+              )}
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                gap: "16px",
+                "@media (max-width: 1200px)": {
+                  flexDirection: "column",
+                },
+              }}
+            >
+              {goals.map((item, idx) =>
+                idx >= 3 ? (
+                  <Box
+                    sx={{
+                      width: "404px",
+                      padding: "24px",
+                      height: "300px",
+                      backgroundColor: "#C4D7F9",
+                      "@media (max-width: 1200px)": {
+                        width: "100%",
+                      },
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        fontFeatureSettings: "'case' on",
+                        textTransform: "uppercase",
+                        fontWeight: 500,
+                        fontSize: "20px",
+                      }}
+                    >
+                      {renderLanguage(item.goal_ka, item.goal_eng)}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontFeatureSettings: "'case' on",
+                        textTransform: "uppercase",
+                        fontWeight: 500,
+                        fontSize: "20px",
+                      }}
+                    >
+                      {renderLanguage(item.title_ka, item.title_eng)}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontFeatureSettings: "'case' on",
+                        textTransform: "uppercase",
+                        fontWeight: 500,
+                      }}
+                    >
+                      {renderLanguage(
+                        item.description_ka,
+                        item.description_eng
+                      )}
+                    </Typography>
+                  </Box>
+                ) : null
+              )}
+            </Box>
+          </Box>
         </Box>
-      )}
-      <Box sx={{ transition: "0.5s" }}>
-        {renderInfo(aboutData[selected]?.title_eng)}
       </Box>
     </>
   );

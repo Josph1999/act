@@ -3,8 +3,6 @@ import {
   doc,
   getDoc,
   getDocs,
-  limit,
-  orderBy,
   query,
 } from "firebase/firestore";
 import { useCallback, useEffect, useState } from "react";
