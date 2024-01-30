@@ -4,10 +4,9 @@ export default function DonationEng() {
   return (
     <Box
       sx={{
-        padding: "32px 128px",
+        color: "black",
         "@media (max-width: 800px)": {
-          padding: "20px",
-          marginTop: "20px",
+          fontSize: "12px",
         },
       }}
     >
@@ -26,19 +25,6 @@ export default function DonationEng() {
       open doors of opportunities for bright minds. From scholarships to
       innovative learning programs to preservation of cultural heritage – we are
       standing at the frontiers of shaping a better tomorrow. <br></br>{" "}
-      <br></br>
-      <Typography variant="h5">
-        Your Donation will contribute to:
-      </Typography>{" "}
-      <br></br>
-      Granting scholarships to aspiring students.<br></br> <br></br> Equipping
-      educational spaces with necessary tools.<br></br> <br></br> Encouraging
-      global learning through exchanges.<br></br> <br></br>
-      Preservation of Cultural Heritage. <br></br> <br></br>Investing in
-      technology and innovation.<br></br> <br></br>
-      When you donate, you do more than help – you inspire and uplift. With each
-      donation, you join a heartfelt mission to empower, educate, and transform
-      the youth. By supporting us, you’re part of a greater good!
     </Box>
   );
 }

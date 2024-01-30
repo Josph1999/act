@@ -17,7 +17,7 @@ const Links = [
   {
     name_ka: "კონტაქტი",
     name_eng: "Contact",
-    url: "/",
+    url: "/contact",
   },
   {
     name_ka: "",

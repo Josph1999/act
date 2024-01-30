@@ -10,13 +10,14 @@ import DonorBox from "../donorbox/donorbox";
 import { useWindowWidth } from "../helpers/useWindowWidth";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import bogLogo from "../../../public/assets/bog_eng_vertical.png";
-import TBCLogo from "../../../public/assets/download.png";
 import Image from "next/image";
 import copy from "clipboard-copy";
 import { toast } from "react-toastify";
 import { useLanguage } from "src/contexts/language-context";
 import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
-export default function DonateBankTransfer({goBack}) {
+import TBCLogo from "../icons/TBCLogo";
+import BOGLogo from "../icons/BOGLogo";
+export default function DonateBankTransfer({ goBack }) {
   const windowWidth = useWindowWidth();
 
   const { renderLanguage, renderFontFamily, language } = useLanguage();
@@ -27,14 +28,13 @@ export default function DonateBankTransfer({goBack}) {
           display: "flex",
           width: "100%",
           justifyContent: "flex-start",
-          padding: "0px 160px",
           "@media (max-width: 800px)": {
-            padding: "0px 36px",
+            flexWrap: "wrap",
           },
         }}
       >
         <Button
-        onClick={goBack}
+          onClick={goBack}
           startIcon={<ArrowCircleLeftOutlinedIcon />}
           sx={{ color: "black", paddingLeft: "0px" }}
         >
@@ -43,36 +43,29 @@ export default function DonateBankTransfer({goBack}) {
       </Box>
       <Box
         sx={{
-          display: "flex",
-          flexWrap: "wrap",
           width: "100%",
           gap: "90px",
-          padding: "0px 128px",
           alignItems: "space-between",
+          display: "flex",
           "@media (max-width: 800px)": {
             padding: "0px",
-            marginTop: "20px",
+            flexWrap: "wrap",
             justifyContent: "center",
           },
         }}
       >
-        {/* <DonorBox width={windowSize > 500 ? "450px" : "350px"} /> */}
-
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
             gap: "22px",
-            padding: "28px",
           }}
         >
-          <Image
-            src={TBCLogo}
-            width={windowWidth > 600 ? 300 : 200}
-            height={windowWidth > 600 ? 90 : 60}
-            alt="BOG Logo"
-          />
-          <Typography fontWeight={700}>
+          <TBCLogo />
+          <Typography
+            fontWeight={700}
+            sx={{ fontFeatureSettings: "'case' on" }}
+          >
             {renderLanguage(`მიმღების დასახელება:`, `Beneficiary:`)}
           </Typography>
           <Typography>
@@ -81,7 +74,10 @@ export default function DonateBankTransfer({goBack}) {
               `DAVID BEZHUASHVILI EDUCATION FUND`
             )}
           </Typography>
-          <Typography fontWeight={700}>
+          <Typography
+            fontWeight={700}
+            sx={{ fontFeatureSettings: "'case' on" }}
+          >
             {renderLanguage(`მიმღები ბანკი:`, `Account with Institution:`)}
           </Typography>
           <Typography>
@@ -93,7 +89,10 @@ export default function DonateBankTransfer({goBack}) {
 
           <Box sx={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
             <Box>
-              <Typography fontWeight={700}>
+              <Typography
+                fontWeight={700}
+                sx={{ fontFeatureSettings: "'case' on" }}
+              >
                 {renderLanguage(`ლარის ანგარიში`, `GEL Account`)}
               </Typography>
               <Button
@@ -108,7 +107,10 @@ export default function DonateBankTransfer({goBack}) {
               </Button>
             </Box>
             <Box>
-              <Typography fontWeight={700}>
+              <Typography
+                fontWeight={700}
+                sx={{ fontFeatureSettings: "'case' on" }}
+              >
                 {renderLanguage(
                   `დოლარის და ევროს ანგარიში`,
                   `USD and EUR Account`
@@ -133,16 +135,13 @@ export default function DonateBankTransfer({goBack}) {
             display: "flex",
             flexDirection: "column",
             gap: "22px",
-            padding: "28px",
           }}
         >
-          <Image
-            src={bogLogo}
-            width={windowWidth > 600 ? 350 : 250}
-            height={windowWidth > 600 ? 90 : 60}
-            alt="BOG Logo"
-          />
-          <Typography fontWeight={700}>
+          <BOGLogo />
+          <Typography
+            fontWeight={700}
+            sx={{ fontFeatureSettings: "'case' on" }}
+          >
             {renderLanguage(`მიმღების დასახელება: `, `Beneficiary: `)}
           </Typography>
           <Typography>
@@ -151,7 +150,10 @@ export default function DonateBankTransfer({goBack}) {
               `NNLE DAVID BEZHUASHVILI EDUCATION FUND`
             )}
           </Typography>
-          <Typography fontWeight={700}>
+          <Typography
+            fontWeight={700}
+            sx={{ fontFeatureSettings: "'case' on" }}
+          >
             {renderLanguage(`მიმღები ბანკი:`, `Account with Institution:`)}
           </Typography>
           <Typography>
@@ -161,7 +163,10 @@ export default function DonateBankTransfer({goBack}) {
             )}
           </Typography>
           <Box>
-            <Typography fontWeight={700}>
+            <Typography
+              fontWeight={700}
+              sx={{ fontFeatureSettings: "'case' on" }}
+            >
               {renderLanguage(
                 `ლარის, დოლარისა და ევროს ანგარიში`,
                 `GEL, EUR and EUR Account`

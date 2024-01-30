@@ -80,7 +80,7 @@ export default function Donate() {
                 }}
               >
                 <Button
-                onClick={() => setSelected('paypal')}
+                  onClick={() => setSelected("paypal")}
                   variant="outlined"
                   fullWidth
                   sx={{ padding: "16px 32px" }}
@@ -107,7 +107,11 @@ export default function Donate() {
           {selected === "bankTransfer" ? (
             <DonateBankTransfer goBack={() => setSelected(null)} />
           ) : null}
-          <DonateModal open={selected === 'paypal'} onClose={() => setSelected(null)} windowSize={windowSize > 500 ? "450px" : "350px" }/>
+          <DonateModal
+            open={selected === "paypal"}
+            onClose={() => setSelected(null)}
+            windowSize={windowSize > 500 ? "450px" : "350px"}
+          />
         </Box>
       </Box>
     </div>

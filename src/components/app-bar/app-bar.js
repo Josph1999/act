@@ -29,15 +29,20 @@ import { useRouter } from "next/router";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import MainLogo from "../icons/MainLogo";
-import DonateModal from "../donate/donate";
+import DonateModal from "../donate-modal/donate-modal";
+import DonorBoxModal from "../donor-box/donor-box";
 
 export default function MainAppBar() {
   const windowWidth = useWindowWidth();
+
+  const [openDonation, setOpenDonation] = useState(false);
+
   const { language, changeLanguage, renderLanguage, renderFontFamily } =
     useLanguage();
   const [openDrawer, setOpenDrawer] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [menuAnchorEl, setMenuAnchorEl] = React.useState(null);
+  const [menuAnchorEl, setMenuAnchorEl] = useState(null);
+  const [openDonorBox, setOpenDonorBox] = useState(false);
 
   const [openDonate, setOpenDonate] = useState(false);
 
@@ -173,7 +178,7 @@ export default function MainAppBar() {
                 <Button
                   variant="contained"
                   sx={{ fontFeatureSettings: "'case' on" }}
-                  // onClick={() => router.push('/donate')}
+                  onClick={() => setOpenDonate(true)}
                 >
                   {renderLanguage("დონაცია", "Donate")}
                 </Button>
@@ -192,7 +197,7 @@ export default function MainAppBar() {
             <Button
               variant="contained"
               sx={{ fontFeatureSettings: "'case' on" }}
-              // onClick={() => router.push('/donate')}
+              onClick={() => setOpenDonate(true)}
             >
               {renderLanguage("დონაცია", "Donate")}
             </Button>
@@ -254,6 +259,17 @@ export default function MainAppBar() {
       <ResponsiveDrawer
         open={openDrawer}
         onClose={() => setOpenDrawer(false)}
+      />
+      <DonateModal
+        open={openDonate}
+        onClose={() => setOpenDonate(false)}
+        windowSize={windowWidth}
+        setOpenDonorBox={setOpenDonorBox}
+      />
+      <DonorBoxModal
+        open={openDonorBox}
+        onClose={() => setOpenDonorBox(false)}
+        windowSize={windowWidth}
       />
     </AppBar>
   );

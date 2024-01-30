@@ -1,14 +1,14 @@
-export default function PhoneIcon({color}) {
+export default function PhoneIcon({ color }) {
   const maskStyle = {
     maskType: "alpha",
-    color:'#047852'
+    color: "#047852",
   };
   return (
     <svg
       width="20"
       height="20"
       viewBox="0 0 20 20"
-      style={{color:'#047852'}}
+      style={{ color: "#047852" }}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
