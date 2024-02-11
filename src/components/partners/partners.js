@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-import Image from "next/image";
 import { useWindowWidth } from "../helpers/useWindowWidth";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "src/firebase/firebase";
@@ -64,7 +63,7 @@ export default function Partners() {
         <Typography sx={{ fontFeatureSettings: "'case' on" }}>
           {renderLanguage(
             "პარტნიორი ორგანიზაციები, რომლებთანაც ფონდი თანამშრომლობს",
-            "Partner organizations with which the Foundation cooperates"
+            "Partner organizations with which the Organization cooperates"
           )}
         </Typography>
       </Box>

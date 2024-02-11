@@ -99,7 +99,7 @@ export default function MainSlider() {
                 },
               }}
             >
-              {renderLanguage("მოქმედება", "Action")} <br />{" "}
+              {renderLanguage("ქმედება", "Action")} <br />{" "}
               {renderLanguage("საზოგადოებრივი", "For Community")}
               <br />
               {renderLanguage("ცვლილებებისთვის", "Transformation")}
@@ -110,16 +110,14 @@ export default function MainSlider() {
               sx={{
                 color: "white",
                 "@media (min-width: 800px)": {
-                  width: '384px'
+                  width: "384px",
                 },
               }}
             >
               {renderLanguage(
-                "ACT საქართველო უმთავრესად ორიენტირებულია საზოგადოებრივი კეთილდღეობის გაძლიერებაზე და მოწყვლადი ჯგუფების მხარდაჭერაზე.",
-                "ACT Georgia is primarily focused on strengthening public welfare and supporting vulnerable groups."
+                "საქართველო (ACT Georgia) - ორგანიზაციის მიზანია ხელი შეუწყოს საზოგადოებრივ გაძლიერებას ინკლუზიურობის, თანაბარმნიშვნელოვან ჩართულობისა და სოციო-ეკონომიკური ინოვაციების მხარდაჭერის მექანიზმებით.",
+                "Action for Community Transformation – Georgia (ACT Georgia) – Organization on a mission to uplift and strengthen vulnerable communities through inclusive, transparent and holistic engagement. Making impact by driving socio-economic development and policy entrepreneurship for all members of society!"
               )}{" "}
-              <br />{" "}
-              {renderLanguage("მთავარი ღირებულებაა", "democratic country")}
             </Typography>
           </Box>
         </Box>

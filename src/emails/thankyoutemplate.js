@@ -488,7 +488,7 @@ export default function ThankYouTemplate(){
                                                 "
                                               >
                                               David Bezhuashvili
-                                              Education Foundation
+                                              Education Organization
                                               
                                               </h1>
                                             </td>
@@ -556,7 +556,7 @@ export default function ThankYouTemplate(){
                                                 Youth! <br></br> Dear Subsriber,<br></br> We hope this message
                                                 finds you well. <br></br> At the David
                                                 Bezhuashvili Education
-                                                Foundation, each day we work
+                                                Organization, each day we work
                                                 tirelessly towards empowerement
                                                 and support of the Georgian
                                                 youth. We strive to create

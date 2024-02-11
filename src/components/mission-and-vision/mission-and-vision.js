@@ -42,16 +42,16 @@ export default function MissionAndVision() {
           <br />
           <Typography className={styles.mainText}>
             {renderLanguage(
-              `ეისითი საქართველოს საქმიანობა მიმართულია ლტოლვილების, იძულებით გადაადგილებულ პირთა (დევნილთა) და ომების, კონფლიქტების, პოლიტიკური არასტაბილურობის, ეკონომიკური შეზღუდვებისა და ბუნებრივი კატასტროფების შედეგად დაზარალებული ჯგუფების პრობლემათა შეფასებასა და გადაჭრას.`,
-              `ACIT Georgia's activities are aimed at assessing and solving the problems of refugees, internally displaced persons (IDPs) and groups affected by wars, conflicts, political instability, economic restrictions and natural disasters.`
+              `ორგანიზაციის მიზანია მოახდინოს იმ კომპლექსური გამოწვევებისა და წინაამღდეგობების სისტემური ანალიზი, რომელთან გამკლავებაც საზოგადოების ყველაზე მოწყვლადი ჯგუფებს ყოველდღიურად უწევთ. ორგანიზაციის სამუშაო სამიზნე თემატიკას წარმოადგენს იძულებით გადაადგილებულ პირთა და ლტოლვილთა სოციო-ეკონომიკური გამოწვევები, ეთნიკური უმცირესობებისა და დროებითი მაცხოვრებლების გამოწვევები, ეკომიგრანტებისა და სხვა ბუნებრივი კრიზისებით დაზარალებული ადამიანების მხარდაჭერა, ქალთა და ბავშვთა უფლებების დაცვა და გაძლიერება, ახალგაზრდების სამუშაო ბაზარზე ინტეგრაციის პრობლემები და ‘ტვინების გადინების’ გამოწვევასთან ბრძოლა.  `,
+              `ACT Georgia is dedicated to assessing and addressing complex challenges faced by refugees, internally displaced persons (IDPs), and communities affected by wars, conflicts, political instability, economic constraints, and natural disasters in Georgia. Through comprehensive evaluation and an inclusive approach, we prioritize the needs of youth affected by the pervasive issue of brain drain. With nwavering commitment, we strive to educate, empower, and foster resilience within these communities, staunchly advocating for their fundamental rights and well-being. At the heart of our mission is the drive to ensure equal access to vital resources and create an environment that fosters ample opportunities, empowering individuals to construct meaningful lives and contribute actively to a more inclusive and promising global future.`
             )}
           </Typography>
           <Typography className={styles.secondText}>
             <br />
             {renderLanguage(
-              `ჩვენ წარმოვიდგენთ მომავალს, სადაც თითოეულ ინდივიდს ექნება თანაბარი წვდომა რესურსებზე, საგანმანათლებლო შესაძლებლობებზე და მხარდაჭერაზე, რომელიც აუცილებელია სრულფასოვანი ცხოვრების ასაშენებლად და პოზიტიური წვლილისთვის მათ თემებში.`,
+              `ჩვენი მიზანია ხელი შევუწყოთ სოციალური ტრანსფორმაციის პროცესებს, რომელიც თავის მხრივ განაპირობებს თანაბარმნიშვნელოვანი, ჰორიზონტალური მედეგობის პრინციპზე დაფუძნებული ინკლუზიური სოციალური სისტემების ჩამოყალიბებას როგორც სათემო აგრეთვე რეგიონალურ სოციალურ დონეებზე. `,
               `
-            We envision a future where every individual has equal access to the resources, educational opportunities, and supports necessary to build fulfilling lives and make positive contributions to their communities.`
+              Our vision is to create a country where all vulnerable communities, including refugees, IDPs, and marginalized groups, can thrive despite challenging circumstances. We envision a future where every individual has equal access to resources, educational opportunities, and the support necessary to build fulfilling lives and contribute positively to their communities. Through our work, we strive to foster a society that champions inclusivity, resilience, and empowerment, ultimately leading to a more prosperous and equitable Georgia.`
             )}
           </Typography>
         </Box>

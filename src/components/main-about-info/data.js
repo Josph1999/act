@@ -5,10 +5,10 @@ import TeamIcon from "../icons/TeamIcon";
 
 export const mainAboutData = [
   {
-    title_ka: "ფონდის შესახებ",
-    title_eng: "About Foundation",
+    title_ka: "ორგანიზაციის შესახებ",
+    title_eng: "About Organization",
     description_ka:
-      "„დავით ბეჟუაშვილის განათლების ფონდი,“ საგანმანათლებლო საქველმოქმედო, არამომგებიანი ორგანიზაციაა, რომელიც 2015 წელს დაარსდა. ფონდის დამფუძნებლები თვლიან, რომ განათლება განვითარებული, თანამედროვე, დემოკრატიული ქვეყნის მთავარი ღირებულებაა, ამიტომაც აქ ჩადებული ინვესტიციები ამ ღირებულებების დამკვიდრებისათვის გაღებული ის წილია, რომელიც მთლიანად ქვეყნის განვითარებაში იდება.",
+      "„დავით ბეჟუაშვილის განათლების ფონდი,“ საგანმანათლებლო საქველმოქმედო, არამომგებიანი ორგანიზაციაა, რომელიც 2015 წელს დაარსდა. ორგანიზაციის დამფუძნებლები თვლიან, რომ განათლება განვითარებული, თანამედროვე, დემოკრატიული ქვეყნის მთავარი ღირებულებაა, ამიტომაც აქ ჩადებული ინვესტიციები ამ ღირებულებების დამკვიდრებისათვის გაღებული ის წილია, რომელიც მთლიანად ქვეყნის განვითარებაში იდება.",
     description_eng: `"Davit Bezhuashvili Education Fund" is an educational charitable, non-profit organization, which was established in 2015. The founders of the fund believe that education is the main value of a developed, modern, democratic country, that's why the investments made here for the establishment of these values ​​are the share that is invested in the development of the country as a whole.`,
     icon: <FoundationIcon />,
     path: "/about?data=AboutFoundation",
@@ -35,7 +35,7 @@ export const mainAboutData = [
     title_ka: "გუნდი",
     title_eng: "Team",
     description_ka:
-      "ფონდის დამფუძნებელი დავით ბეჟუაშვილია, მმართველი გელა ბეჟუაშვილი, ფონდის PR მენეჯერი ნათია ბანძელაძე, ფინანსური მენეჯერი ნინო ფურცელაძე",
+      "ორგანიზაციის დამფუძნებელი დავით ბეჟუაშვილია, მმართველი გელა ბეჟუაშვილი, ორგანიზაციის PR მენეჯერი ნათია ბანძელაძე, ფინანსური მენეჯერი ნინო ფურცელაძე",
     description_eng: `The founder of the fund is Davit Bezhiashvili, the manager is Gela Bezhuashvili, the PR manager of the fund is Natia Bandzeladze, the financial manager is Nino Furtseladze.`,
     icon: <TeamIcon />,
     path: "/about?data=Team",

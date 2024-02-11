@@ -1,11 +1,7 @@
 import Head from "next/head";
-// import { useParams, useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
-import { useAuth } from "src/hooks/use-auth";
-import DefaultSelect from "src/components/select";
-import { QuillEditor } from "src/components/quill/quill-editor";
 import {
   deleteObject,
   getDownloadURL,
@@ -89,11 +85,10 @@ export default function AddCalculation() {
           setAdding(false);
           toast.success(
             renderLanguage(
-              "სიახლე წარმატებით დარედაქტირდა!",
-              "News has succesfully been edited"
+              "რეპორტი წარმატებით დარედაქტირდა!",
+              "Report succesfully been edited"
             )
           );
-          //   router.push("/dashboard/published-reports");
           return;
         }
         if (imageList.length < 1) {

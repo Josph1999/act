@@ -36,9 +36,15 @@ function TeamSlider() {
       sx={{
         maxWidth: "484px",
         flexGrow: 1,
-        "@media (max-width: 760px)": {
+        "@media (max-width: 1600px)": {
           width: "100%",
           maxWidth: "100%",
+          marginTop: "270px",
+        },
+        "@media (max-width: 1000px)": {
+          width: "100%",
+          maxWidth: "100%",
+          marginTop: "60px",
         },
       }}
     >
@@ -49,7 +55,7 @@ function TeamSlider() {
           fontWeight: 700,
           marginBottom: "16px",
           "@media (max-width: 760px)": {
-            padding: '24px'
+            padding: "24px",
           },
         }}
       >
@@ -68,7 +74,7 @@ function TeamSlider() {
               <Box
                 component="img"
                 sx={{
-                  "@media (max-width: 760px)": {
+                  "@media (max-width: 1600px)": {
                     width: "100%",
                     maxWidth: "100%",
                   },
@@ -92,7 +98,7 @@ function TeamSlider() {
           justifyContent: "space-between",
           marginBottom: "16px",
           "@media (max-width: 760px)": {
-            padding: '24px'
+            padding: "24px",
           },
         }}
       >

@@ -36,10 +36,6 @@ export default function DonateModal({ open, onClose, windowSize, setOpenDonorBox
 
   const [selected, setSelected] = useState(null);
 
-  console.log("LANGUAGE:", language);
-
-  // const renderComponent = language === "KA" ? <DonationKa /> : <DonationEng />;
-
   const renderComponent = () => {
     if (language === "KA") {
       return <DonationKa />;

@@ -26,7 +26,7 @@ const Page = () => {
           <MissionAndVision />
           <News />
           <MainAboutInfo />
-          <Projects />
+          {/* <Projects /> */}
           <Partners />
           <Subscribe />
           <script

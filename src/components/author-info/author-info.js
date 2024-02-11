@@ -25,7 +25,7 @@ export default function FounderInfo() {
       <br></br>
       <Typography>
         {renderLanguage(
-          `უკანასკნელი წლებია საქართველო მნიშვნელოვან სახეცვლილებას განიცდის, რაც, პირველ რიგში, მისი ეკონომიკური, პოლიტიკური და კულტურული პოტენციალის ათვისებასა და ამ გზით ქვეყნის მოდერნიზებას გულისხმობს. ამასთან, დაუშვებელია აღნიშნულის პროცესის მხოლოდ ინვესტიციების მოზიდვასა თუ გარე დახმარებას მიღებაზე იყო მიმართული. მნიშვნელოვანი ძალისხმევა პოზიტიური საინვესტიციო კლიმატის შესაქმნელად, მაღალი ტექნოლოგიების დანერგვა სოციო-ეკონომიკური ცხოვრების ყველა საფეხურზე და განათლების დასავლური მოდელების ინტეგრირება გახლავთ ქვეყნის განვითარების გრძელვადიანი და მედეგი სტრატეგია. ამასთანავე, აღნიშნულ პროცესს უნდა უძღვებოდნენ პროფესიონალები, რომელთა მოზიდვა და გადამზადება ჩვენი ფონდის ერთერთ უმთავრეს ამოცანას წარმოადგენს.`,
+          `უკანასკნელი წლებია საქართველო მნიშვნელოვან სახეცვლილებას განიცდის, რაც, პირველ რიგში, მისი ეკონომიკური, პოლიტიკური და კულტურული პოტენციალის ათვისებასა და ამ გზით ქვეყნის მოდერნიზებას გულისხმობს. ამასთან, დაუშვებელია აღნიშნულის პროცესის მხოლოდ ინვესტიციების მოზიდვასა თუ გარე დახმარებას მიღებაზე იყო მიმართული. მნიშვნელოვანი ძალისხმევა პოზიტიური საინვესტიციო კლიმატის შესაქმნელად, მაღალი ტექნოლოგიების დანერგვა სოციო-ეკონომიკური ცხოვრების ყველა საფეხურზე და განათლების დასავლური მოდელების ინტეგრირება გახლავთ ქვეყნის განვითარების გრძელვადიანი და მედეგი სტრატეგია. ამასთანავე, აღნიშნულ პროცესს უნდა უძღვებოდნენ პროფესიონალები, რომელთა მოზიდვა და გადამზადება ჩვენი ორგანიზაციის ერთერთ უმთავრეს ამოცანას წარმოადგენს.`,
           `For the last few years, Georgia has been undergoing significant changes, which, first of all, involves the utilization of its economic, political and cultural potential and thus the modernization of the country. However, modernization of the country cannot be connected only with attracting investments or external assistance. A positive investment climate, imported technologies and education are necessary prerequisites for a country's development, but such development will be sustainable only if industrial, political and cultural progress is the result of a knowledge-driven process.`
         )}
       </Typography>
@@ -265,7 +265,7 @@ export default function FounderInfo() {
               guide his endeavors. He leverages his resources to empower the
               country's youth, nurturing them into educated and engaged members
               of society. In 2015, he founded the David Bezhuashvili Education
-              Foundation (ACT), a non-profit organization dedicated to
+              Organization (ACT), a non-profit organization dedicated to
               supporting education and preserving cultural heritage.
             </Typography>
           )}

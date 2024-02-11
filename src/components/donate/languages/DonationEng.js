@@ -16,7 +16,7 @@ export default function DonationEng() {
       </Typography>{" "}
       <br></br>
       Join our foundation in turning aspirations into achievements. <br></br>{" "}
-      <br></br> At the David Bezhuashvili Education Foundation, we’re more than
+      <br></br> At the David Bezhuashvili Education Organization, we’re more than
       just a charity organization – we’re a group of visionaries and idealists.
       Every donation you make is a seed planted in the soil of a better future.
       <br></br> <br></br>

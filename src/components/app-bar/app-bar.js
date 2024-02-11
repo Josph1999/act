@@ -5,7 +5,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Logo } from "../logo";
 import Link from "next/link";
 import HeaderLinks from "../../constants/header-links";
 import { useWindowWidth } from "../helpers/useWindowWidth";
@@ -16,12 +15,9 @@ import {
   MenuItem,
   Radio,
   RadioGroup,
-  SvgIcon,
-  Tooltip,
 } from "@mui/material";
 import { useState } from "react";
 import ResponsiveDrawer from "../drawer/drawer";
-import { useAuth } from "src/hooks/use-auth";
 import { useLanguage } from "src/contexts/language-context";
 import LanguageIcon from "@mui/icons-material/Language";
 import { aboutData } from "../about/data";
@@ -35,10 +31,7 @@ import DonorBoxModal from "../donor-box/donor-box";
 export default function MainAppBar() {
   const windowWidth = useWindowWidth();
 
-  const [openDonation, setOpenDonation] = useState(false);
-
-  const { language, changeLanguage, renderLanguage, renderFontFamily } =
-    useLanguage();
+  const { language, changeLanguage, renderLanguage } = useLanguage();
   const [openDrawer, setOpenDrawer] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [menuAnchorEl, setMenuAnchorEl] = useState(null);
@@ -132,7 +125,7 @@ export default function MainAppBar() {
           ) : (
             <Box sx={{ display: "flex" }}>
               {HeaderLinks.map(({ name_ka, name_eng, url }) =>
-                name_ka !== "ფონდის შესახებ" ? (
+                name_ka !== "ორგანიზაციის შესახებ" ? (
                   <Link href={url} key={name_ka}>
                     <Button
                       sx={{
@@ -167,7 +160,6 @@ export default function MainAppBar() {
                   </Button>
                 )
               )}
-              |
               <Box>
                 <Button
                   onClick={handleOpenMenu}

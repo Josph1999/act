@@ -1,216 +1,204 @@
 import * as React from "react";
-import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import SwipeableViews from "react-swipeable-views";
-import { autoPlay } from "react-swipeable-views-utils";
-import { mainAboutData } from "./data";
+import "swiper/css/navigation";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
 import { useLanguage } from "src/contexts/language-context";
-import SeeMore from "../icons/SeeMore";
 import { useWindowWidth } from "../helpers/useWindowWidth";
-import { useRouter } from "next/router";
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  MobileStepper,
-  // makeStyles,
-} from "@mui/material";
-import { makeStyles } from "@mui/styles";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { useState } from "react";
+import { Autoplay } from "swiper/modules";
 import TeamSlider from "../team-slider/team-slider";
-import { aboutData } from "../about/data";
-
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-
-const useStyles = makeStyles((theme) => ({
-  // Define your custom styles here
-  dot: {
-    width: "16px",
-    height: "16px",
-  },
-  dots: {
-    gap: "16px",
-  },
-}));
+import { valuesData } from "../about/data";
 
 export default function MainAboutInfo() {
   const windowSize = useWindowWidth();
-  const theme = useTheme();
-  const [activeStep, setActiveStep] = useState(0);
 
-  const classes = useStyles();
+  const { renderLanguage } = useLanguage();
 
-  const [expanded, setExpanded] = useState(false);
-
-  const handleChange = (panel) => (event, newExpanded) => {
-    setExpanded(newExpanded ? panel : false);
-  };
-
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleStepChange = (step) => {
-    setActiveStep(step);
-  };
-
-  const { renderLanguage, renderFontFamily } = useLanguage();
-  const router = useRouter();
-
-  return windowSize > 1240 ? (
+  return (
     <Box
       sx={{
         display: "flex",
-        marginTop: "128px",
+        padding: "0px 128px",
         width: "100%",
-        paddingRight: "128px",
-        gap: "26px",
-        "@media (max-width: 920px)": {
-          paddingRight: "64px",
-        },
-      }}
-    >
-      <Box
-        sx={{
-          backgroundColor: "#DEE7FB",
-          color: "white",
-          display: "flex",
+        marginTop: '50px',
+        justifyContent: "space-between",
+        "@media (max-width: 1600px)": {
           flexDirection: "column",
-          padding: "64px 128px",
-          alignItems: "center",
-          gap: "26px",
-          "@media (max-width: 920px)": {
-            padding: "64px",
-          },
-          overflow: "auto",
-          gap: "16px",
-        }}
-      >
-        {mainAboutData.map((item, idx) => {
-          return (
-            <Accordion
-              sx={{
-                color: "#232C65",
-                backgroundColor: "#DEE7FB",
-                boxShadow: "none",
-                border: "none",
-                width: "100%",
-              }}
-              expanded={expanded === idx}
-              onChange={handleChange(idx)}
-            >
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-                sx={{ backgroundColor: "#DEE7FB" }}
-              >
-                <Typography
-                  sx={{
-                    fontFeatureSettings: "'case' on",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {renderLanguage(item.title_ka, item.title_eng)}
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails sx={{ borderBottom: "1px solid #232C65" }}>
-                <Typography>
-                  {renderLanguage(item.description_ka, item.description_eng)}
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-          );
-        })}
-      </Box>
-      <TeamSlider />
-    </Box>
-  ) : (
-    <Box
-      sx={{
-        display: "flex",
-        marginTop: "128px",
-        width: "100%",
-        paddingRight: "128px",
-        gap: "26px",
-        "@media (max-width: 920px)": {
-          paddingRight: "64px",
+        },
+        "@media (max-width: 1000px)": {
+          padding: "64px 64px",
         },
         "@media (max-width: 760px)": {
-          flexWrap: "wrap",
-          padding: "0px",
+          padding: "24px !important",
         },
       }}
     >
-      <Box
-        sx={{
-          backgroundColor: "#DEE7FB",
-          padding: "64px 128px",
-          alignItems: "center",
-          gap: "26px",
-          "@media (max-width: 920px)": {
-            padding: "32px",
-          },
-          overflow: "auto",
-          gap: "16px",
-          width: "100%",
-        }}
-      >
-        <MobileStepper
-          steps={aboutData.length}
-          position="static"
-          activeStep={activeStep}
-          classes={{
-            dot: classes.dot,
-            dots: classes.dots,
+      {windowSize > 1000 ? (
+        <Box>
+          <Box
+            display="flex"
+            gap="16px"
+            sx={{
+              "@media (max-width: 1600px)": {
+                marginTop: "60px",
+                justifyContent: "space-between",
+              },
+            }}
+          >
+            {valuesData.map((item, idx) =>
+              idx === 0 || idx === 1 ? (
+                <Box
+                  key={item.id}
+                  sx={{
+                    width: "480px",
+                    height: "300px",
+                    "@media (max-width: 1200px)": {
+                      width: "100%",
+                      padding: "64px",
+                    },
+                    "@media (max-width: 1000px)": {
+                      padding: "64px",
+                    },
+                    "@media (max-width: 760px)": {
+                      padding: "24px !important",
+                    },
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      display: "flex",
+                      gap: "12px",
+                      fontWeight: 500,
+                      fontSize: "20px",
+                      alignItems: "center",
+                    }}
+                  >
+                    {item.icon} {renderLanguage(item.title_ka, item.title_eng)}
+                  </Typography>
+                  <Typography sx={{ color: "black", marginTop: "16px" }}>
+                    {renderLanguage(item.description_ka, item.description_eng)}
+                  </Typography>
+                </Box>
+              ) : null
+            )}
+          </Box>
+          <Box
+            display="flex"
+            gap="16px"
+            sx={{
+              "@media (max-width: 1600px)": {
+                marginTop: "60px",
+                justifyContent: "space-between",
+              },
+            }}
+          >
+            {valuesData.map((item, idx) =>
+              idx === 2 || idx === 3 ? (
+                <Box
+                  key={item.id}
+                  sx={{
+                    width: "480px",
+                    height: "300px",
+                    "@media (max-width: 1200px)": {
+                      width: "100%",
+                      padding: "64px",
+                    },
+                    "@media (max-width: 1000px)": {
+                      padding: "64px",
+                    },
+                    "@media (max-width: 760px)": {
+                      padding: "24px !important",
+                    },
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      display: "flex",
+                      gap: "12px",
+                      fontWeight: 500,
+                      fontSize: "20px",
+                      alignItems: "center",
+                    }}
+                  >
+                    {item.icon} {renderLanguage(item.title_ka, item.title_eng)}
+                  </Typography>
+                  <Typography sx={{ color: "black", marginTop: "16px" }}>
+                    {renderLanguage(item.description_ka, item.description_eng)}
+                  </Typography>
+                </Box>
+              ) : null
+            )}
+          </Box>
+        </Box>
+      ) : (
+        <Swiper
+          className="mySwiper"
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
           }}
-          sx={{
-            backgroundColor: "transparent",
-            padding: "0px",
+          modules={[Autoplay]}
+          breakpoints={{
+            360: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            920: {
+              slidesPerView: 1,
+              spaceBetween: 40,
+            },
+            1224: {
+              slidesPerView: 1,
+              spaceBetween: 50,
+            },
           }}
-        />
-        <AutoPlaySwipeableViews
-          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-          index={activeStep}
-          onChangeIndex={handleStepChange}
-          enableMouseEvents
+          pagination={{
+            type: "fraction",
+          }}
         >
-          {mainAboutData.map((item) => {
-            return (
+          {valuesData.map((item) => (
+            <SwiperSlide>
               <Box
+                key={item.id}
                 sx={{
-                  width: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "24px",
-                  alignItems: "flex-start",
-                  marginTop: "32px",
+                  width: "480px",
+                  height: "300px",
+                  "@media (max-width: 1200px)": {
+                    width: "100%",
+                    padding: "64px",
+                  },
+                  "@media (max-width: 1000px)": {
+                    padding: "64px",
+                  },
+                  "@media (max-width: 760px)": {
+                    padding: "24px !important",
+                  },
                 }}
               >
                 <Typography
-                  sx={{ fontFeatureSettings: "'case' on" }}
-                  fontWeight={500}
+                  sx={{
+                    display: "flex",
+                    gap: "12px",
+                    fontWeight: 500,
+                    fontSize: "20px",
+                    alignItems: "center",
+                    "@media (max-width: 1000px)": {
+                      flexDirection: "column",
+                    },
+                  }}
                 >
-                  {renderLanguage(item.title_ka, item.title_eng)}
+                  {item.icon} {renderLanguage(item.title_ka, item.title_eng)}
                 </Typography>
-                <Typography fontSize={16}>
-                  {renderLanguage(
-                    item.description_ka,
-                    item.description_eng.substring(0, 130) + "..."
-                  )}
+                <Typography sx={{ color: "black", marginTop: "16px" }}>
+                  {renderLanguage(item.description_ka, item.description_eng)}
                 </Typography>
               </Box>
-            );
-          })}
-        </AutoPlaySwipeableViews>
-      </Box>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
       <TeamSlider />
     </Box>
   );

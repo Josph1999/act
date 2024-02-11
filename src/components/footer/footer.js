@@ -122,7 +122,7 @@ export default function Footer() {
                 },
               }}
             >
-              {renderLanguage(`ფონდი`, "Foundation")}
+              {renderLanguage(`ფონდი`, "Organization")}
             </Typography>
             <Box
               color="white"

@@ -434,7 +434,7 @@ export default function NewsLetter({ title_ka, url, link, description_ka }) {
                                         "
                                       >
                                         სიახლეები დავით ბეჟუაშვილის განათლების
-                                        ფონდისგან
+                                        ორგანიზაციისგან
                                       </h1>
                                     </td>
                                   </tr>
@@ -1318,7 +1318,7 @@ export default function NewsLetter({ title_ka, url, link, description_ka }) {
                               mso-text-raise: 3px;
                             "
                           >
-                            Made by David Bezhuashvili Education Foundation✌️ 
+                            Made by David Bezhuashvili Education Organization✌️ 
                           </p>
                         </td>
                       </tr>

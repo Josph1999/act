@@ -1,0 +1,13 @@
+.image {
+    object-fit: contain;
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .image:hover {
+    filter: none;
+    background-size: 110%;
+    transition: 0.3s;
+  }

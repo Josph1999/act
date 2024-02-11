@@ -73,7 +73,7 @@ export default function ResponsiveDrawer({ open, onClose }) {
         <Divider sx={{ borderColor: "neutral.700" }} />
         <Box display="flex" flexDirection="column" alignItems="flex-start">
           {Links.map(({ name_ka, name_eng, url }) =>
-            name_ka !== "ფონდის შესახებ" ? (
+            name_ka !== "ორგანიზაციის შესახებ" ? (
               <Button
                 sx={{
                   color: "black",
