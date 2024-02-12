@@ -22,7 +22,7 @@ export default function MainAboutInfo() {
         display: "flex",
         padding: "0px 128px",
         width: "100%",
-        marginTop: '50px',
+        marginTop: '150px',
         justifyContent: "space-between",
         "@media (max-width: 1600px)": {
           flexDirection: "column",

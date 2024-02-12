@@ -98,10 +98,10 @@ export default function News() {
         }}
       >
         {news?.map((item, idx) =>
-          idx === 0 || idx === 1 ? <NewsCard news={item} idx={idx} /> : null
+          <NewsCard news={item} idx={idx} />
         )}
       </Box>
-      <Box
+      {/* <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
@@ -116,7 +116,7 @@ export default function News() {
         {news?.map((item, idx) =>
           idx === 2 || idx === 3 ? <NewsCard news={item} idx={idx} /> : null
         )}
-      </Box>
+      </Box> */}
     </Box>
   );
 }
