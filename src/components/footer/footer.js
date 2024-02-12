@@ -182,7 +182,7 @@ export default function Footer() {
                 gap: "10px",
               }}
             >
-              <MailIcon /> {renderLanguage(`info@act.org`, "info@act.org")}
+              <MailIcon /> {renderLanguage(`info@act.org.ge`, "info@act.org.ge")}
             </Typography>
             <Typography
               sx={{
@@ -221,7 +221,7 @@ export default function Footer() {
           }}
         >
           {renderLanguage(
-            `ⓒ“მოქმედება საზოგადოებრივი ცვლილებებისთვის”, ყველა უფლება დაცულია`,
+            `ⓒ“ქმედება საზოგადოებრივი ცვლილებებისთვის”, ყველა უფლება დაცულია`,
             `ⓒ"Action for Community Transformation", all rights reserved`
           )}
         </Typography>

@@ -103,6 +103,8 @@ export default function MainSlider() {
               {renderLanguage("საზოგადოებრივი", "For Community")}
               <br />
               {renderLanguage("ცვლილებებისთვის", "Transformation")}
+              <br />
+              {renderLanguage("საქართველო", "Georgia")}
             </Typography>
             <Typography
               variant="h6"
