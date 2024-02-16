@@ -47,7 +47,7 @@ const App = (props) => {
         <meta property="og:url" content="https://www.dbef.ge" />
         <meta
           property="og:image"
-          content="https://www.dbef.ge/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FFooterKa.77e41d8e.png&w=128&q=75"
+          content="https://firebasestorage.googleapis.com/v0/b/act-georgia.appspot.com/o/0a05f13f-1df9-432e-abac-87535eee4d5d.jpeg?alt=media&token=78728359-6361-48f1-a2e8-03b495f25925"
         />
       </Head>
       <style jsx global>{`
