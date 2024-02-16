@@ -42,7 +42,7 @@ export default function MainSlider() {
           className={styles.videoBackground}
         >
           <source
-            src="https://firebasestorage.googleapis.com/v0/b/dbef-de772.appspot.com/o/Sequence%2001.mp4?alt=media&token=441a981e-98eb-4685-8e2e-a7da2458b17f"
+            src="https://firebasestorage.googleapis.com/v0/b/act-georgia.appspot.com/o/act%20georgia%20satesto%201.mp4?alt=media&token=56751374-a7c7-403d-8a67-c46e76d28363"
             type="video/mp4"
           />
           Your browser does not support the video tag.
@@ -117,8 +117,8 @@ export default function MainSlider() {
               }}
             >
               {renderLanguage(
-                "საქართველო (ACT Georgia) - ორგანიზაციის მიზანია ხელი შეუწყოს საზოგადოებრივ გაძლიერებას ინკლუზიურობის, თანაბარმნიშვნელოვან ჩართულობისა და სოციო-ეკონომიკური ინოვაციების მხარდაჭერის მექანიზმებით.",
-                "Action for Community Transformation – Georgia (ACT Georgia) – Organization on a mission to uplift and strengthen vulnerable communities through inclusive, transparent and holistic engagement. Making impact by driving socio-economic development and policy entrepreneurship for all members of society!"
+                "ორგანიზაციის მიზანია ხელი შეუწყოს საზოგადოებრივ გაძლიერებას ინკლუზიურობის, თანაბარმნიშვნელოვან ჩართულობისა და სოციო-ეკონომიკური ინოვაციების მხარდაჭერის მექანიზმებით.",
+                "Organization on a mission to uplift and strengthen vulnerable communities through inclusive, transparent and holistic engagement. Making impact by driving socio-economic development and policy entrepreneurship for all members of society!"
               )}{" "}
             </Typography>
           </Box>

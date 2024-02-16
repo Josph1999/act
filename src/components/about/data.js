@@ -219,8 +219,8 @@ export const teamInfo = [
     id: 2,
     name_ka: `ირინა მამულაშვილი`,
     name_eng: `Irina Mamulashvili`,
-    position_ka: `გარე კომუნიკაციებისა და ურთიერთობის თანადირექტორი`,
-    position_eng: `Co-Director for External Communications and Outreach`,
+    position_ka: `სტრატეგიული კონსულტანტი`,
+    position_eng: `Strategic consultant`,
     image: "/assets/IrinaMamulashvili.png",
   },
   {
