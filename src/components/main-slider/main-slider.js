@@ -42,7 +42,7 @@ export default function MainSlider() {
           className={styles.videoBackground}
         >
           <source
-            src="https://firebasestorage.googleapis.com/v0/b/act-georgia.appspot.com/o/act%20georgia%20satesto%201.mp4?alt=media&token=56751374-a7c7-403d-8a67-c46e76d28363"
+            src="https://firebasestorage.googleapis.com/v0/b/act-georgia.appspot.com/o/act%20georgia%20edited.mp4?alt=media&token=20662a46-a5ef-4630-ad82-9759e4c5382b"
             type="video/mp4"
           />
           Your browser does not support the video tag.
