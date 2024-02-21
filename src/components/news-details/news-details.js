@@ -1,22 +1,13 @@
 import {
-  collection,
   doc,
   getDoc,
-  getDocs,
-  limit,
-  orderBy,
-  query,
 } from "firebase/firestore";
 import { useCallback, useEffect, useState } from "react";
 import { useLanguage } from "src/contexts/language-context";
 import { useRouter } from "next/router";
 import { db } from "src/firebase/firebase";
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
   Box,
-  IconButton,
   Typography,
 } from "@mui/material";
 import { toast } from "react-toastify";
@@ -155,7 +146,7 @@ export default function NewsDetails() {
               width={0}
               height={0}
               sizes="100vw"
-              style={{ width: "100%", height: "540px", objectFit: "cover" }}
+              style={{ width: "100%", height: "540px", objectFit: "contain" }}
               loading="lazy"
               src={news?.photos?.[0]?.url}
               alt={news?.photos?.[0]?.name}

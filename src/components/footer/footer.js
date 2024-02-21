@@ -182,7 +182,8 @@ export default function Footer() {
                 gap: "10px",
               }}
             >
-              <MailIcon /> {renderLanguage(`info@act.org.ge`, "info@act.org.ge")}
+              <MailIcon />{" "}
+              {renderLanguage(`info@act.org.ge`, "info@act.org.ge")}
             </Typography>
             <Typography
               sx={{
@@ -194,8 +195,8 @@ export default function Footer() {
             >
               <SendIcon />{" "}
               {renderLanguage(
-                `ქ. თბილისი, გაზაფხულის 18`,
-                "Tbilisi, Gazapkhuli street 18"
+                "პეკინის გამზირი34/ალ. ყაზბეგის გამზირის2ა",
+                "Pekini Avenue 34/al. 2a of Kazbegi Ave"
               )}
             </Typography>
             <Typography

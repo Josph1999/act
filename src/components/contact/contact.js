@@ -91,7 +91,11 @@ export default function Contact() {
                 },
               }}
             >
-              <SendIcon color="#4338CA" /> Tbilisi, Gazapkhuli str. 18
+              <SendIcon color="#4338CA" />{" "}
+              {renderLanguage(
+                "პეკინის გამზირი34/ალ. ყაზბეგის გამზირის2ა",
+                "Pekini Avenue 34/al. 2a of Kazbegi Ave"
+              )}
             </a>
           </Button>
           <Button
