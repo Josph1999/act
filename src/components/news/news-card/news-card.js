@@ -34,7 +34,7 @@ export default function NewsCard({ news, idx, type }) {
           backgroundImage: `url(${news?.photos?.[0].url})`,
           height: "279px",
           backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
+          backgroundSize: "contain",
           backgroundPosition: "center",
         }}
       ></Box>
