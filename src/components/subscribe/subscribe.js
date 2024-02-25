@@ -57,8 +57,8 @@ export default function Subscribe() {
       </Box>
       <Typography fontSize={16} fontWeight={200} sx={{ marginTop: "48px" }}>
         {renderLanguage(
-          `თქვენი ელფოსტის მისამართის შეყვანით, თქვენ თანახმა ხართ მიიღოთ განახლებები ეისითი საქართველოს მუშაობის შესახებ. მეტი ინფორმაციის მისაღებად, თუ როგორ ვიყენებთ და დავიცვათ თქვენი პერსონალური მონაცემები, გთხოვთ, იხილოთ ჩვენი კონფიდენციალურობის პოლიტიკა.`,
-          `By entering your e-mail address, you agree to receive updates about the work of Easit Georgia. For more information on how we use and protect your personal data, please see our privacy policy.`
+          `თქვენი ელფოსტის მისამართის შეყვანით, თქვენ თანახმა ხართ მიიღოთ განახლებები ACT Georgia-ს შესახებ. მეტი ინფორმაციის მისაღებად, თუ როგორ ვიყენებთ და დავიცვათ თქვენი პერსონალური მონაცემები, გთხოვთ, იხილოთ ჩვენი კონფიდენციალურობის პოლიტიკა.`,
+          `By entering your e-mail address, you agree to receive updates about the work of ACT Georgia. For more information on how we use and protect your personal data, please see our privacy policy.`
         )}
       </Typography>
     </Box>

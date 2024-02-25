@@ -195,8 +195,8 @@ export default function Footer() {
             >
               <SendIcon />{" "}
               {renderLanguage(
-                "პეკინის გამზირი34/ალ. ყაზბეგის გამზირის2ა",
-                "Pekini Avenue 34/al. 2a of Kazbegi Ave"
+                "მერაბ კოსტავას ქუჩა, 75ბ, 0112, თბილისი, საქართველო",
+                "75B, Merab Kostava Street, 0112, Tbilisi, Georgia"
               )}
             </Typography>
             <Typography
@@ -208,7 +208,7 @@ export default function Footer() {
               }}
             >
               <PhoneIcon />
-              {renderLanguage(`+995 56 56 24`, "+995 56 56 24")}
+              {renderLanguage(`+995 595 33 00 57`, "+995 595 33 00 57")}
             </Typography>
           </Box>
         </Box>
@@ -222,8 +222,8 @@ export default function Footer() {
           }}
         >
           {renderLanguage(
-            `ⓒ“ქმედება საზოგადოებრივი ცვლილებებისთვის”, ყველა უფლება დაცულია`,
-            `ⓒ"Action for Community Transformation", all rights reserved`
+            `ⓒ“ქმედება საზოგადოებრივი ცვლილებებისთვის საქართველო”, ყველა უფლება დაცულია`,
+            `ⓒ"Action for Community Transformation Georgia", all rights reserved`
           )}
         </Typography>
       </Box>

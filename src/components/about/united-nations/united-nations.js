@@ -31,8 +31,8 @@ export default function UnitedNations() {
         }}
       >
         {renderLanguage(
-          `გაეროს მდგრადი განვითარება`,
-          `United Nations Sustainable Development`
+          `გაეროს მდგრადი განვითარების მიზნები`,
+          `United Nations Sustainable Development Goals`
         )}
       </Typography>
       <Typography
@@ -43,8 +43,8 @@ export default function UnitedNations() {
         }}
       >
         {renderLanguage(
-          `ACT Georgia-ს ინიციატივები მჭიდროდ შეესაბამება გაეროს მდგრად განვითარებას
-მიზნები (SDGs), კერძოდ:`,
+          `ACT Georgia-ს ინიციატივები მჭიდროდ შეესაბამება გაეროს მდგრადი განვითარების
+მიზნებს (SDGs), კერძოდ:`,
           `ACT Georgia's initiatives are closely aligned with the United Nations Sustainable Development
 Goals (SDGs), particularly:`
         )}

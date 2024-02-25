@@ -86,6 +86,10 @@ export default function About() {
               backgroundSize: "cover",
               backgroundPosition: "center",
               marginTop: "32px",
+              backgroundColor: "#232C65",
+              "@media (max-width: 800px)": {
+                backgroundSize: '300%'
+              },
             }}
           ></Box>
         </Box>

@@ -38,8 +38,8 @@ export const aboutData = [
   {
     id: 4,
     picture: "/assets/AnnualReports.png",
-    title_ka: "გაეროს მდგრადი განვითარება",
-    title_eng: "United Nations Sustainble Development",
+    title_ka: "გაეროს მდგრადი განვითარების მიზნები",
+    title_eng: "United Nations Sustainble Development Goals",
     path: "/about?data=UnitedNationsSustainableDevelopment",
     demo_path: "/",
   },

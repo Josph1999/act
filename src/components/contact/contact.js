@@ -49,7 +49,7 @@ export default function Contact() {
             }}
           >
             <a
-              href={`tel:+995577770306`}
+              href={`tel:+995595330057`}
               style={{
                 color: "#4338CA",
                 textDecoration: "none",
@@ -64,7 +64,7 @@ export default function Contact() {
                 },
               }}
             >
-              <PhoneIcon color="#4338CA" /> (+995)577 770 306
+              <PhoneIcon color="#4338CA" /> (+995) 595 33 00 57
             </a>
           </Button>
           <Button
@@ -93,8 +93,8 @@ export default function Contact() {
             >
               <SendIcon color="#4338CA" />{" "}
               {renderLanguage(
-                "პეკინის გამზირი34/ალ. ყაზბეგის გამზირის2ა",
-                "Pekini Avenue 34/al. 2a of Kazbegi Ave"
+                "მერაბ კოსტავას ქუჩა, 75ბ, 0112, თბილისი, საქართველო",
+                "75B, Merab Kostava Street, 0112, Tbilisi, Georgia"
               )}
             </a>
           </Button>
@@ -108,7 +108,7 @@ export default function Contact() {
             }}
           >
             <a
-              href={`tel:+995322122115`}
+              href={`mailto:info@act.org.ge`}
               style={{
                 color: "#4338CA",
                 textDecoration: "none",
@@ -123,7 +123,7 @@ export default function Contact() {
                 },
               }}
             >
-              <MailIcon color="#4338CA" /> Info@dbef.ge
+              <MailIcon color="#4338CA" /> Info@act.org.ge
             </a>
           </Button>
         </Box>
