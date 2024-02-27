@@ -62,7 +62,7 @@ class CustomDocument extends Document {
             dangerouslySetInnerHTML={{
               __html: `
                 var chatbox = document.getElementById('fb-customer-chat');
-                chatbox.setAttribute("page_id", "161347467059943");
+                chatbox.setAttribute("page_id", "247367511784205");
                 chatbox.setAttribute("attribution", "biz_inbox");
 
 `,

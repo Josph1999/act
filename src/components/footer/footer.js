@@ -64,39 +64,39 @@ export default function Footer() {
           >
             <a
               className={styles.smallInfo}
-              href="https://www.facebook.com/profile.php?id=61552912597176"
+              href="https://www.facebook.com/profile.php?id=61556407674820"
               target="_blank"
             >
               <FacebookIcon sx={{ color: "white", opacity: "50%" }} />
             </a>
             <a
               className={styles.smallInfo}
-              href="https://www.instagram.com/dbef_foundation/?fbclid=IwAR0EGsNcry8iYIvR3ghARGO_FFVqg-4KY8QcaTdwXCufc71w12t67OaNYf4"
+              href="https://www.instagram.com/act_georgia/?fbclid=IwAR0OeB3z_TTq3EzfdwWiE2xA76yzpjRcXhMar_ASzpYZa4pYelhnWrTNVFg"
               target="_blank"
             >
               <InstagramIcon sx={{ color: "white", opacity: "50%" }} />
             </a>
             <a
               className={styles.smallInfo}
-              href="https://twitter.com/i/flow/login?redirect_after_login=%2FDBEF_Foundation"
+              href="https://twitter.com/act_georgia_?fbclid=IwAR2ugXoF6o7JVa0iuqNPiqxHwwRd2zgm60uAWcqWozXTpiBphB_kvaJawf"
               target="_blank"
             >
               <TwiterIcon sx={{ color: "white", opacity: "50%" }} />
             </a>
             <a
               className={styles.smallInfo}
-              href="https://www.linkedin.com/company/david-bezhuashvili-education-foundation/about/?viewAsMember=true"
+              href="https://www.linkedin.com/in/actgeorgia?fbclid=IwAR2uV2gPb539fhbql62MxT-JoXwMEHHyzqLbxBhA-GjpPeY8vFYdfomC7yA"
               target="_blank"
             >
               <LinkedInIcon sx={{ color: "white", opacity: "50%" }} />
             </a>
-            <a
+            {/* <a
               className={styles.smallInfo}
               href="https://www.youtube.com/@davidbezhuashvilieducation6527"
               target="_blank"
             >
               <YouTubeIcon sx={{ color: "white", opacity: "50%" }} />
-            </a>
+            </a> */}
           </Box>
         </Box>
         <Box
