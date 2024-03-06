@@ -12,6 +12,8 @@ import { useLanguage } from "src/contexts/language-context";
 import DonationEng from "../donate/languages/DonationEng";
 import { useState } from "react";
 import DonateBankTransfer from "../donate-bank-transfer/donate-bank-transfer";
+import { useEffect } from "react";
+
 
 const style = {
   position: "absolute",
@@ -31,10 +33,17 @@ const style = {
   },
 };
 
-export default function DonateModal({ open, onClose, windowSize, setOpenDonorBox }) {
+export default function DonateModal({
+  open,
+  onClose,
+  windowSize,
+  setOpenDonorBox,
+}) {
   const { renderLanguage, language } = useLanguage();
 
   const [selected, setSelected] = useState(null);
+
+  const [scriptLoaded, setScriptLoaded] = useState(false);
 
   const renderComponent = () => {
     if (language === "KA") {
@@ -43,6 +52,31 @@ export default function DonateModal({ open, onClose, windowSize, setOpenDonorBox
 
     return <DonationEng />;
   };
+
+  // const addScript = () => {
+  //   console.log('WINDOW PAYPAL:', window.paypal)
+  //   if (window.paypal) {
+  //     setScriptLoaded(true);
+  //     return;
+  //   }
+
+  //   const script = document.createElement("script");
+
+  //   script.src =
+  //     "https://www.paypal.com/sdk/js?client-id=AddTMEQiTJS5byu09qLlYlbTOXTU00MEx2OlBxEouVSXXaLL_dh6HHETRONde3u_TdQ1U1wqwNY6JVMG";
+  //   script.type = "text/javascript";
+  //   script.async = true;
+
+  //   script.onload = () => setScriptLoaded(true);
+
+  //   document.body.appendChild(script);
+
+
+  // };
+
+  // useEffect(() => {
+  //   addScript();
+  // }, []);
 
   return (
     <div>
@@ -73,6 +107,7 @@ export default function DonateModal({ open, onClose, windowSize, setOpenDonorBox
               {renderLanguage("დახურვა", "close")}
             </IconButton>
           </Box>
+
           {!selected ? renderComponent() : null}
           {!selected && (
             <Box
@@ -87,8 +122,8 @@ export default function DonateModal({ open, onClose, windowSize, setOpenDonorBox
             >
               <Button
                 onClick={() => {
-                  setOpenDonorBox(true)
-                  onClose()
+                  setOpenDonorBox(true);
+                  onClose();
                 }}
                 variant="contained"
                 fullWidth

@@ -1,8 +1,46 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
+import { useState } from "react";
+import { useEffect } from "react";
 import { useLanguage } from "src/contexts/language-context";
+import React from "react";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import * as ReactDOM from "react-dom";
 
 export default function Subscribe() {
   const { renderLanguage } = useLanguage();
+
+  const [scriptLoaded, setScriptLoaded] = useState(false);
+
+  const addScript = () => {
+    console.log("WINDOW PAYPAL 1:", window.paypal);
+    if (window.paypal) {
+      setScriptLoaded(true);
+
+      return;
+    }
+
+    const script = document.createElement("script");
+
+    script.src =
+      "https://www.paypal.com/sdk/js?components=buttons,card-fields&client-id=AddTMEQiTJS5byu09qLlYlbTOXTU00MEx2OlBxEouVSXXaLL_dh6HHETRONde3u_TdQ1U1wqwNY6JVMG";
+    script.type = "text/javascript";
+    script.async = true;
+
+    script.onload = () => setScriptLoaded(true);
+
+    document.body.appendChild(script);
+
+    console.log("PAYPAL BUTTONS:", PayPalButton);
+  };
+
+  useEffect(() => {
+    addScript();
+  }, []);
+
+  const PayPalButton = window.paypal.Button.driver("react", {
+    React,
+    ReactDOM,
+  });
 
   return (
     <Box
@@ -39,6 +77,14 @@ export default function Subscribe() {
             `Subscribe to news about the organization's activities`
           )}
         </Typography>
+        {/* <PayPalButton
+          payment={async (data, actions) => {
+            console.log('DATA:', data)
+          }}
+          onAuthorize={async (data, actions) => {
+            console.log('DATA:', data)
+          }}
+        /> */}
         <Box sx={{ display: "flex", width: "100%", gap: "16px" }}>
           <TextField
             fullWidth
@@ -55,6 +101,43 @@ export default function Subscribe() {
           </Button>
         </Box>
       </Box>
+      <PayPalHostedField
+        id="cvv"
+        hostedFieldType="cvv"
+        options={{
+          selector: "#cvv",
+          placeholder: "123",
+        }}
+        className={styles.card_field}
+      />
+      {scriptLoaded && (
+        <PayPalScriptProvider
+          options={{
+            "client-id":
+              "AddTMEQiTJS5byu09qLlYlbTOXTU00MEx2OlBxEouVSXXaLL_dh6HHETRONde3u_TdQ1U1wqwNY6JVMG",
+            currency: "USD",
+            intent: "capture",
+            components: "buttons",
+          }}
+        >
+          <PayPalButtons
+            style={{
+              color: "gold",
+              shape: "rect",
+              label: "pay",
+              height: 50,
+            }}
+            createOrder={async (data, actions) => {
+              let order_id = await paypalCreateOrder();
+              return order_id + "";
+            }}
+            onApprove={async (data, actions) => {
+              let response = await paypalCaptureOrder(data.orderID);
+              if (response) return true;
+            }}
+          />
+        </PayPalScriptProvider>
+      )}
       <Typography fontSize={16} fontWeight={200} sx={{ marginTop: "48px" }}>
         {renderLanguage(
           `თქვენი ელფოსტის მისამართის შეყვანით, თქვენ თანახმა ხართ მიიღოთ განახლებები ACT Georgia-ს შესახებ. მეტი ინფორმაციის მისაღებად, თუ როგორ ვიყენებთ და დავიცვათ თქვენი პერსონალური მონაცემები, გთხოვთ, იხილოთ ჩვენი კონფიდენციალურობის პოლიტიკა.`,
