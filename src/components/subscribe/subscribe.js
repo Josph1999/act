@@ -1,8 +1,50 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
+import axios from "axios";
+import { useFormik } from "formik";
+import { useState } from "react";
+import { toast } from "react-toastify";
 import { useLanguage } from "src/contexts/language-context";
+import * as Yup from "yup";
 
 export default function Subscribe() {
   const { renderLanguage } = useLanguage();
+
+  const [loading, setLoading] = useState(false);
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+    },
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .required(
+          renderLanguage("გთხოვთ შეიყვანოთ მეილი", "Please enter email")
+        )
+        .email(
+          renderLanguage(
+            "გთხოვთ შეიყვანოთ სწორი ფორმატით",
+            "Please enter correct email"
+          )
+        ),
+    }),
+    onSubmit: async (valules) => {
+      setLoading(true);
+
+      const data = await axios.post(
+        process.env.NEXT_PUBLIC_API_URL + `/subscribe?email=${valules.email}`
+      );
+
+      formik.setFieldValue("email", "");
+
+      toast.success(
+        renderLanguage(
+          "მადლობთ რომ გამოიწერეთ გვერდი!",
+          "Thank you for subscribing our page!"
+        )
+      );
+      setLoading(false);
+    },
+  });
 
   return (
     <Box
@@ -39,6 +81,7 @@ export default function Subscribe() {
             `Subscribe to news about the organization's activities`
           )}
         </Typography>
+
         <Box sx={{ display: "flex", width: "100%", gap: "16px" }}>
           <TextField
             fullWidth
@@ -49,8 +92,17 @@ export default function Subscribe() {
               `Your email address`
             )}
             variant="standard"
+            error={!!(formik.touched.email && formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
+            onChange={formik.handleChange}
+            value={formik.values.email}
+            name="email"
           />
-          <Button variant="contained">
+          <Button
+            variant="contained"
+            onClick={() => formik.handleSubmit()}
+            disabled={loading}
+          >
             {renderLanguage(`გამოწერა`, `Subscribe`)}
           </Button>
         </Box>

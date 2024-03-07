@@ -14,7 +14,7 @@ export const items = [
     title_eng: "Main",
     path: '/dashboard',
     icon: (
-      <SvgIcon fontSize="small">
+      <SvgIcon fontSize="small" style={{color: 'white'}}>
         <ChartBarIcon />
       </SvgIcon>
     )
@@ -24,7 +24,7 @@ export const items = [
     title_eng: "Published News",
     path: '/dashboard/published-news',
     icon: (
-      <SvgIcon fontSize="small">
+      <SvgIcon fontSize="small" style={{color: 'white'}}>
         <UsersIcon />
       </SvgIcon>
     )
@@ -34,7 +34,7 @@ export const items = [
     title_eng: "Subscribers",
     path: '/dashboard/subscribers',
     icon: (
-      <SvgIcon fontSize="small">
+      <SvgIcon fontSize="small" style={{color: 'white'}}>
         <UsersIcon />
       </SvgIcon>
     )
@@ -44,7 +44,7 @@ export const items = [
     title_eng: "Published Partners",
     path: '/dashboard/published-partners',
     icon: (
-      <SvgIcon fontSize="small">
+      <SvgIcon fontSize="small" style={{color: 'white'}}>
         <UsersIcon />
       </SvgIcon>
     )
@@ -54,7 +54,7 @@ export const items = [
     title_eng: "Published Projects",
     path: '/dashboard/published-projects',
     icon: (
-      <SvgIcon fontSize="small">
+      <SvgIcon fontSize="small" style={{color: 'white'}}>
         <UsersIcon />
       </SvgIcon>
     )
@@ -64,7 +64,7 @@ export const items = [
     title_eng: "Published Projects",
     path: '/dashboard/published-reports',
     icon: (
-      <SvgIcon fontSize="small">
+      <SvgIcon fontSize="small" style={{color: 'white'}}>
         <UsersIcon />
       </SvgIcon>
     )
@@ -74,7 +74,7 @@ export const items = [
     title_eng: "Add News",
     path: '/dashboard/add-news',
     icon: (
-      <SvgIcon fontSize="small">
+      <SvgIcon fontSize="small" style={{color: 'white'}}>
         <CogIcon />
       </SvgIcon>
     )
@@ -84,7 +84,7 @@ export const items = [
     title_eng: "Add Project",
     path: '/dashboard/add-project',
     icon: (
-      <SvgIcon fontSize="small">
+      <SvgIcon fontSize="small" style={{color: 'white'}}>
         <CogIcon />
       </SvgIcon>
     )
@@ -94,7 +94,7 @@ export const items = [
     title_eng: "Add Partner",
     path: '/dashboard/add-partner',
     icon: (
-      <SvgIcon fontSize="small">
+      <SvgIcon fontSize="small" style={{color: 'white'}}>
         <CogIcon />
       </SvgIcon>
     )
@@ -104,7 +104,7 @@ export const items = [
     title_eng: "Add Calculation",
     path: '/dashboard/add-calculation',
     icon: (
-      <SvgIcon fontSize="small">
+      <SvgIcon fontSize="small" style={{color: 'white'}}>
         <CogIcon />
       </SvgIcon>
     )

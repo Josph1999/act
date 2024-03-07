@@ -38,6 +38,7 @@ export default async function handler(req, res) {
     }
 
     sgMail.setApiKey(process.env.NEXT_PUBLIC_SEND_GRID_API);
+
     const msg = {
       to: email,
       from: process.env.NEXT_PUBLIC_FROM,

@@ -1,5 +1,5 @@
-export default function ThankYouTemplate(){
-    return (`
+export default function ThankYouTemplate() {
+  return `
     <!--
 * This email was built using Tabular.
 * For more information, visit https://tabular.email
@@ -487,8 +487,7 @@ export default function ThankYouTemplate(){
                                                   mso-text-raise: 8px;
                                                 "
                                               >
-                                              David Bezhuashvili
-                                              Education Organization
+                                              ACT
                                               
                                               </h1>
                                             </td>
@@ -779,5 +778,5 @@ export default function ThankYouTemplate(){
     </div>
   </body>
 </html>
-`)
+`;
 }

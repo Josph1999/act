@@ -50,14 +50,30 @@ export default function AddCalculation() {
       submit: null,
     },
     validationSchema: Yup.object({
-      name_ka: Yup.string()
-        .required(renderLanguage("სახელი ქართულად სავალდებულოა", "Name in Georgian is required")),
-        name_eng: Yup.string()
-        .required(renderLanguage("სახელი ინგლისურად სავალდებულოა", "Name in English is required")),
-        url_ka: Yup.string()
-        .required(renderLanguage("ლინკი ქართულად სავალდებულოა", "Link in Georgian is required")),
-        url_eng: Yup.string()
-        .required(renderLanguage("ლინკი ინგლისურად სავალდებულოა", "Link in English is required")),
+      name_ka: Yup.string().required(
+        renderLanguage(
+          "სახელი ქართულად სავალდებულოა",
+          "Name in Georgian is required"
+        )
+      ),
+      name_eng: Yup.string().required(
+        renderLanguage(
+          "სახელი ინგლისურად სავალდებულოა",
+          "Name in English is required"
+        )
+      ),
+      url_ka: Yup.string().required(
+        renderLanguage(
+          "ლინკი ქართულად სავალდებულოა",
+          "Link in Georgian is required"
+        )
+      ),
+      url_eng: Yup.string().required(
+        renderLanguage(
+          "ლინკი ინგლისურად სავალდებულოა",
+          "Link in English is required"
+        )
+      ),
       photos: Yup.array().required("Photos Are Required"),
     }),
     onSubmit: async (values, helpers) => {
@@ -109,10 +125,10 @@ export default function AddCalculation() {
 
         const todosRef = collection(db, "reports");
 
-        photos[0].name_eng = values.name_eng
-        photos[0].name_ka = values.name_ka
-        photos[0].url_eng = values.url_eng
-        photos[0].url_ka = values.url_ka
+        photos[0].name_eng = values.name_eng;
+        photos[0].name_ka = values.name_ka;
+        photos[0].url_eng = values.url_eng;
+        photos[0].url_ka = values.url_ka;
         const res = await setDoc(doc(todosRef, uuid()), photos[0]);
         setAdding(false);
         toast.success(
@@ -123,7 +139,6 @@ export default function AddCalculation() {
         );
         router.push("/dashboard/published-reports");
       } catch (err) {
-
         helpers.setStatus({ success: false });
         helpers.setErrors({ submit: err.message });
         helpers.setSubmitting(false);
@@ -345,7 +360,7 @@ export default function AddCalculation() {
                 value={formik.values.name_ka}
                 name="name_ka"
               />
-                   <TextField
+              <TextField
                 error={!!(formik.touched.name_eng && formik.errors.name_eng)}
                 fullWidth
                 helperText={formik.touched.name_eng && formik.errors.name_eng}
@@ -354,7 +369,7 @@ export default function AddCalculation() {
                 value={formik.values.name_eng}
                 name="name_eng"
               />
-                    <TextField
+              <TextField
                 error={!!(formik.touched.url_ka && formik.errors.url_ka)}
                 fullWidth
                 helperText={formik.touched.url_ka && formik.errors.url_ka}
@@ -363,7 +378,7 @@ export default function AddCalculation() {
                 value={formik.values.url_ka}
                 name="url_ka"
               />
-                   <TextField
+              <TextField
                 error={!!(formik.touched.url_eng && formik.errors.url_eng)}
                 fullWidth
                 helperText={formik.touched.url_eng && formik.errors.url_eng}
@@ -372,14 +387,14 @@ export default function AddCalculation() {
                 value={formik.values.url_eng}
                 name="url_eng"
               />
-              {
-                imageList.map((report) =>   <Typography color="black">
-                <a href={report?.url} target="_blank">
-                  {report?.original_name}
-                </a>
-              </Typography>)
-              }
-            
+              {imageList.map((report) => (
+                <Typography color="black">
+                  <a href={report?.url} target="_blank">
+                    {report?.original_name}
+                  </a>
+                </Typography>
+              ))}
+
               <Button onClick={() => formik.handleSubmit()}>დამატება</Button>
               <Typography>
                 {percentage === 100 || percentage === null
