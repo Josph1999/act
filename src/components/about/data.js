@@ -231,4 +231,20 @@ export const teamInfo = [
     position_eng: `Co-Director for Strategy and Operations`,
     image: "/assets/IrakliBezhuashvili.png",
   },
+  {
+    id: 4,
+    name_ka: `ოთარ დავითაშვილი`,
+    name_eng: `Otar Davitashvili`,
+    position_ka: `სოც მედია მენეჯერი`,
+    position_eng: `Social media manager`,
+    image: "/assets/OtarDavitashvili.jpg",
+  },
+  {
+    id: 4,
+    name_ka: `იოსებ გურული`,
+    name_eng: `Ioseb Guruli`,
+    position_ka: `ვებ დეველოპერი`,
+    position_eng: `Web developer`,
+    image: "/assets/IosebGuruli.jpeg",
+  },
 ];
