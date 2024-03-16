@@ -85,7 +85,7 @@ export default function Footer() {
             </a>
             <a
               className={styles.smallInfo}
-              href="https://www.linkedin.com/in/actgeorgia?fbclid=IwAR2uV2gPb539fhbql62MxT-JoXwMEHHyzqLbxBhA-GjpPeY8vFYdfomC7yA"
+              href="https://www.linkedin.com/company/actgeorgia/about/"
               target="_blank"
             >
               <LinkedInIcon sx={{ color: "white", opacity: "50%" }} />
