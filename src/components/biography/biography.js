@@ -1,10 +1,8 @@
 import { Box, Typography } from "@mui/material";
 import { useRouter } from "next/router";
-import { data } from "../team-info.js/data";
 import { useLanguage } from "src/contexts/language-context";
 import Image from "next/image";
-
-
+import { teamInfo } from "../about/data";
 
 export default function Biography() {
   const router = useRouter();
@@ -12,7 +10,7 @@ export default function Biography() {
 
   const { id } = router.query;
 
-  const about = data.find((item) => item.id === id);
+  const about = teamInfo.find((item) => item.person_id === id);
 
   return (
     <>
@@ -28,7 +26,7 @@ export default function Biography() {
         }}
       >
         <Typography
-          sx={{fontFeatureSettings: "'case' on"}}
+          sx={{ fontFeatureSettings: "'case' on" }}
           fontSize={20}
           textAlign="center"
         >
@@ -41,8 +39,8 @@ export default function Biography() {
             height={0}
             sizes="100vw"
             style={{ width: "100%", height: "600px", objectFit: "contain" }}
-            src={about?.photo}
-            alt={about?.photo}
+            src={about?.image}
+            alt={about?.image}
           />
         </Box>
         <Box
@@ -51,8 +49,7 @@ export default function Biography() {
             justifyContent: "flex-end",
             alignItems: "flex-end",
           }}
-        >
-        </Box>
+        ></Box>
       </Box>
       <Box
         sx={{
@@ -64,12 +61,10 @@ export default function Biography() {
         }}
       >
         <Typography color="black !important">
-          {
-            renderLanguage(
-              about?.biography_ka || "",
-              about?.biography_eng || ""
-            )
-          }
+          {renderLanguage(
+            about?.biography_ka || "",
+            about?.biography_eng || ""
+          )}
         </Typography>
       </Box>
     </>

@@ -6,9 +6,12 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./team.module.css";
+import { useRouter } from "next/router";
 
 export default function TeamInfo() {
   const { renderLanguage } = useLanguage();
+
+  const router = useRouter();
 
   return (
     <Box
@@ -86,7 +89,12 @@ export default function TeamInfo() {
                   }}
                   className={styles.image}
                 ></Box>
-                <Box textAlign="left" padding="16px" className={styles.text}>
+                <Box
+                  textAlign="left"
+                  padding="16px"
+                  className={styles.text}
+                  onClick={() => router.push(`/about/${item.person_id}`)}
+                >
                   <Typography
                     sx={{
                       fontFeatureSettings: "'case' on",

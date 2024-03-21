@@ -15,6 +15,7 @@
 .text {
   margin-top: 16px;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .teamStyles:hover .text {
