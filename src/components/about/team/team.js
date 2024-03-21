@@ -105,8 +105,8 @@ export default function TeamInfo() {
                   >
                     {renderLanguage(item.name_ka, item.name_eng)}
                   </Typography>
-                  <Typography width="400px">
-                    {renderLanguage(item.position_ka, item.position_eng)}
+                  <Typography width="400px" className={styles.biography}>
+                    {renderLanguage(item.biography_ka, item.biography_eng)}
                   </Typography>
                 </Box>
               </Box>

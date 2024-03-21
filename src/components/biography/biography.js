@@ -32,6 +32,13 @@ export default function Biography() {
         >
           {renderLanguage(about?.name_ka, about?.name_eng)}
         </Typography>
+        <Typography
+          sx={{ fontFeatureSettings: "'case' on" }}
+          fontSize={16}
+          textAlign="center"
+        >
+          {renderLanguage(about?.position_ka, about?.position_eng)}
+        </Typography>
         <Box sx={{ marginTop: 6 }}>
           {" "}
           <Image
