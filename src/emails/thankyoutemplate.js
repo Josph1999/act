@@ -553,41 +553,10 @@ export default function ThankYouTemplate() {
                                                 Together, we are shaping a
                                                 Better Future for the Georgian
                                                 Youth! <br></br> Dear Subsriber,<br></br> We hope this message
-                                                finds you well. <br></br> At the David
-                                                Bezhuashvili Education
-                                                Organization, each day we work
+                                                finds you well. <br></br> At ACT Georgia, each day we work
                                                 tirelessly towards empowerement
                                                 and support of the Georgian
-                                                youth. We strive to create
-                                                sustainable, accessible and
-                                                trustful funding source for
-                                                talented youth, cultural
-                                                institutions and visionaries who
-                                                actively contribute to
-                                                scientific, cultural and
-                                                economic enrichment of Georgia.<br></br>
-                                                Exciting News!<br></br> We've recently
-                                                launched our website 2.0 where
-                                                you can find all the latest news
-                                                on scholarship programs,
-                                                partnerships with educational
-                                                institutions, as well as
-                                                cultural projects. These
-                                                initiatives are not just about
-                                                providing resources; they’re
-                                                about igniting hope and opening
-                                                doors to a number of
-                                                possibilities globally.<br></br> Stay
-                                                Engaged Visit<br></br> our website
-                                                www.dbef.ge or find us on all
-                                                major social media platforms to
-                                                see the latest updates and
-                                                stories of change. Your
-                                                involvement makes all the
-                                                difference! Thank you for being
-                                                a part of our family. Your
-                                                belief in our mission fuels our
-                                                progress.<br></br> Warm regards, ACT
+                                                youth. ACT Georgia primarily focuses on enhancing public welfare and supporting vulnerable communities impacted by various challenges such as wars, conflicts, instability, poverty, limited opportunities, and restricted access to resources.<br></br> The organization achieves this through knowledge dissemination, educational initiatives, empowerment programs, professional development assistance, and policy advocacy, aiming to uplift their overall well-being and quality of life. <br></br> ACT
                                                 Team
                                               </p>
                                             </td>
