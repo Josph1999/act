@@ -609,7 +609,7 @@ export default function ThankYouTemplate() {
                                               <!--[if mso]><td class="t35" style="background-color:#4338CA;overflow:hidden;width:256px;text-align:center;line-height:24px;mso-line-height-rule:exactly;mso-text-raise:2px;padding:16px 0 16px 0;border-radius:8px 8px 8px 8px;"><![endif]-->
                                               <a
                                                 class="t41"
-                                                href="https://dbef.ge"
+                                                href="https://act.org.ge"
                                                 style="
                                                   display: block;
                                                   margin: 0;
