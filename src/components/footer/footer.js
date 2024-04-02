@@ -15,9 +15,12 @@ import MailIcon from "../icons/MailIcon";
 import TwiterIcon from "../icons/Twitter";
 import FooterLogo from "../icons/FooterLogo";
 import FooterLogoEng from "../icons/FooterLogoEng";
+import { useRouter } from "next/router";
 
 export default function Footer() {
   const { renderFontFamily, renderLanguage, language } = useLanguage();
+
+  const router = useRouter();
 
   return (
     <Box
@@ -134,20 +137,29 @@ export default function Footer() {
                 gap: "16px",
               }}
             >
-              <Typography sx={{ fontSize: "12px" }}>
+              <Typography
+                sx={{ fontSize: "12px", cursor: "pointer" }}
+                onClick={() => router.push("/about?data=MissionAndVision")}
+              >
                 {renderLanguage(`მისია და ხედვა`, "Mission And Vision")}
               </Typography>
-              <Typography sx={{ fontSize: "12px" }}>
+              <Typography
+                sx={{ fontSize: "12px", cursor: "pointer" }}
+                onClick={() => router.push("/about?data=Values")}
+              >
                 {renderLanguage(`ღირებულებები`, "Values")}
               </Typography>
-              <Typography sx={{ fontSize: "12px" }}>
+              <Typography
+                sx={{ fontSize: "12px", cursor: "pointer" }}
+                onClick={() => router.push("/about?data=ExecutiveTeam")}
+              >
                 {renderLanguage(`გუნდი`, "Team")}
               </Typography>
-              <Typography sx={{ fontSize: "12px" }}>
+              <Typography
+                sx={{ fontSize: "12px", cursor: "pointer" }}
+                onClick={() => router.push("/news")}
+              >
                 {renderLanguage(`სიახლეები`, "Articles")}
-              </Typography>
-              <Typography sx={{ fontSize: "12px" }}>
-                {renderLanguage(`პროექტები`, "Projects")}
               </Typography>
             </Box>
           </Box>
@@ -174,17 +186,34 @@ export default function Footer() {
             >
               {renderLanguage(`კონტაქტი`, "Contact")}
             </Typography>
-            <Typography
-              sx={{
-                fontSize: "12px",
+            <a
+              href={`mailto:info@act.org.ge`}
+              style={{
+                color: "white",
+                textDecoration: "none",
                 display: "flex",
                 alignItems: "center",
                 gap: "10px",
+                "@media (max-width: 800px)": {
+                  display: "flex",
+                  justifyContent: "center",
+                  flexDirection: "column",
+                },
               }}
             >
-              <MailIcon />{" "}
-              {renderLanguage(`info@act.org.ge`, "info@act.org.ge")}
-            </Typography>
+              <Typography
+                sx={{
+                  fontSize: "12px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <MailIcon />{" "}
+                {renderLanguage(`info@act.org.ge`, "info@act.org.ge")}
+              </Typography>
+            </a>
+
             <Typography
               sx={{
                 fontSize: "12px",
@@ -199,17 +228,34 @@ export default function Footer() {
                 "75B, Merab Kostava Street, 0112, Tbilisi, Georgia"
               )}
             </Typography>
-            <Typography
-              sx={{
-                fontSize: "12px",
+
+            <a
+              href={`tel:+995595330057`}
+              style={{
+                color: "white",
+                textDecoration: "none",
                 display: "flex",
                 alignItems: "center",
                 gap: "10px",
+                "@media (max-width: 800px)": {
+                  display: "flex",
+                  justifyContent: "center",
+                  flexDirection: "column",
+                },
               }}
             >
-              <PhoneIcon />
-              {renderLanguage(`+995 595 33 00 57`, "+995 595 33 00 57")}
-            </Typography>
+              <Typography
+                sx={{
+                  fontSize: "12px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <PhoneIcon />
+                {renderLanguage(`+995 595 33 00 57`, "+995 595 33 00 57")}
+              </Typography>
+            </a>
           </Box>
         </Box>
       </Box>
