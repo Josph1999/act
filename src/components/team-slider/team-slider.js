@@ -59,7 +59,7 @@ function TeamSlider() {
           },
         }}
       >
-        გუნდი
+        {renderLanguage("გუნდი", "Team")}
       </Typography>
 
       <SwipeableViews
@@ -78,7 +78,7 @@ function TeamSlider() {
                     width: "100%",
                     maxWidth: "100%",
                   },
-                  objectFit: "cover",
+                  objectFit: "contain",
                   width: "484px",
                   display: "block",
                   overflow: "hidden",
