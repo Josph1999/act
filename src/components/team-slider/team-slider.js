@@ -104,14 +104,20 @@ function TeamSlider() {
       >
         <Box sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
           <Typography
-            sx={{ fontFeatureSettings: "'case' on", fontWeight: 700 }}
+            sx={{
+              fontFeatureSettings: "'case' on",
+              fontWeight: 700,
+              fontSize: "24px",
+            }}
           >
             {renderLanguage(
               teamInfo[activeStep].name_ka,
               teamInfo[activeStep].name_eng
             )}
           </Typography>
-          <Typography sx={{ fontSize: "12px", fontWeight: "400px" }}>
+          <Typography
+            sx={{ fontSize: "12px", fontWeight: "400px", fontSize: "16px" }}
+          >
             {renderLanguage(
               teamInfo[activeStep].position_ka,
               teamInfo[activeStep].position_eng
