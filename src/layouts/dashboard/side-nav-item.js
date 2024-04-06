@@ -22,6 +22,7 @@ export const SideNavItem = (props) => {
     <li>
       <ButtonBase
         sx={{
+          color: 'white !important',
           alignItems: 'center',
           borderRadius: 1,
           display: 'flex',
@@ -44,6 +45,7 @@ export const SideNavItem = (props) => {
           <Box
             component="span"
             sx={{
+              color: 'white !important',
               alignItems: 'center',
               color: 'neutral.400',
               display: 'inline-flex',
@@ -60,7 +62,7 @@ export const SideNavItem = (props) => {
         <Box
           component="span"
           sx={{
-            color: 'neutral.400',
+            color: 'white',
             flexGrow: 1,
             fontFamily: (theme) => theme.typography.fontFamily,
             fontSize: 14,

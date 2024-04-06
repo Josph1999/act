@@ -63,7 +63,7 @@ const MyPublishedpartners = () => {
   return (
     <>
       <Head>
-        <title>Published Partners | Dbef</title>
+        <title>Published Partners | ACT</title>
       </Head>
       <Box
         component="main"

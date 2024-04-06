@@ -1,0 +1,31 @@
+.mainText {
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+@media only screen and (max-width: 920px) {
+    .secondText {
+      display: none;
+    }
+    .mainText {
+        font-size: 20px !important;
+    }
+  }
+
+.imageStyles {
+  width: 50%;
+  object-fit: cover;
+}
+
+@media only screen and (max-width: 760px) {
+  .imageStyles {
+    width: 100%;
+  }
+  .mainText {
+    font-size: 16px !important;
+}
+}

@@ -12,223 +12,266 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import PhoneIcon from "../icons/PhoneIcon";
 import MailIcon from "../icons/MailIcon";
+import TwiterIcon from "../icons/Twitter";
+import FooterLogo from "../icons/FooterLogo";
+import FooterLogoEng from "../icons/FooterLogoEng";
+import { useRouter } from "next/router";
 
 export default function Footer() {
-  const { renderFontFamily, renderLanguage } = useLanguage();
+  const { renderFontFamily, renderLanguage, language } = useLanguage();
+
+  const router = useRouter();
 
   return (
     <Box
       sx={{
-        padding: "128px",
-        backgroundColor: "#2F2F2F",
-        color: "white",
-        marginTop: "50px",
-        "@media (max-width: 800px)": {
-          padding: "20px",
-          marginTop: "50px",
+        backgroundImage: `url(assets/FooterEng.png)`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundColor: "#232C65",
+        transition: "0.5s",
+        width: "100%",
+        padding: "64px 128px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "64px",
+        "@media (max-width: 760px)": {
+          padding: "24px",
         },
       }}
     >
       <Box
         sx={{
-          gap: "20px",
           display: "flex",
+          width: "100%",
           justifyContent: "space-between",
-          flexWrap: "wrap",
+          "@media (max-width: 1224px)": {
+            flexWrap: "wrap",
+            gap: "32px",
+          },
+          "@media (max-width: 760px)": {
+            justifyContent: "center",
+          },
         }}
       >
         <Box>
+          {language === "ENG" ? <FooterLogoEng /> : <FooterLogo />}
           <Box
             sx={{
-              borderBottom: "1px solid #FDFDFD",
-              paddingBottom: "32px",
-              width: "522px",
               display: "flex",
               justifyContent: "space-between",
-              alignItems: "center",
-              "@media (max-width: 800px)": {
-                width: "100%",
-              },
+              paddingTop: "60px",
+              width: "284px",
             }}
           >
-            <SvgLogo />
-            <Box sx={{ width: "70%" }}>
-              <Typography fontFamily={renderFontFamily()}>
-                {renderLanguage(
-                  "საგანმანათლებლო საქველმოქმედო, არამომგებიანი ორგანიზაცია",
-                  "Educational charity, non-profit organization"
-                )}
-              </Typography>
-            </Box>
-          </Box>
-          <Box>
-            <Typography
-              fontFamily={renderFontFamily()}
-              marginTop="32px"
-              marginBottom="16px"
+            <a
+              className={styles.smallInfo}
+              href="https://www.facebook.com/profile.php?id=61556407674820"
+              target="_blank"
             >
-              {renderLanguage("კონტაქტი", "Contact")}
-            </Typography>
-            <Box sx={{ display: "flex", gap: "15px" }}>
-              <Typography
-                className={styles.smallInfo}
-                fontSize={13}
-                sx={{
-                  "@media (max-width: 800px)": {
-                    display: "flex",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                  },
-                }}
-              >
-                <SendIcon />{" "}
-                {renderLanguage(
-                  "გაზაფხულის ქუჩა, N18",
-                  "Gazapkhuli street, N18"
-                )}
-              </Typography>
-              <a
-                className={styles.smallInfo}
-                href={`tel:+995322122115`}
-                style={{
-                  color: "white",
-                  textDecoration: "none",
-                  "@media (max-width: 800px)": {
-                    display: "flex",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                  },
-                }}
-              >
-                <PhoneIcon /> (+995 32) 212 21 15
-              </a>
-              <Typography
-                className={styles.smallInfo}
-                fontSize={13}
-                sx={{
-                  "@media (max-width: 800px)": {
-                    display: "flex",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                  },
-                }}
-              >
-                <MailIcon /> info@dbef.ge
-              </Typography>
-            </Box>
-          </Box>
-          <Box>
-            <Typography
-              fontFamily={renderFontFamily()}
-              marginTop="32px"
-              marginBottom="16px"
+              <FacebookIcon sx={{ color: "white", opacity: "50%" }} />
+            </a>
+            <a
+              className={styles.smallInfo}
+              href="https://www.instagram.com/act_georgia/?fbclid=IwAR0OeB3z_TTq3EzfdwWiE2xA76yzpjRcXhMar_ASzpYZa4pYelhnWrTNVFg"
+              target="_blank"
             >
-              {renderLanguage("სასარგებლო ბმულები", "Usefull Links")}
-            </Typography>
-            <Box sx={{ display: "flex", gap: "15px" }}>
-              <Typography className={styles.smallInfo} fontSize={13}>
-                {renderLanguage("ფონდის შესახებ", "About Foundation")}
-              </Typography>
-              <Typography className={styles.smallInfo} fontSize={13}>
-                {renderLanguage("დამფუძნებელი", "Founder")}
-              </Typography>
-              <Typography className={styles.smallInfo} fontSize={13}>
-                {renderLanguage("გუნდი", "Team")}
-              </Typography>
-              <Typography className={styles.smallInfo} fontSize={13}>
-                {renderLanguage("კარიერა", "Career")}
-              </Typography>
-            </Box>
+              <InstagramIcon sx={{ color: "white", opacity: "50%" }} />
+            </a>
+            <a
+              className={styles.smallInfo}
+              href="https://twitter.com/act_georgia_?fbclid=IwAR2ugXoF6o7JVa0iuqNPiqxHwwRd2zgm60uAWcqWozXTpiBphB_kvaJawf"
+              target="_blank"
+            >
+              <TwiterIcon sx={{ color: "white", opacity: "50%" }} />
+            </a>
+            <a
+              className={styles.smallInfo}
+              href="https://www.linkedin.com/company/actgeorgia/about/"
+              target="_blank"
+            >
+              <LinkedInIcon sx={{ color: "white", opacity: "50%" }} />
+            </a>
+            {/* <a
+              className={styles.smallInfo}
+              href="https://www.youtube.com/@davidbezhuashvilieducation6527"
+              target="_blank"
+            >
+              <YouTubeIcon sx={{ color: "white", opacity: "50%" }} />
+            </a> */}
           </Box>
         </Box>
-        <Box width="522px">
-          <Typography fontFamily={renderFontFamily()}>
-            {renderLanguage(
-              "გამოიწერე ჩვენი სიახლეები და იყავი ყოველთვის ინფორმირებული ფონდის საქმიანობის შესახებ",
-              `Subscribe to our news and be always informed about the fund's activities`
-            )}
-          </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              gap: "16px",
-              paddingTop: "24px",
-              paddingBottom: "16px",
-            }}
-          >
-            <TextField
-              sx={{ color: "white", "& input": { color: "white" } }}
-              type="email"
-              fullWidth
-            />
-
-            <Button
-            variant="contained"
+        <Box
+          sx={{
+            display: "flex",
+            gap: "64px",
+            "@media (max-width: 760px)": {
+              flexWrap: "wrap",
+              width: "100%",
+              justifyContent: "center",
+            },
+          }}
+        >
+          <Box>
+            <Typography
               sx={{
-                color: "#ffff",
-                padding: "16px 32px",
+                fontSize: "16px",
+                fontFeatureSettings: "'case' on",
+                color: "white",
+                marginBottom: "16px",
+                "@media (max-width: 760px)": {
+                  textAlign: "center",
+                },
               }}
             >
-              {renderLanguage("გამოწერა", "Subscribe")}
-            </Button>
+              {renderLanguage(`ფონდი`, "Organization")}
+            </Typography>
+            <Box
+              color="white"
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                height: "107px",
+                flexWrap: "wrap",
+                gap: "16px",
+              }}
+            >
+              <Typography
+                sx={{ fontSize: "12px", cursor: "pointer" }}
+                onClick={() => router.push("/about?data=MissionAndVision")}
+              >
+                {renderLanguage(`მისია და ხედვა`, "Mission And Vision")}
+              </Typography>
+              <Typography
+                sx={{ fontSize: "12px", cursor: "pointer" }}
+                onClick={() => router.push("/about?data=Values")}
+              >
+                {renderLanguage(`ღირებულებები`, "Values")}
+              </Typography>
+              <Typography
+                sx={{ fontSize: "12px", cursor: "pointer" }}
+                onClick={() => router.push("/about?data=ExecutiveTeam")}
+              >
+                {renderLanguage(`გუნდი`, "Team")}
+              </Typography>
+              <Typography
+                sx={{ fontSize: "12px", cursor: "pointer" }}
+                onClick={() => router.push("/news")}
+              >
+                {renderLanguage(`სიახლეები`, "Articles")}
+              </Typography>
+            </Box>
           </Box>
-          <Typography fontSize={10} fontFamily={renderFontFamily()}>
-            {renderLanguage(
-              "სიახლეების გამოწერით ეთანხმები ფონდის უსაფრთხოების პოლიტიკას",
-              `By subscribing to the newsletter, you agree to the fund's security policy`
-            )}
-          </Typography>
-          <Typography
-            fontFamily={renderFontFamily()}
-            sx={{ paddingTop: "46px" }}
-          >
-            {renderLanguage("გამოგვყევი", "Follow")}
-          </Typography>
           <Box
+            color="white"
             sx={{
               display: "flex",
-              justifyContent: "space-between",
-              paddingTop: "16px",
+              flexDirection: "column",
+              height: "171px",
+              flexWrap: "wrap",
+              gap: "16px",
             }}
           >
-            <a className={styles.smallInfo}>
-              <FacebookIcon /> Facebook
+            <Typography
+              sx={{
+                fontSize: "16px",
+                fontFeatureSettings: "'case' on",
+                display: "flex",
+                alignItems: "center",
+                "@media (max-width: 760px)": {
+                  justifyContent: "center",
+                },
+              }}
+            >
+              {renderLanguage(`კონტაქტი`, "Contact")}
+            </Typography>
+            <a
+              href={`mailto:info@act.org.ge`}
+              style={{
+                color: "white",
+                textDecoration: "none",
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                "@media (max-width: 800px)": {
+                  display: "flex",
+                  justifyContent: "center",
+                  flexDirection: "column",
+                },
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: "12px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <MailIcon />{" "}
+                {renderLanguage(`info@act.org.ge`, "info@act.org.ge")}
+              </Typography>
             </a>
-            <a className={styles.smallInfo}>
-              <InstagramIcon /> Instagram
-            </a>
-            <a className={styles.smallInfo}>
-              <LinkedInIcon /> LinkedIn
-            </a>
-            <a className={styles.smallInfo}>
-              <YouTubeIcon /> YouTube
+
+            <Typography
+              sx={{
+                fontSize: "12px",
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+              }}
+            >
+              <SendIcon />{" "}
+              {renderLanguage(
+                "მერაბ კოსტავას ქუჩა, 75ბ, 0112, თბილისი, საქართველო",
+                "75B, Merab Kostava Street, 0112, Tbilisi, Georgia"
+              )}
+            </Typography>
+
+            <a
+              href={`tel:+995595330057`}
+              style={{
+                color: "white",
+                textDecoration: "none",
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                "@media (max-width: 800px)": {
+                  display: "flex",
+                  justifyContent: "center",
+                  flexDirection: "column",
+                },
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: "12px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <PhoneIcon />
+                {renderLanguage(`+995 595 33 00 57`, "+995 595 33 00 57")}
+              </Typography>
             </a>
           </Box>
         </Box>
       </Box>
-      <Box
-        sx={{
-          borderTop: "1px solid white",
-          marginTop: "32px",
-          paddingTop: "32px",
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        <Typography fontSize="10px" fontFamily={renderFontFamily()}>
+      <Box>
+        <Typography
+          sx={{
+            color: "white",
+            fontFeatureSettings: "'case' on",
+            fontSize: "12px",
+          }}
+        >
           {renderLanguage(
-            "© 2023 დავით ბეჟუაშვილის განათლების ფონდი. ყველა უფლება დაცულია.",
-            "© 2023 Davit Bezhuashvili Education Center. all rights reserved."
+            `ⓒ“ქმედება საზოგადოებრივი ცვლილებებისთვის საქართველო”, ყველა უფლება დაცულია`,
+            `ⓒ"Action for Community Transformation Georgia", all rights reserved`
           )}
         </Typography>
-        <Box sx={{ display: "flex", justifyContent: "center", gap: "20px" }}>
-          <Typography fontSize="10px" fontFamily={renderFontFamily()}>
-            {renderLanguage("უსაფრთხოების პოლიტიკა", "Security Policy")}
-          </Typography>
-          <Typography fontSize="10px" fontFamily={renderFontFamily()}>
-            {renderLanguage("წესები და პირობები", "Terms and Conditions")}
-          </Typography>
-        </Box>
       </Box>
     </Box>
   );

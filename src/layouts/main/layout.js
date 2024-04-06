@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import MainAppBar from 'src/components/app-bar/app-bar';
 import Footer from 'src/components/footer/footer';
-
+import { Analytics } from '@vercel/analytics/react';
 
 
 
@@ -11,9 +11,10 @@ export const Layout = (props) => {
 
   return (
     <>
-      {/* <MainAppBar/> */}
+      <MainAppBar/>
       {children}
-      {/* <Footer/> */}
+      {/* <Analytics /> */}
+      <Footer/>
     </>
   );
 };

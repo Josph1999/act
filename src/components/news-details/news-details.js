@@ -1,21 +1,23 @@
 import {
-  collection,
   doc,
   getDoc,
-  getDocs,
-  limit,
-  orderBy,
-  query,
 } from "firebase/firestore";
 import { useCallback, useEffect, useState } from "react";
 import { useLanguage } from "src/contexts/language-context";
 import { useRouter } from "next/router";
 import { db } from "src/firebase/firebase";
-import { Box, Typography } from "@mui/material";
+import {
+  Box,
+  Typography,
+} from "@mui/material";
 import { toast } from "react-toastify";
 import Image from "next/image";
 import { Dates } from "../news/constants";
 import parser from "html-react-parser";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import NewsLinks from "../news-links/news-links";
+import { ArrowBack } from "@mui/icons-material";
+import Subscribe from "../subscribe/subscribe";
 
 export default function NewsDetails() {
   const [loading, setLoading] = useState(false);
@@ -81,65 +83,84 @@ export default function NewsDetails() {
       <Box
         marginTop={7}
         sx={{
-          padding: "128px",
+          padding: "64px 128px",
           paddingBottom: "20px",
-          "@media (max-width: 800px)": {
-            padding: "20px",
+          "@media (max-width: 1000px)": {
+            padding: "64px",
+            marginTop: 10,
+          },
+          "@media (max-width: 760px)": {
+            padding: "24px",
             marginTop: 10,
           },
         }}
       >
-        <Typography
-          fontFamily={renderFontFamily()}
-          fontSize={20}
-          textAlign="center"
-        >
-          {renderLanguage(news?.title_ka, news?.title_eng)}
-        </Typography>
-        <Box sx={{ marginTop: 6 }}>
-          {" "}
-          <Image
-            width={0}
-            height={0}
-            sizes="100vw"
-            style={{ width: "100%", height: "600px", objectFit: "cover" }}
-            src={news?.photos?.[0]?.url}
-            alt={news?.photos?.[0]?.name}
-          />
-        </Box>
         <Box
+        
           sx={{
             display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "flex-end",
+            gap: "16px",
+            "@media (max-width: 760px)": {
+              flexWrap: "wrap",
+              marginTop: "20px",
+            },
           }}
         >
+          {" "}
+          <Box sx={{ display: "flex", gap: "16px", width: "100%" }}>
+            <ArrowBack
+              onClick={() => router.push("/news")}
+              style={{ cursor: "pointer" }}
+            />
+
+            <Box sx={{width: '100%'}}>
+              <Typography
+                sx={{
+                  fontFeatureSettings: "'case' on",
+                  "@media (max-width: 760px)": {
+                    fontSize: "20px",
+                  },
+                }}
+                fontSize={28}
+              >
+                {renderLanguage(news?.title_ka, news?.title_eng)}
+              </Typography>
+              <Typography
+                sx={{ fontFeatureSettings: "'case' on", marginTop: "24px" }}
+                fontSize={16}
+                textAlign="left"
+              >
+                {renderDate(news?.created_at)}
+              </Typography>
+            </Box>
+          </Box>
           <Box
-            sx={{ backgroundColor: "#4338CA", padding: "18px", width: "200px" }}
+            sx={{
+              "@media (max-width: 760px)": {
+                marginTop: "24px",
+              },
+            }}
           >
-            <Typography fontFamily={renderFontFamily()} textAlign="center">
-              {renderDate(news?.created_at)}
+            {" "}
+            <Image
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{ width: "100%", height: "540px", objectFit: "contain" }}
+              loading="lazy"
+              src={news?.photos?.[0]?.url}
+              alt={news?.photos?.[0]?.name}
+            />
+            <Typography color="black !important">
+              {parser(
+                renderLanguage(
+                  news?.description_ka || "",
+                  news?.description_eng || ""
+                )
+              )}
             </Typography>
           </Box>
         </Box>
-      </Box>
-      <Box
-        sx={{
-          padding: "128px",
-          "@media (max-width: 800px)": {
-            padding: "20px",
-            marginTop: "20px",
-          },
-        }}
-      >
-        <Typography color="black !important">
-          {parser(
-            renderLanguage(
-              news?.description_ka || "",
-              news?.description_eng || ""
-            )
-          )}
-        </Typography>
       </Box>
       <Box
         sx={{
@@ -156,9 +177,16 @@ export default function NewsDetails() {
         }}
       >
         {news?.photos?.map((item) => (
-          <Image width={384} height={224} src={item?.url} alt={item.name} />
+          <Image
+            width={384}
+            height={224}
+            src={item?.url}
+            alt={item.name}
+            style={{ objectFit: "cover" }}
+          />
         ))}
       </Box>
+      <Subscribe />
     </>
   );
 }

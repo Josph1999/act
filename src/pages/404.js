@@ -7,7 +7,7 @@ const Page = () => (
   <>
     <Head>
       <title>
-        404 | Dbef
+        404 | ACT
       </title>
     </Head>
     <Box

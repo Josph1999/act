@@ -1,0 +1,32 @@
+.image {
+  object-fit: contain;
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.teamStyles:hover .image {
+  filter: none;
+  background-size: 120%;
+  transition: 0.3s;
+}
+
+.text {
+  margin-top: 16px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.teamStyles:hover .text {
+  background-color: #232c65;
+  color: white;
+}
+
+.biography {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 160px;
+  /* height: 1.2em; */
+  white-space: nowrap;
+}

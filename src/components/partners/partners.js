@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-import Image from "next/image";
 import { useWindowWidth } from "../helpers/useWindowWidth";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "src/firebase/firebase";
@@ -47,24 +46,24 @@ export default function Partners() {
   }, []);
 
   return (
-    <>
+    <Box sx={{ padding: "128px", "@media (max-width: 800px)": {
+      padding: "24px",
+    }, }}>
       <Box
         sx={{
-          padding: "0px 128px",
-          paddingBottom: '50px',
-          marginTop: 20,
+          paddingBottom: "50px",
           "@media (max-width: 800px)": {
             padding: "30px",
           },
         }}
       >
-        <Typography fontSize={32} fontFamily={renderFontFamily()}>
+        <Typography fontSize={32} sx={{ fontFeatureSettings: "'case' on" }}>
           {renderLanguage("პარტნიორები", "Partners")}
         </Typography>
-        <Typography fontFamily={renderFontFamily()}>
+        <Typography sx={{ fontFeatureSettings: "'case' on" }}>
           {renderLanguage(
             "პარტნიორი ორგანიზაციები, რომლებთანაც ფონდი თანამშრომლობს",
-            "Partner organizations with which the Foundation cooperates"
+            "Partner organizations with which the Organization cooperates"
           )}
         </Typography>
       </Box>
@@ -80,12 +79,12 @@ export default function Partners() {
             slidesPerView: 2,
             spaceBetween: 20,
           },
-          768: {
-            slidesPerView: 5,
+          920: {
+            slidesPerView: 3,
             spaceBetween: 40,
           },
-          1024: {
-            slidesPerView: 8,
+          1224: {
+            slidesPerView: 6,
             spaceBetween: 50,
           },
         }}
@@ -101,6 +100,42 @@ export default function Partners() {
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+      <Box sx={{ marginTop: "16px" }}></Box>
+      <Swiper
+        className="mySwiper"
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+          reverseDirection: true,
+        }}
+        modules={[Autoplay]}
+        breakpoints={{
+          360: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          920: {
+            slidesPerView: 3,
+            spaceBetween: 40,
+          },
+
+          1224: {
+            slidesPerView: 6,
+            spaceBetween: 50,
+          },
+        }}
+        pagination={{
+          type: "fraction",
+        }}
+      >
+        {partners.reverse().map((item) => (
+          <SwiperSlide>
+            <a target="_blank" href={item.url} rel="noopener noreferrer">
+              <img src={item?.photos?.[0]?.url} width={30} height={30} />
+            </a>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </Box>
   );
 }

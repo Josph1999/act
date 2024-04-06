@@ -5,9 +5,11 @@ import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "src/firebase/firebase";
 import { useRouter } from "next/router";
 import { useLanguage } from "src/contexts/language-context";
+import { useWindowWidth } from "../helpers/useWindowWidth";
 
 export default function News() {
   const [loading, setLoading] = useState(false);
+
   const [news, setNews] = useState([]);
 
   const router = useRouter();
@@ -20,7 +22,7 @@ export default function News() {
     let documentSnapshots;
 
     documentSnapshots = await getDocs(
-      query(newsRef, orderBy("created_at", "desc"), limit(3))
+      query(newsRef, orderBy("created_at", "desc"), limit(4))
     );
 
     setLoading(true);
@@ -42,56 +44,79 @@ export default function News() {
     <Box
       padding="0px 128px"
       sx={{
-        "@media (max-width: 800px)": {
-          padding: "0px",
+        marginTop: "50px",
+        "@media (max-width: 920px)": {
+          padding: "64px 64px",
           marginTop: "20px",
-          padding: "0px",
+        },
+        "@media (max-width: 760px)": {
+          padding: "24px",
+          marginTop: "20px",
         },
       }}
     >
-      <Box >
-        <Typography fontFamily={renderFontFamily()} fontSize={32} fontWeight={600}>
+      <Box
+        sx={{
+          display: "flex",
+          "@media (max-width: 800px)": {
+            padding: "10px 20px",
+          },
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Typography
+          sx={{ fontFeatureSettings: "'case' on" }}
+          fontSize={20}
+          fontWeight={600}
+        >
           {renderLanguage("სიახლეები", "News")}
         </Typography>
-        <Typography
-          fontFamily={renderFontFamily()}
-          color="#2F2F2F"
-          fontWeight={300}
+        <Button
+          sx={{
+            fontFeatureSettings: "'case' on",
+            borderRadius: "0px",
+            borderBottom: "1px solid #232C65",
+          }}
+          fontSize={16}
+          fontWeight={600}
         >
-          {renderLanguage(
-            "აღმოაჩინე უკანასკნელი სიახლეები ფონდის შესახებ",
-            "Discover the latest news about the Foundation"
-          )}
-        </Typography>
+          {renderLanguage("ყველა სიახლე", "All News")}
+        </Button>
       </Box>
 
       <Box
         sx={{
           display: "flex",
-          flexWrap: "wrap",
           justifyContent: "space-between",
           alignItems: "center",
+          gap: "16px",
           marginTop: "40px",
+          "@media (max-width: 760px)": {
+            flexWrap: "wrap",
+          },
         }}
       >
-        {news.map((item) => (
-          <NewsCard news={item} />
-        ))}
+        {news?.map((item, idx) =>
+          <NewsCard news={item} idx={idx} />
+        )}
       </Box>
-      <Box
-        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-        marginTop={10}
+      {/* <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: "16px",
+          marginTop: "32px",
+          "@media (max-width: 760px)": {
+            flexWrap: "wrap",
+          },
+        }}
       >
-        <Button
-          variant="outlined"
-          sx={{
-            fontFamily: renderFontFamily(),
-          }}
-          onClick={() => router.push("/news")}
-        >
-          {renderLanguage("ყველა სიახლე", "All News")}
-        </Button>
-      </Box>
+        {news?.map((item, idx) =>
+          idx === 2 || idx === 3 ? <NewsCard news={item} idx={idx} /> : null
+        )}
+      </Box> */}
     </Box>
   );
 }

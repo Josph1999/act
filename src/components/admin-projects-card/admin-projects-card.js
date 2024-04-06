@@ -37,7 +37,7 @@ export default function AdminProjectsCard({ projects }) {
         component="img"
         height="194"
         image={projects?.photos?.[0]?.url || ""}
-        alt="Dbef projects"
+        alt="ACT projects"
       />
       <CardContent sx={{ height: "155px", maxHeight: "155px", overflow: "hidden" }}>
         <Typography variant="body2" color="text.secondary">

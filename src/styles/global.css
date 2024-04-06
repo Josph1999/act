@@ -23,7 +23,7 @@
 }
 
 body {
-  font-family: 'UpperCaseGeo', sans-serif !important;
+  font-family: 'UpperCaseGeo' !important;
 }
 .swiper {
   width: 100%;
@@ -34,7 +34,7 @@ body {
   text-align: center;
   font-size: 18px;
   background: #fff;
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
 }
@@ -58,4 +58,12 @@ body {
   -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
   filter: grayscale(0%);
   cursor: pointer;
+}
+
+.tabs-header .basic-color-background{
+  background-color: aqua !important;
+}
+
+.tabs {
+  border: none;
 }

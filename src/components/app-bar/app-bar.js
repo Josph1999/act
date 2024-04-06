@@ -5,7 +5,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Logo } from "../logo";
 import Link from "next/link";
 import HeaderLinks from "../../constants/header-links";
 import { useWindowWidth } from "../helpers/useWindowWidth";
@@ -16,12 +15,9 @@ import {
   MenuItem,
   Radio,
   RadioGroup,
-  SvgIcon,
-  Tooltip,
 } from "@mui/material";
 import { useState } from "react";
 import ResponsiveDrawer from "../drawer/drawer";
-import { useAuth } from "src/hooks/use-auth";
 import { useLanguage } from "src/contexts/language-context";
 import LanguageIcon from "@mui/icons-material/Language";
 import { aboutData } from "../about/data";
@@ -29,16 +25,22 @@ import { useRouter } from "next/router";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import MainLogo from "../icons/MainLogo";
+import DonateModal from "../donate-modal/donate-modal";
+import DonorBoxModal from "../donor-box/donor-box";
 
 export default function MainAppBar() {
   const windowWidth = useWindowWidth();
-  const { language, changeLanguage } = useLanguage();
+
+  const { language, changeLanguage, renderLanguage } = useLanguage();
   const [openDrawer, setOpenDrawer] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [menuAnchorEl, setMenuAnchorEl] = React.useState(null);
+  const [menuAnchorEl, setMenuAnchorEl] = useState(null);
+  const [openDonorBox, setOpenDonorBox] = useState(false);
+
+  const [openDonate, setOpenDonate] = useState(false);
+
   const openMenu = Boolean(menuAnchorEl);
   const handleClick = (event) => {
-    console.log("THIS WORKS:");
     setMenuAnchorEl(event.currentTarget);
   };
 
@@ -50,29 +52,39 @@ export default function MainAppBar() {
     setAnchorEl(null);
   };
 
-  const { renderLanguage, renderFontFamily } = useLanguage();
-
   const router = useRouter();
   const handleOpenPage = (page) => {
     router.push(page);
     setMenuAnchorEl(null);
   };
+
   return (
     <AppBar
       position="fixed"
       sx={{
         backgroundColor: "#fff",
         zIndex: "99",
-        padding: "0px 128px",
-        "@media (max-width: 800px)": {
-          padding: "20px",
+        padding:
+          router.pathname === "/projects/[id]" ||
+          router.pathname === "/news/[id]"
+            ? "0px 256px"
+            : "0px 128px",
+        transition: "0.5s",
+        "@media (max-width: 980px)": {
+          padding: "24px",
         },
       }}
     >
       <Toolbar
-        sx={{ display: "flex", justifyContent: "space-between", width: "100%" }}
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          width: "100%",
+          paddingLeft: "0px !important",
+          paddingRight: "0px !important",
+        }}
       >
-        {windowWidth < 800 ? null : (
+        {windowWidth < 980 ? null : (
           <Link href={"/"}>
             <IconButton
               size="large"
@@ -86,20 +98,40 @@ export default function MainAppBar() {
           </Link>
         )}
         <Box>
-          {windowWidth < 800 ? (
-            <IconButton onClick={() => setOpenDrawer(true)}>
-              <MenuIcon />
-            </IconButton>
+          {windowWidth < 980 ? (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "16px",
+              }}
+            >
+              <IconButton onClick={() => setOpenDrawer(true)}>
+                <MenuIcon />
+              </IconButton>
+              <Link href={"/"}>
+                <IconButton
+                  size="large"
+                  edge="start"
+                  color="inherit"
+                  aria-label="menu"
+                  sx={{ mr: 2 }}
+                >
+                  <MainLogo width={"32px"} height={"32px"} />
+                </IconButton>
+              </Link>
+            </Box>
           ) : (
-            <Box marginLeft="-320px">
+            <Box sx={{ display: "flex" }}>
               {HeaderLinks.map(({ name_ka, name_eng, url }) =>
-                name_ka !== "ფონდის შესახებ" ? (
+                name_ka !== "ორგანიზაციის შესახებ" ? (
                   <Link href={url} key={name_ka}>
                     <Button
                       sx={{
                         color: "black",
                         cursor: "pointer",
-                        fontFamily: renderFontFamily(),
+                        fontFeatureSettings: "'case' on",
                       }}
                       fontWeight={500}
                     >
@@ -117,7 +149,7 @@ export default function MainAppBar() {
                     sx={{
                       color: "black",
                       cursor: "pointer",
-                      fontFamily: renderFontFamily(),
+                      fontFeatureSettings: "'case' on",
                     }}
                     fontWeight={500}
                     endIcon={
@@ -128,12 +160,45 @@ export default function MainAppBar() {
                   </Button>
                 )
               )}
+              <Box>
+                <Button
+                  onClick={handleOpenMenu}
+                  startIcon={<LanguageIcon />}
+                  endIcon={<ArrowDropDownIcon />}
+                ></Button>
+
+                <Button
+                  variant="contained"
+                  sx={{ fontFeatureSettings: "'case' on" }}
+                  onClick={() => setOpenDonate(true)}
+                >
+                  {renderLanguage("დონაცია", "Donate")}
+                </Button>
+              </Box>
             </Box>
           )}
         </Box>
+        {windowWidth < 980 ? (
+          <Box>
+            <Button
+              onClick={handleOpenMenu}
+              startIcon={<LanguageIcon />}
+              endIcon={<ArrowDropDownIcon />}
+            ></Button>
+
+            <Button
+              variant="contained"
+              sx={{ fontFeatureSettings: "'case' on" }}
+              onClick={() => setOpenDonate(true)}
+            >
+              {renderLanguage("დონაცია", "Donate")}
+            </Button>
+          </Box>
+        ) : null}
         <Menu
           id="basic-menu"
           anchorEl={menuAnchorEl}
+          disableScrollLock
           open={openMenu}
           onClose={() => setMenuAnchorEl(null)}
           MenuListProps={{
@@ -141,34 +206,27 @@ export default function MainAppBar() {
           }}
         >
           {aboutData.map((item) => (
-            <MenuItem onClick={() => handleOpenPage(item.path)}>
+            <MenuItem
+              onClick={() => handleOpenPage(item.path)}
+              sx={{ fontFeatureSettings: "'case' on" }}
+            >
               {renderLanguage(item.title_ka, item.title_eng)}
             </MenuItem>
           ))}
         </Menu>
-        <Box>
-          <Tooltip title="Language">
-            <IconButton onClick={handleOpenMenu}>
-              <SvgIcon fontSize="small">
-                <LanguageIcon />
-              </SvgIcon>
-            </IconButton>
-          </Tooltip>
 
-          <Button variant="contained" sx={{}}>
-            {renderLanguage("დონაცია", "Donate")}
-          </Button>
-        </Box>
         <Menu
           id="basic-menu"
           anchorEl={anchorEl}
           open={open}
           onClose={handleCloseMenu}
+          disableScrollLock
           MenuListProps={{
             "aria-labelledby": "basic-button",
           }}
+          sx={{ padding: "10px" }}
         >
-          <FormControl>
+          <FormControl sx={{ padding: "10px" }}>
             <RadioGroup
               aria-labelledby="demo-radio-buttons-group-label"
               defaultValue="female"
@@ -193,6 +251,17 @@ export default function MainAppBar() {
       <ResponsiveDrawer
         open={openDrawer}
         onClose={() => setOpenDrawer(false)}
+      />
+      <DonateModal
+        open={openDonate}
+        onClose={() => setOpenDonate(false)}
+        windowSize={windowWidth}
+        setOpenDonorBox={setOpenDonorBox}
+      />
+      <DonorBoxModal
+        open={openDonorBox}
+        onClose={() => setOpenDonorBox(false)}
+        windowSize={windowWidth}
       />
     </AppBar>
   );

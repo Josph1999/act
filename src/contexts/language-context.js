@@ -19,11 +19,7 @@ export const LanguageProvider = ({ children }) => {
   };
 
   const renderFontFamily = () => {
-    if (language === "KA") {
-      return "UpperCaseGeo";
-    }
-
-    return '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"';
+    return 'FiraGO"';
   };
 
   return (

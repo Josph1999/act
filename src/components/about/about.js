@@ -1,31 +1,27 @@
-import { Box, Button, Typography } from "@mui/material";
-import { aboutData } from "./data";
-import styles from "./about.module.css";
+import { Box, Typography } from "@mui/material";
+import {
+  aboutData,
+  additionalFocus,
+  goals,
+  targetGroups,
+  teamInfo,
+  valuesData,
+} from "./data";
 import { useEffect, useState } from "react";
-import LeftIcon from "../icons/LeftIcon";
 import { useLanguage } from "src/contexts/language-context";
-import AboutInfo from "../about-info/about-info";
-import AuthorInfo from "../author-info/author-info";
-import TeamInfo from "../team-info.js/team-info";
-import YearCalculation from "../year-calculation/year-calculation";
 import { useWindowWidth } from "../helpers/useWindowWidth";
-import MobileAbout from "../mobile-about/mobile-about";
 import { useRouter } from "next/router";
+import Subscribe from "../subscribe/subscribe";
+import AboutMissionAndVision from "./mission-and-vision/mission-and-vision";
+import Values from "./values/values";
+import UnitedNations from "./united-nations/united-nations";
+import TargetGroups from "./target-groups/target-groups";
+import TeamInfo from "./team/team";
 
 export default function About() {
   const [selected, setSelected] = useState(0);
-  const [activeStep, setActiveStep] = useState(0);
-  const handleNext = () => {
-    if (selected >= aboutData.length - 1) {
-      return setSelected(0);
-    }
-
-    return setSelected(selected + 1);
-  };
 
   const router = useRouter();
-  // str.replace(/\s/g, '')
-  console.log("ROUTER QUERY:", router.query);
 
   useEffect(() => {
     if (router.query.data) {
@@ -37,169 +33,72 @@ export default function About() {
     }
   }, [router]);
 
-  const windowSize = useWindowWidth();
-
-  const handlePrev = () => {
-    if (selected <= 0) {
-      return setSelected(aboutData.length - 1);
-    }
-
-    return setSelected(selected - 1);
-  };
-
   const { renderLanguage } = useLanguage();
 
-  const renderInfo = (info) => {
-    let component = <AboutInfo />;
+  useEffect(() => {
+    const targetElement = document.getElementById(router.query.data);
 
-    switch (info) {
-      case "About Foundation":
-        component = <AboutInfo />;
-        break;
-      case "Year Calculation":
-        component = <YearCalculation />;
-        break;
-      case "Team":
-        component = <TeamInfo />;
-        break;
-      case "Author":
-        component = <AuthorInfo />;
-        break;
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" });
     }
-
-    return component;
-  };
+  }, [router.query.data]);
 
   return (
     <>
-      {windowSize > 800 ? (
-        <>
-          <Box className={styles.mainContainer}>
-            {selected > 0 && (
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "flex-end",
-                  alignItems: "flex-end",
-                  marginTop: "53px",
-                  cursor: "pointer",
-                }}
-                onClick={handlePrev}
-              >
-                <Box
-                  sx={{
-                    backgroundImage: `linear-gradient(53deg, #000 0%, rgba(0, 0, 0, 0.00) 95.77%), url(${
-                      aboutData[selected - 1].picture
-                    })`,
-                    height: "466px",
-                    width: "250px",
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    transition: "0.5s",
-                  }}
-                ></Box>
-                {selected > 0 && (
-                  <Button startIcon={<LeftIcon />} onClick={handlePrev}>
-                    <Typography sx={{ color: "#047852" }}>
-                      {renderLanguage(
-                        aboutData[selected - 1]?.title_ka,
-                        aboutData[selected - 1]?.title_eng
-                      )}
-                    </Typography>
-                  </Button>
-                )}
-              </Box>
+      <Box>
+        <Box
+          id="AboutUs"
+          sx={{
+            padding: "128px",
+            "@media (max-width: 1000px)": {
+              padding: "64px",
+              marginTop: "70px",
+            },
+            "@media (max-width: 760px)": {
+              padding: "24px !important",
+              marginTop: "100px",
+            },
+          }}
+        >
+          <Typography
+            sx={{
+              fontFeatureSettings: "'case' on",
+              fontSize: "30px",
+              textTransform: "uppercase",
+              fontWeight: 600,
+            }}
+          >
+            {renderLanguage("ჩვენს შესახებ", "About Us")}
+          </Typography>
+          <Typography>
+            {renderLanguage(
+              `ქმედება საზოგადოებრივი ცვლილებებისთვის - საქართველო (ACT Georgia) არის  არასამთავრობო ორგანიზაცია, რომელიც დაარსდა 2023 წელს, ქალაქ თბილისში. ორგანიზაცია უპირველეს ყოვლისა ფოკუსირებულია საზოგადოებრივი კეთილდღეობის გაძლიერებაზე და სოციო-ეკონომიკურად მოწყვლადი თემების მხარდაჭერაზე. 
+              ACT Georgia-ს გუნდი მუშაობს იმ გამოწვევებისა და პრობლემების გადაჭრის გზებზე, რომლებიც პირდაპირ გავლენას ახდენენ სახელმწიფოში სოციო-ეკონომიკურ, დემოგრაფიულ და საზოგადოებრივ მარკერებზე. ორგანიზაციის სამუშაო სამიზნე თემატიკას წარმოადგენს იძულებით გადაადგილებულ პირთა და ლტოლვილთა სოციო-ეკონომიკური გამოწვევები, ეთნიკური უმცირესობებისა და დროებითი მაცხოვრებლების გამოწვევები, ეკომიგრანტებისა და სხვა ბუნებრივი კრიზისებით დაზარალებული ადამიანების მხარდაჭერა, ქალთა და ბავშვთა უფლებების დაცვა და გაძლიერება, ახალგაზრდების სამუშაო ბაზარზე ინტეგრაციის პრობლემები და ‘ტვინების გადინების’ გამოწვევასთან ბრძოლა. `,
+              `ACT Georgia is an independent non-governmental organization established in 2023 in Tbilisi, Georgia. ACT Georgia primarily focuses on enhancing public welfare and supporting vulnerable communities impacted by various challenges such as wars, conflicts, instability, poverty, limited opportunities, and restricted access to resources. The organization achieves this through knowledge dissemination, educational initiatives, empowerment programs, professional development assistance, and policy advocacy, aiming to uplift their overall well-being and quality of life.`
             )}
-            <Box
-              sx={{
-                backgroundImage: `url(${aboutData[selected].picture})`,
-                height: "546px",
-                width: "800px",
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                transition: "0.5s",
-                position: "relative",
-              }}
-            >
-              {" "}
-              <Typography
-                sx={{
-                  fontSize: "24px",
-                  color: "white",
-                  position: "absolute",
-                  bottom: 40,
-                  left: 0,
-                  right: 0,
-                  textAlign: "center",
-                }}
-              >
-                {renderLanguage(
-                  aboutData[selected]?.title_ka,
-                  aboutData[selected]?.title_eng
-                )}
-              </Typography>
-            </Box>
-            {selected < aboutData.length - 1 && (
-              <Box
-                sx={{ marginTop: "53px", cursor: "pointer" }}
-                onClick={handleNext}
-              >
-                <Box
-                  sx={{
-                    backgroundImage: `linear-gradient(53deg, #000 0%, rgba(0, 0, 0, 0.00) 95.77%), url(${
-                      aboutData[selected + 1].picture
-                    })`,
-                    height: "466px",
-                    width: "250px",
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    transition: "0.5s",
-                  }}
-                ></Box>
-                {selected <= aboutData.length - 1 && (
-                  <Button
-                    endIcon={
-                      <LeftIcon style={{ transform: "rotateY(180deg)" }} />
-                    }
-                    onClick={handleNext}
-                  >
-                    <Typography sx={{ color: "#047852" }}>
-                      {renderLanguage(
-                        aboutData[selected + 1]?.title_ka,
-                        aboutData[selected + 1]?.title_eng
-                      )}
-                    </Typography>
-                  </Button>
-                )}
-              </Box>
-            )}
-          </Box>
+          </Typography>
           <Box
             sx={{
-              display: "flex",
               width: "100%",
-              gap: "900px",
-              justifyContent: "center",
-              alignItems: "center",
-              marginTop: "-30px",
+              backgroundImage: `url(/assets/AboutBack.png)`,
+              height: "300px",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              marginTop: "32px",
+              backgroundColor: "#232C65",
+              "@media (max-width: 800px)": {
+                backgroundSize: '300%'
+              },
             }}
           ></Box>
-        </>
-      ) : (
-        <Box sx={{ marginTop: 10 }}>
-          <MobileAbout
-            aboutData={aboutData}
-            activeStep={selected}
-            setActiveStep={setSelected}
-          />
         </Box>
-      )}
-      <Box sx={{ transition: "0.5s" }}>
-        {renderInfo(aboutData[selected]?.title_eng)}
+        <AboutMissionAndVision />
+        <Values />
+        <UnitedNations />
+        <TargetGroups />
+        <TeamInfo />
+        <Subscribe />
       </Box>
     </>
   );

@@ -4,7 +4,6 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  padding: 0px 128px;
   gap: 20px;
   overflow: hidden; /* Ensure that items outside the container are hidden */
   flex-wrap: nowrap;
@@ -13,4 +12,73 @@
   align-items: center;
 }
 
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+}
 
+.prevContainer {
+  margin-top: 53px;
+  cursor: pointer;
+}
+
+.prevImage {
+  height: 466px;
+  width: 250px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  transition: 0.5s;
+}
+
+.imageContainer {
+  height: 546px;
+  width: 800px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  transition: 0.5s;
+  position: relative;
+}
+
+.whiteText {
+  font-size: 24px;
+  color: white;
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.nextContainer {
+  margin-top: 53px;
+  cursor: pointer;
+}
+
+.nextImage {
+  height: 466px;
+  width: 250px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  transition: 0.5s;
+}
+
+.emptyBox {
+  width: 100%;
+  gap: 900px;
+  transition: 0.5s;
+}
+
+.mobileAboutBox {
+  margin-top: 10px;
+}
+
+.infoBox {
+  transition: 0.5s;
+}
+
+.greenText {
+  color: #047852;
+}

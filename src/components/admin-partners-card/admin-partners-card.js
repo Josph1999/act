@@ -41,7 +41,7 @@ export default function AdminPartnersCard({ partners }) {
         component="img"
         height="194"
         image={partners?.photos?.[0]?.url || ""}
-        alt="Dbef Partners"
+        alt="ACT Partners"
       />
     </Card>
   );

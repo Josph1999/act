@@ -1,4 +1,4 @@
-import { Box, Button, Pagination, Typography } from "@mui/material";
+import { Box, Button, Grid, Pagination, Typography } from "@mui/material";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
@@ -8,13 +8,17 @@ import parser from "html-react-parser";
 import SeeMore from "../icons/SeeMore";
 import { useWindowWidth } from "../helpers/useWindowWidth";
 import { useRouter } from "next/router";
+import NewsCard from "../news/news-card/news-card";
+import Subscribe from "../subscribe/subscribe";
 
 export default function AllProjects() {
-  const rowsPerPage = 6;
+  const rowsPerPage = 10;
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [projects, setProjects] = useState([]);
   const { renderLanguage, renderFontFamily } = useLanguage();
+
+  const windowWidth = useWindowWidth();
 
   const windowSize = useWindowWidth();
   const router = useRouter();
@@ -25,7 +29,7 @@ export default function AllProjects() {
     let documentSnapshots;
 
     documentSnapshots = await getDocs(
-      query(projectsRef, orderBy("created_at", "desc"), limit(6))
+      query(projectsRef, orderBy("created_at", "desc"))
     );
 
     setLoading(true);
@@ -52,92 +56,90 @@ export default function AllProjects() {
   const paginatedProjects = projects.slice(startIndex, endIndex);
 
   return (
-    <Box
-      sx={{
-        padding: "128px",
-        "@media (max-width: 800px)": {
-          padding: "20px",
-          marginTop: 10,
-        },
-      }}
-    >
-      <Typography fontFamily={renderFontFamily()} fontSize={32}>
-        {renderLanguage("პროექტები", "Projects")}
-      </Typography>
-      {projects.map((item, index) => (
-        <Box
-          key={item.id}
-          sx={{
-            display: "flex",
-            flexDirection: index % 2 === 0 ? "row" : "row-reverse",
-            gap: "120px",
-            justifyContent: "center",
-            alignItems: "center",
-            marginTop: "30px",
-            "@media (max-width: 800px)": {
-              flexWrap: "wrap-reverse",
-              gap: "10px",
-            },
-          }}
+    <Box marginTop={10}>
+      <Box
+        sx={{
+          width: "100%",
+          alignItems: "center",
+          color: "black",
+          padding: "32px 128px",
+          "@media (max-width: 1000px)": {
+            padding: "32px 64px",
+            marginTop: "20px",
+          },
+          "@media (max-width: 760px)": {
+            padding: "24px !important",
+          },
+        }}
+      >
+        <Typography
+          sx={{ fontFeatureSettings: "'case' on" }}
+          fontSize={34}
+          color="#232C65"
         >
+          {renderLanguage("პროექტები", "Projects")}
+        </Typography>
+        <Typography
+          sx={{ fontFeatureSettings: "'case' on" }}
+          fontSize={16}
+          color="#232C65"
+        >
+          {renderLanguage("ACT ის პროექტები", "ACT Georgia’s Projects")}
+        </Typography>
+      </Box>
+
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          gap: "16px",
+          padding: "0px 128px",
+          marginTop: "40px",
+          "@media (max-width: 1000px)": {
+            padding: "0px 64px",
+            marginTop: "20px",
+          },
+          "@media (max-width: 760px)": {
+            padding: "24px !important",
+          },
+        }}
+      >
+        {windowWidth > 760 ? (
+          <Grid
+            container
+            rowSpacing={1}
+            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+          >
+            {paginatedProjects.map((item, idx) => (
+              <Grid item xs={6}>
+                {" "}
+                <NewsCard news={item} type="project" />
+              </Grid>
+            ))}
+          </Grid>
+        ) : (
           <Box
             sx={{
               display: "flex",
-              justifyContent: "flex-start",
-              alignItems: "flex-start",
-              gap: "20px",
-              flexDirection: "column",
-              width: "40%",
-              "@media (max-width: 800px)": {
-                width: "100%",
-                gap: "5px",
-              },
+              flexWrap: "wrap",
+              alignItems: "center",
+              marginTop: "40px",
+              justifyContent: "center",
+              gap: "32px",
             }}
           >
-            {" "}
-            <Typography fontFamily={renderFontFamily()}>
-              {renderLanguage(item?.title_ka, item?.title_eng)}
-            </Typography>
-            <Typography>
-              {parser(
-                renderLanguage(
-                  item?.description_ka.substring(
-                    0,
-                    windowSize > 800 ? 1000 : 500
-                  ) + "..." || "",
-                  item?.description_eng.substring(
-                    0,
-                    windowSize > 800 ? 1000 : 500
-                  ) + "..." || ""
-                )
-              )}
-            </Typography>
-            <Button
-              sx={{ fontFamily: renderFontFamily()}}
-              endIcon={<SeeMore />}
-              onClick={() => router.push(`/projects/${item?.id}`)}
-            >
-              {renderLanguage("პროექტის სრულად ნახვა", "See Project Details")}
-            </Button>
+            {paginatedProjects.map((item, idx) => (
+              <NewsCard news={item} type="project"/>
+            ))}
           </Box>
-          <img
-            src={item?.photos?.[0]?.url}
-            width={windowSize > 800 ? 650 : 0}
-            height={windowSize > 800 ? 550 : 0}
-            alt={item?.photos?.[0]?.name}
-            style={{
-              width: windowSize > 800 ? 650 : "100%",
-              height: windowSize > 800 ? 550 : 350,
-              objectFit: "cover",
-            }}
-          />
-        </Box>
-      ))}
+        )}
+      </Box>
       <Box
         sx={{
           display: "flex",
           justifyContent: "center",
           marginTop: "60px",
+          marginBottom: "60px",
         }}
       >
         <Pagination
@@ -148,6 +150,7 @@ export default function AllProjects() {
           size="small"
         />
       </Box>
+      <Subscribe />
     </Box>
   );
 }
