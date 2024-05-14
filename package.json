@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "author": "dbef",
   "licence": "MIT",
-  "homepage": "https://dbef.ge",
+  "homepage": "https://act.org.ge",
   "private": false,
   "scripts": {
     "dev": "next",

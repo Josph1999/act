@@ -92,8 +92,8 @@ export const NewsTemplate = ({ link, url, title_eng, description_eng }) => {
               color: "rgb(0,0,0, 0.7)",
             }}
           >
-            © 2023 | Davit Bezhuashvili Education Organization. Geogia |
-            www.dbef.ge
+            © 2023 | Act Georgia. Geogia |
+            www.act.org.ge
           </Text>
           <Text
             style={{
