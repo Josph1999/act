@@ -12,12 +12,17 @@ import {
 import { db } from "src/firebase/firebase";
 import { v4 as uuid } from "uuid";
 import ThankYouTemplate from "src/emails/thankyoutemplate";
-import cors from "src/lib/init-middleware";
+
 const sgMail = require("@sendgrid/mail");
 
 export default async function handler(req, res) {
   try {
-    await cors(req, res);
+    res.setHeader("Access-Control-Allow-Origin", "*"); // Allow all origins
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE"); // Allow specific methods
+    res.setHeader(
+      "Access-Control-Allow-Headers",
+      "Content-Type, Authorization"
+    );
     if (req.method !== "POST") {
       return res.status(405).json({ message: "Method Not Allowed" });
     }
