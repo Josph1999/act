@@ -12,14 +12,27 @@ import {
 import { db } from "src/firebase/firebase";
 import { v4 as uuid } from "uuid";
 import ThankYouTemplate from "src/emails/thankyoutemplate";
-import cors from "src/lib/init-middleware";
+import { NextResponse } from "next/server";
 const sgMail = require("@sendgrid/mail");
+
+const getCorsHeaders = (origin) => {
+  // Default options
+
+  const headers = {
+    "Access-Control-Allow-Methods":
+      "GET, HEAD, PUT, PATCH, POST, DELETE, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    "Access-Control-Allow-Origin": "*",
+  };
+
+  headers["Access-Control-Allow-Origin"] = "*";
+
+  // Return result
+  return headers;
+};
 
 export default async function handler(req, res) {
   try {
-
-    await cors(req, res);
-
     if (req.method !== "POST") {
       return res.status(405).json({ message: "Method Not Allowed" });
     }
@@ -57,9 +70,19 @@ export default async function handler(req, res) {
         email,
       });
 
-      return res
-        .status(200)
-        .json({ message: "Email sent successfully to " + email });
+      return NextResponse.json(
+        {
+          message: "Email sent successfully to " + email,
+        },
+        {
+          status: 200,
+          headers: getCorsHeaders(request.headers.get("origin") || ""),
+        }
+      );
+
+      // return res
+      //   .status(200)
+      //   .json({ message: "Email sent successfully to " + email });
     }
   } catch (error) {
     console.error("ERROR:", error);
