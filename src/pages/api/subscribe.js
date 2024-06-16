@@ -44,18 +44,18 @@ export default async function handler(req, res) {
         .json({ message: "Email has already been subscribed" });
     }
 
-    sgMail.setApiKey(process.env.NEXT_PUBLIC_SEND_GRID_API);
+    // sgMail.setApiKey(process.env.NEXT_PUBLIC_SEND_GRID_API);
 
-    const msg = {
-      to: email,
-      from: process.env.NEXT_PUBLIC_FROM,
-      subject: "ACT Info",
-      html: ThankYouTemplate(),
-    };
+    // const msg = {
+    //   to: email,
+    //   from: process.env.NEXT_PUBLIC_FROM,
+    //   subject: "ACT Info",
+    //   html: ThankYouTemplate(),
+    // };
 
-    const emailSent = await sgMail.send(msg);
+    // const emailSent = await sgMail.send(msg);
 
-    if (emailSent) {
+    // if (emailSent) {
       await setDoc(doc(emailRef, uuid()), {
         email,
       });
@@ -63,7 +63,7 @@ export default async function handler(req, res) {
       return res
         .status(200)
         .json({ message: "Email sent successfully to " + email });
-    }
+    // }
   } catch (error) {
     console.error("ERROR:", error);
     return res.status(500).json({ message: "Error while sending email!" });
