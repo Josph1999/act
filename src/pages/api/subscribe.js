@@ -17,12 +17,6 @@ const sgMail = require("@sendgrid/mail");
 
 export default async function handler(req, res) {
   try {
-    res.setHeader("Access-Control-Allow-Origin", "*"); // Allow all origins
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE"); // Allow specific methods
-    res.setHeader(
-      "Access-Control-Allow-Headers",
-      "Content-Type, Authorization"
-    );
     if (req.method !== "POST") {
       return res.status(405).json({ message: "Method Not Allowed" });
     }
