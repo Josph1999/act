@@ -80,6 +80,7 @@ export default function News() {
           }}
           fontSize={16}
           fontWeight={600}
+          onClick={() => router.push("/news")}
         >
           {renderLanguage("ყველა სიახლე", "All News")}
         </Button>
