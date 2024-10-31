@@ -15,6 +15,11 @@ const Links = [
   //   url: "/projects",
   // },
   {
+    name_ka: "ვიდეოები",
+    name_eng: "Videos",
+    url: "/videos",
+  },
+  {
     name_ka: "სიახლეები",
     name_eng: "News",
     url: "/news",

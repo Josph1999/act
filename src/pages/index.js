@@ -9,6 +9,7 @@ import Projects from "src/components/projects/projects";
 import Partners from "src/components/partners/partners";
 import MissionAndVision from "src/components/mission-and-vision/mission-and-vision";
 import Subscribe from "src/components/subscribe/subscribe";
+import YoutubeVideos from "src/components/youtube-videos/youtube-videos";
 
 const Page = () => {
   const [raffle, setRaffle] = useState(null);
@@ -24,6 +25,7 @@ const Page = () => {
         <>
           <MainSlider />
           <MissionAndVision />
+          <YoutubeVideos />
           <News />
           <MainAboutInfo />
           {/* <Projects /> */}

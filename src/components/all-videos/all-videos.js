@@ -1,44 +1,16 @@
 import { Box, Grid, Pagination, Typography } from "@mui/material";
-import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { useLanguage } from "src/contexts/language-context";
-import { db } from "src/firebase/firebase";
-import NewsCard from "../news/news-card/news-card";
 import Subscribe from "../subscribe/subscribe";
 import { useWindowWidth } from "../helpers/useWindowWidth";
+import { youtubeVideoData } from "../youtube-videos/data";
 
-export default function AllNews() {
+export default function AllVideos() {
   const rowsPerPage = 10;
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [news, setNews] = useState([]);
   const { renderLanguage, renderFontFamily } = useLanguage();
 
   const windowWidth = useWindowWidth();
-
-  const getNews = useCallback(async () => {
-    const newsRef = collection(db, "news");
-
-    let documentSnapshots;
-
-    documentSnapshots = await getDocs(
-      query(newsRef, orderBy("created_at", "desc"))
-    );
-
-    setLoading(true);
-
-    const newsData = documentSnapshots.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-      created_at: doc.data().created_at.toDate(),
-    }));
-    setNews(newsData);
-    setLoading(false);
-  }, []);
-
-  useEffect(() => {
-    getNews();
-  }, []);
 
   const handlePageChange = useCallback((event, value) => {
     setPage(value);
@@ -46,7 +18,7 @@ export default function AllNews() {
 
   const startIndex = (page - 1) * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
-  const paginatedNews = news.slice(startIndex, endIndex);
+  const paginatedVideos = youtubeVideoData.slice(startIndex, endIndex);
 
   return (
     <Box marginTop={10}>
@@ -70,7 +42,7 @@ export default function AllNews() {
           fontSize={34}
           color="#232C65"
         >
-          {renderLanguage("ყველა სიახლე", "Articles")}
+          {renderLanguage("ყველა ვიდეო", "Videos")}
         </Typography>
         <Typography
           sx={{ fontFeatureSettings: "'case' on" }}
@@ -78,8 +50,8 @@ export default function AllNews() {
           color="#232C65"
         >
           {renderLanguage(
-            "ბოლო სიახლეები ACT ისგან",
-            "The latest news about ACT Georgia"
+            "ბოლო ვიდეოები ACT ისგან",
+            "The latest Videos about ACT Georgia"
           )}
         </Typography>
       </Box>
@@ -106,10 +78,18 @@ export default function AllNews() {
             rowSpacing={1}
             columnSpacing={{ xs: 1, sm: 2, md: 3 }}
           >
-            {paginatedNews.map((item, idx) => (
+            {paginatedVideos.map((item, idx) => (
               <Grid item xs={6}>
-                {" "}
-                <NewsCard news={item} />
+                <iframe
+                  width="100%"
+                  height="315"
+                  src={item.url}
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                ></iframe>
               </Grid>
             ))}
           </Grid>
@@ -124,8 +104,18 @@ export default function AllNews() {
               gap: "32px",
             }}
           >
-            {paginatedNews.map((item, idx) => (
-              <NewsCard news={item} />
+            {paginatedVideos.map((item, idx) => (
+      
+              <iframe
+                width="100%"
+                height="315"
+                src={item.url}
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
             ))}
           </Box>
         )}
@@ -135,13 +125,13 @@ export default function AllNews() {
           display: "flex",
           justifyContent: "center",
           marginTop: "60px",
-          marginBottom: '60px'
+          marginBottom: "60px",
         }}
       >
         <Pagination
           onChange={handlePageChange}
           page={page}
-          count={Math.ceil(news.length / rowsPerPage) || 1}
+          count={Math.ceil(youtubeVideoData.length / rowsPerPage) || 1}
           rowsPerPage={rowsPerPage}
           size="small"
         />

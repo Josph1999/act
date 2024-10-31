@@ -34,6 +34,7 @@ body {
   text-align: center;
   font-size: 18px;
   background: #fff;
+  width: 100%;
   /* display: flex; */
   justify-content: center;
   align-items: center;
@@ -64,6 +65,9 @@ body {
   background-color: aqua !important;
 }
 
+.mySwiper .swiper-slide {
+  width: 450px;
+}
 .tabs {
   border: none;
 }
