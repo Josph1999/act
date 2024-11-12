@@ -61,6 +61,14 @@ body {
   cursor: pointer;
 }
 
+.swiper-button-next {
+  color: white;
+}
+
+.swiper-button-prev {
+  color: white;
+}
+
 .tabs-header .basic-color-background{
   background-color: aqua !important;
 }
