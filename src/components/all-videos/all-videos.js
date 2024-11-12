@@ -1,14 +1,27 @@
-import { Box, Grid, Pagination, Typography } from "@mui/material";
-import { useCallback, useState } from "react";
+import {
+  Box,
+  Button,
+  Chip,
+  Grid,
+  Link,
+  Pagination,
+  Typography,
+} from "@mui/material";
+import { useCallback, useEffect, useState } from "react";
 import { useLanguage } from "src/contexts/language-context";
 import Subscribe from "../subscribe/subscribe";
 import { useWindowWidth } from "../helpers/useWindowWidth";
 import { youtubeVideoData } from "../youtube-videos/data";
+import { useRouter } from "next/router";
 
 export default function AllVideos() {
+  const router = useRouter();
+
   const rowsPerPage = 10;
   const [page, setPage] = useState(1);
   const { renderLanguage, renderFontFamily } = useLanguage();
+
+  const [selectedSection, setSelectedSection] = useState(null);
 
   const windowWidth = useWindowWidth();
 
@@ -18,7 +31,20 @@ export default function AllVideos() {
 
   const startIndex = (page - 1) * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
-  const paginatedVideos = youtubeVideoData.slice(startIndex, endIndex);
+  const paginatedVideos = youtubeVideoData
+    .filter((data) => {
+      if (selectedSection) {
+        return data.section_id === selectedSection;
+      }
+      return data;
+    })
+    .slice(startIndex, endIndex);
+
+  useEffect(() => {
+    if (router.query.data) {
+      setSelectedSection(router.query.data);
+    }
+  }, [router]);
 
   return (
     <Box marginTop={10}>
@@ -54,8 +80,21 @@ export default function AllVideos() {
             "The latest Videos about ACT Georgia"
           )}
         </Typography>
+        {selectedSection ? (
+          <Chip
+            label={renderLanguage(
+              youtubeVideoData.find(
+                (item) => item.section_id === selectedSection
+              ).section_ka,
+              youtubeVideoData.find(
+                (item) => item.section_id === selectedSection
+              ).section_eng
+            )}
+            onDelete={() => setSelectedSection(null)}
+          />
+        ) : null}
       </Box>
-      <Subscribe />
+
       <Box
         sx={{
           display: "flex",
@@ -72,14 +111,31 @@ export default function AllVideos() {
           },
         }}
       >
-        {windowWidth > 760 ? (
-          <Grid
-            container
-            rowSpacing={1}
-            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-          >
-            {paginatedVideos.map((item, idx) => (
-              <Grid item xs={6}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+            gap: "26px",
+          }}
+        >
+          {paginatedVideos
+            .filter((data) => {
+              if (selectedSection) {
+                return data.section_id === selectedSection;
+              }
+              return data;
+            })
+            .map((item, idx) => (
+              <Box
+                sx={{
+                  display: "flex",
+                  gap: "12px",
+                  "@media (max-width: 1100px)": {
+                    flexDirection: "column",
+                  },
+                }}
+              >
                 <iframe
                   width="100%"
                   height="315"
@@ -90,35 +146,44 @@ export default function AllVideos() {
                   referrerpolicy="strict-origin-when-cross-origin"
                   allowfullscreen
                 ></iframe>
-              </Grid>
+                <Box
+                  sx={{
+                    width: "1600px",
+                    "@media (max-width: 1100px)": {
+                      width: "100%",
+                    },
+                    border: "1px solid black",
+                    padding: "40px",
+                    borderRadius: "10px",
+                    cursor: "pointer",
+                  }}
+                >
+                  <Link
+                    sx={{
+                      fontSize: "24px",
+                    }}
+                    href={`/videos?data=${item.section_id}`}
+                  >
+                    {renderLanguage(item.section_ka, item.section_eng)}
+                  </Link>
+                  <Typography
+                    sx={{
+                      fontSize: "22px",
+                    }}
+                  >
+                    {item.title}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: "18px",
+                    }}
+                  >
+                    {renderLanguage(item.description_ka, item.description_eng)}
+                  </Typography>
+                </Box>
+              </Box>
             ))}
-          </Grid>
-        ) : (
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              alignItems: "center",
-              marginTop: "40px",
-              justifyContent: "center",
-              gap: "32px",
-            }}
-          >
-            {paginatedVideos.map((item, idx) => (
-      
-              <iframe
-                width="100%"
-                height="315"
-                src={item.url}
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-              ></iframe>
-            ))}
-          </Box>
-        )}
+        </Box>
       </Box>
       <Box
         sx={{
@@ -136,6 +201,7 @@ export default function AllVideos() {
           size="small"
         />
       </Box>
+      <Subscribe />
     </Box>
   );
 }
