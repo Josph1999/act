@@ -131,4 +131,29 @@ A novel that is close to Mikheil Javakhishvili's " Jako's Dispossessed"
     section_eng: `Dito Khupenia - Artistic Flowers`,
     section_id: `dito_khupenia`,
   },
+  {
+    id: 7,
+    url: `https://www.youtube.com/embed/MLMQdsAr3o4?si=7mbTktSOHoOtUuPc`,
+    title: `არტისტული ყვავილები: ბერტოლტ ბრეხტის, პოეტური კრებული "ცუდი დრო პოეზიისთვის"`,
+    description_ka: `ფაშიზმის წინააღმდეგ მებრძოლი ავტორის, ბერტოლტ ბრეხტის, პოეტური კრებული "ცუდი დრო პოეზიისთვის" 
+
+ბრეხტის აზრით, მნიშვნელოვანია რაზე წერ, და არა რას წერ.
+
+თეატრალური რევოლუციის შემქმნელს ეკუთვნის ცნობილი პიესა "კავკასიური ცარცის წრე". გერმანელმა დრამატურგმა და აქტივისტმა ცხოვრების ბევრი წელი ფაშიზმის წინააღმდეგ ბრძოლაში გაატარა
+
+დიტო ხუფენიას "არტისტულმა ყვავილებმა" აირჩია "ცუდი დრო პოეზიისთვის"
+`,
+    description_eng: `The poetry collection "A Bad Time for Poetry" by the author who fought against fascism, Bertolt Brecht
+
+According to Brecht, it is important what you write about, not how you write.
+
+The creator of the theatrical revolution is the creator of the famous play "The Caucasian Chalk Circle". The German playwright and activist spent many years of his life fighting against fascism
+
+Dito Khupenia's "Artistic Flowers" chose "A Bad Time for Poetry"
+
+`,
+    section_ka: `დიტო ხუფენია - არტისტული ყვავილები`,
+    section_eng: `Dito Khupenia - Artistic Flowers`,
+    section_id: `dito_khupenia`,
+  },
 ];
