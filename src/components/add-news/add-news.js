@@ -33,6 +33,9 @@ import { useLanguage } from "src/contexts/language-context";
 import LoaderModal from "../loader-modal/loader-modal";
 import axios from "axios";
 import LinkChips from "../link-chips/link-chips";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs from "dayjs";
 
 export default function AddNews() {
   const small_id = uuid().slice(0, 8);
@@ -56,6 +59,7 @@ export default function AddNews() {
       description_eng: "",
       photos: [],
       submit: null,
+      created_at: news ? dayjs(news?.created_at) : dayjs(new Date()),
     },
     validationSchema: Yup.object({
       title_ka: Yup.string()
@@ -123,7 +127,7 @@ export default function AddNews() {
             description_ka,
             description_eng,
             photos,
-            created_at: news.created_at,
+            created_at: new Date(values.created_at.toISOString()),
             updated_at: new Date(),
             mediaLinks: chipData,
           });
@@ -148,8 +152,14 @@ export default function AddNews() {
         }
         setAdding(true);
 
-        const { title_ka, title_eng, description_ka, description_eng, photos } =
-          values;
+        const {
+          title_ka,
+          title_eng,
+          description_ka,
+          description_eng,
+          photos,
+          created_at,
+        } = values;
         for (let i = 0; i < photos.length; i++) {
           photos[i]["priority"] = i;
         }
@@ -164,7 +174,7 @@ export default function AddNews() {
           description_ka,
           description_eng,
           photos,
-          created_at: new Date(),
+          created_at: new Date(values.created_at.toISOString()),
           updated_at: new Date(),
           mediaLinks: chipData,
         });
@@ -212,10 +222,12 @@ export default function AddNews() {
 
       if (docSnapshot.exists) {
         const data = docSnapshot.data();
+        data.created_at = docSnapshot.data().created_at.toDate();
         formik.setFieldValue("title_ka", data?.title_ka);
         formik.setFieldValue("title_eng", data?.title_eng);
         formik.setFieldValue("description_ka", data?.description_ka);
         formik.setFieldValue("description_eng", data?.description_eng);
+        formik.setFieldValue("created_at", dayjs(data?.created_at));
         setImageList(data?.photos);
         setNews(data);
         setChipData(data?.mediaLinks || []);
@@ -497,6 +509,15 @@ export default function AddNews() {
                     type="description_eng"
                     sx={{ width: "370px" }}
                   />
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker
+                      label="Basic date picker"
+                      onChange={(e) => {
+                        formik.setFieldValue("created_at", e);
+                      }}
+                      value={formik.values.created_at}
+                    />
+                  </LocalizationProvider>
                   <LinkChips chipData={chipData} setChipData={setChipData} />
                   {formik.errors.description_eng && (
                     <Typography color="error" sx={{ mt: 3 }} variant="body2">
