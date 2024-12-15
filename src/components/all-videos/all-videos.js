@@ -31,7 +31,7 @@ export default function AllVideos() {
 
   const startIndex = (page - 1) * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
-  const paginatedVideos = youtubeVideoData
+  const paginatedVideos = youtubeVideoData.sort((a, b) => b.id - a.id)
     .filter((data) => {
       if (selectedSection) {
         return data.section_id === selectedSection;
@@ -83,10 +83,10 @@ export default function AllVideos() {
         {selectedSection ? (
           <Chip
             label={renderLanguage(
-              youtubeVideoData.find(
+              youtubeVideoData.sort((a, b) => b.id - a.id).find(
                 (item) => item.section_id === selectedSection
               ).section_ka,
-              youtubeVideoData.find(
+              youtubeVideoData.sort((a, b) => b.id - a.id).find(
                 (item) => item.section_id === selectedSection
               ).section_eng
             )}
