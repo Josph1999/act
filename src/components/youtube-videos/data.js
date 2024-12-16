@@ -107,33 +107,8 @@ Allen Ginsberg - A writer who visited Tbilisi and met with Parajanov.
     section_id: `persona`,
   },
   {
-    id: 6,
-    url: `https://www.youtube.com/embed/MLMQdsAr3o4?si=7mbTktSOHoOtUuPc`,
-    title: `არტისტული ყვავილები: ჯონ მაქსველ კუტზეეს "სირცხვილი"`,
-    description_ka: `ნობელიანტი მწერლის, ჯონ მაქსველ კუტზეეს "სირცხვილი" 
-
-რომანი, რომელიც ახლოს არის მიხეილ ჯავახიშვილის "ჯაყოს ხიზნებთან" 
-
-სამხრეთ აფრიკელი, გავლენიანი მწერლის "სირცხვილი" კარგად აღწერს ადამიანის ბუნებას და შემდგომ მის ღირებულებით ტრანსფორმაციას 
-
- #დიტო_ხუფენიას "არტისტული ყვავილების" მორიგ ეპიზოდში
-`,
-    description_eng: `"Disgrace" by Nobel Prize-winning writer John Maxwell Coutzee
-
-A novel that is close to Mikheil Javakhishvili's " Jako's Dispossessed" 
-
-"Disgrace" by the influential South African writer describes well the nature of man and his subsequent transformation in value. 
-
-#Dito_khupenia's "Artistic Flowers"
-
-`,
-    section_ka: `დიტო ხუფენია - არტისტული ყვავილები`,
-    section_eng: `Dito Khupenia - Artistic Flowers`,
-    section_id: `dito_khupenia`,
-  },
-  {
     id: 7,
-    url: `https://www.youtube.com/embed/MLMQdsAr3o4?si=7mbTktSOHoOtUuPc`,
+    url: `https://www.youtube.com/embed/Ml7MU3iBzrM?si=yc30XmP07C_lYQii`,
     title: `არტისტული ყვავილები: ბერტოლტ ბრეხტის, პოეტური კრებული "ცუდი დრო პოეზიისთვის"`,
     description_ka: `ფაშიზმის წინააღმდეგ მებრძოლი ავტორის, ბერტოლტ ბრეხტის, პოეტური კრებული "ცუდი დრო პოეზიისთვის" 
 
