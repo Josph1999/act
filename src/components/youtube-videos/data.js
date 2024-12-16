@@ -230,4 +230,28 @@ Dito Khupenia's "Artistic Flowers" chose "A Bad Time for Poetry"
     section_eng: `Dito Khupenia - Artistic Flowers`,
     section_id: `dito_khupenia`,
   },
+  {
+    id: 11,
+    url: `https://www.youtube.com/embed/jlstfJJaYl4?si=K_ZdDyotpWi6YlvN`,
+    title: `არტისტული ყვავილები: გალაკტიონის რეფლექსია პოემით “მოგონებები იმ დღეებისა როცა იელვა”`,
+    description_ka: `1924 წლის აჯანყება და გალაკტიონის რეფლექსია პოემით “მოგონებები იმ დღეებისა როცა იელვა”.
+
+როგორ აღწერა გალაკტიონ ტაბიძემ ბოლშევიზმის წითელი ხელი  პოემაში შეყვარებული წყვილის ისტორიით.
+
+რეპრესირებული გენიოსი, 
+მისი პროტესტი და ცხოვრება დაპატიმრების შემდეგ
+`,
+    description_eng: `
+
+    1924 Uprising and Galaktioni's reflection with the Poem "Memories of the Days when it Flashed".
+
+    How Galaktion Tabidze described the red hand of Bolshevism in a poem with the story of a couple in love 
+    
+    repressed genius, 
+    His protest and life after his arrest
+`,
+    section_ka: `დიტო ხუფენია - არტისტული ყვავილები`,
+    section_eng: `Dito Khupenia - Artistic Flowers`,
+    section_id: `dito_khupenia`,
+  },
 ];
