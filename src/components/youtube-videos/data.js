@@ -229,4 +229,23 @@ Dito Khupenia's "Artistic Flowers" chose "A Bad Time for Poetry"
     section_eng: `Dito Khupenia - Artistic Flowers`,
     section_id: `dito_khupenia`,
   },
+  {
+    id: 12,
+    url: `https://www.youtube.com/embed/rfTWXTC-1pc?si=D55KrtfEr-pzc0NP`,
+    title: `პერსონა: შოთა იათაშვილი გასული საუკუნის ლიტერატურული პროცესების შესახებ`,
+    description_ka: `მწერალი და მთარგმნელი, შოთა იათაშვილი, გასული საუკუნის ლიტერატურული პროცესების შესახებ საუბრობს. 
+ხელოვნება, როგორც პროტესტის ფორმა, პერფორმანსის სახეს იღებდა და მასში ერთიანდებოდნენ როგორც მწერლები, ისე მხატვრები და მუსიკოსები. 
+
+"თუ ჩვენ ვწერდით, ომის შედეგებზე ვწერდით, რაც ომმა მოიტანა - ამ სოციალურ თემებზე ვწერდით" - შოთა იათაშვილის #პერსონა
+`,
+    description_eng: `What was written in Georgia after the dissolution of the Soviet Union?
+
+Writer and translator Shota Iatashvili speaks about the literary processes of the last century. Art took the form of protest, becoming a performance where both writers and artists as well as musicians united.
+
+"If we wrote, we wrote about the consequences of the war, what the war brought - we wrote about these social issues" - Shota Iatashvili's #Persona
+`,
+    section_ka: `პერსონა`,
+    section_eng: `Persona`,
+    section_id: `persona`,
+  },
 ];
