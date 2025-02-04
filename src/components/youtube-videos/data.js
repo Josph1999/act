@@ -248,4 +248,33 @@ Writer and translator Shota Iatashvili speaks about the literary processes of th
     section_eng: `Persona`,
     section_id: `persona`,
   },
+  {
+    id: 13,
+    url: `https://www.youtube.com/embed/N4aWd3gJgxI?si=kxiIJLi1E61r0YUc`,
+    title: `არტისტული ყვავილები: მურმან ლებანიძის გზა ექსპერიმენტებისკენ`,
+    description_ka: `🌸"გაზაფხული შემოსულა, ლენ" - მურმან ლებანიძის გზა ექსპერიმენტებისკენ 
+
+💡კრებულში "ლირიკა" გასული საუკუნის გამორჩეული ქართველი პოეტის, მურმან ლებანიძის, რჩეული ლექსებია შესული 
+
+📖წიგნი კარგად ასახავს პოეტის უწყვეტი ძიების და სალექსო ფორმებზე ექსპერიმენტების პროცესს
+
+📍მისი შემოქმედება დატვირთულია პატრიოტული სულიაკვეთებით, რაც არამხოლოდ პოეზიაში, არამედ მის ბიოგრაფიაშიც კარგად ჩანს 
+
+⬇️ #დიტოხუფენია - #არტისტულიყვავილები მურმან ლებანიძის პოეზიაზე 
+`,
+    description_eng: `
+🌸 "Spring has arrived, Len" - Murman Lebanidze's Path to Experiments
+
+💡The collection "Lyric" includes selected poems of the outstanding Georgian poet of the last century, Murman Lebanidze.
+
+📖The book well reflects the poet’s continuous research and his experiments with poetic forms.
+
+📍His work is imbued with patriotic spirit, which is clearly visible not only in his poetry but also in his biography.
+
+⬇️#DitoKhupenia's - #ArtisticFlowers about Murman Lebanidze's poetry
+`,
+    section_ka: `დიტო ხუფენია - არტისტული ყვავილები`,
+    section_eng: `Dito Khupenia - Artistic Flowers`,
+    section_id: `dito_khupenia`,
+  },
 ];
