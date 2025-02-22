@@ -277,4 +277,29 @@ Writer and translator Shota Iatashvili speaks about the literary processes of th
     section_eng: `Dito Khupenia - Artistic Flowers`,
     section_id: `dito_khupenia`,
   },
+  {
+    id: 14,
+    url: `https://www.youtube.com/embed/_50VRJ-_AUQ?si=0efx0KpX8FE2kEu5`,
+    title: `პერსონა: გიული ჩოხელი - 90`,
+    description_ka: `"როდესაც იპოვი შენს თავს და გაჰყვები შენს გზას, შემდეგ სხვა დაგიკრავს ტაშს"
+
+ჯაზის ქართველმა ლეგენდამ საბჭოთა კავშირში პირველმა ააჟღერა ქართული ჯაზი. 1967 წელს გიული ჩოხელი ევროპის საუკეთესო მომღერალთა ხუთეულში შევიდა. 
+
+1995 წელს ქართველი მომღერალი კარნეგი-ჰოლში დააჯილდოვეს 
+
+გიული ჩოხელის, ჯაზის და "ჯეზის" -  #პერსონა
+`,
+    description_eng: `
+"When you find yourself and follow your path, others will applaud you."
+
+The Georgian jazz legend was the first to introduce Georgian jazz in the Soviet Union. In 1967, Giuli Chokheli was included in the top five best singers in Europe.
+
+In 1995, the Georgian singer was awarded at Carnegie Hall.
+
+Giuli Chokheli, jazz, and "Jazz" - #Persona
+`,
+    section_ka: `პერსონა`,
+    section_eng: `Persona`,
+    section_id: `persona`,
+  },
 ];
