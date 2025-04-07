@@ -2,10 +2,12 @@ import admin from "firebase-admin";
 
 if (!admin.apps.length) {
 
-  const creds = JSON.parse(process.env.ADMIN_SERVICE_ACCOUNT);
+  const GOOGLE_CLOUD_CREDENTIALS = JSON.parse(
+    Buffer.from(process.env.GOOGLE_CLOUD_CREDENTIALS!, 'base64').toString('utf-8')
+  );
 
   admin.initializeApp({
-    credential: admin.credential.cert(creds),
+    credential: admin.credential.cert(GOOGLE_CLOUD_CREDENTIALS),
   });
 }
 
