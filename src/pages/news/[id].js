@@ -4,7 +4,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "src/firebase/firebase";
 import Head from "next/head";
 
-const Page = ({ metadata }) => {
+const Page = ({ news,metadata }) => {
   return (
     <>
       <Head>
@@ -17,7 +17,7 @@ const Page = ({ metadata }) => {
           content={metadata.image || "/default-og.png"}
         />
       </Head>
-      <NewsDetails />
+      <NewsDetails ssrNews={news} />
     </>
   );
 };
@@ -47,6 +47,7 @@ export async function getServerSideProps(context) {
       return {
         props: {
           metadata,
+          news: JSON.stringify(data),
         },
       };
     } else {

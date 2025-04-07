@@ -1,15 +1,9 @@
-import {
-  doc,
-  getDoc,
-} from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { useCallback, useEffect, useState } from "react";
 import { useLanguage } from "src/contexts/language-context";
 import { useRouter } from "next/router";
 import { db } from "src/firebase/firebase";
-import {
-  Box,
-  Typography,
-} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { toast } from "react-toastify";
 import Image from "next/image";
 import { Dates } from "../news/constants";
@@ -19,42 +13,12 @@ import NewsLinks from "../news-links/news-links";
 import { ArrowBack } from "@mui/icons-material";
 import Subscribe from "../subscribe/subscribe";
 
-export default function NewsDetails() {
+export default function NewsDetails({ ssrNews }) {
   const [loading, setLoading] = useState(false);
-  const [news, setNews] = useState([]);
+
   const { renderLanguage, renderFontFamily } = useLanguage();
 
-  const router = useRouter();
-
-  const { id } = router.query;
-
-  const getDocumentById = useCallback(async () => {
-    try {
-      const docRef = doc(db, "news", id);
-      const docSnapshot = await getDoc(docRef);
-
-      if (docSnapshot.exists) {
-        const data = docSnapshot.data();
-
-        data.id = docSnapshot.id;
-        data.created_at = docSnapshot.data().created_at.toDate();
-        setNews(data);
-      } else {
-        toast.error(renderLanguage("სიახლე არ მოიძებნა!", "News not found!"));
-      }
-    } catch (error) {
-      toast.error(
-        renderLanguage(
-          "შეცდომა დოკუმენტის ძებნის დროს",
-          "Error while searching for document"
-        )
-      );
-    }
-  }, [id]);
-
-  useEffect(() => {
-    getDocumentById();
-  }, [id]);
+  const news = JSON.parse(ssrNews);
 
   const options = {
     day: "numeric",
@@ -96,7 +60,6 @@ export default function NewsDetails() {
         }}
       >
         <Box
-        
           sx={{
             display: "flex",
             gap: "16px",
@@ -113,7 +76,7 @@ export default function NewsDetails() {
               style={{ cursor: "pointer" }}
             />
 
-            <Box sx={{width: '100%'}}>
+            <Box sx={{ width: "100%" }}>
               <Typography
                 sx={{
                   fontFeatureSettings: "'case' on",
@@ -130,7 +93,7 @@ export default function NewsDetails() {
                 fontSize={16}
                 textAlign="left"
               >
-                {renderDate(news?.created_at)}
+                {renderDate(new Date(news?.created_at))}
               </Typography>
             </Box>
           </Box>
