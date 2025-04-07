@@ -1,7 +1,7 @@
 import Head from "next/head";
 import NewsDetails from "src/components/news-details/news-details";
-import { db } from "src/firebase/firebase-admin";
 import { Layout } from "src/layouts/main/layout";
+import { db } from "../../lib/firebase-admin";
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
