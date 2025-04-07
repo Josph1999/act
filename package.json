@@ -43,6 +43,7 @@
     "date-fns": "2.29.3",
     "dayjs": "^1.11.8",
     "firebase": "^9.22.1",
+    "firebase-admin": "^13.2.0",
     "fontsource-firago": "^4.0.0",
     "formik": "2.2.9",
     "html-react-parser": "^4.0.0",
