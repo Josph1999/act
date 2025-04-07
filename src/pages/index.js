@@ -20,6 +20,10 @@ const Page = () => {
     <>
       <Head>
         <title>Main | ACT</title>
+        <meta
+          property="og:image"
+          content="https://firebasestorage.googleapis.com/v0/b/act-georgia.appspot.com/o/0a05f13f-1df9-432e-abac-87535eee4d5d.jpeg?alt=media&token=78728359-6361-48f1-a2e8-03b495f25925"
+        />
       </Head>
       <main>
         <>

@@ -1,66 +1,57 @@
-import NewsDetails from "src/components/news-details/news-details";
-import { Layout } from "src/layouts/main/layout";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "src/firebase/firebase";
 import Head from "next/head";
+import NewsDetails from "src/components/news-details/news-details";
+import { db } from "src/firebase/firebase-admin";
+import { Layout } from "src/layouts/main/layout";
 
-const Page = ({ news,metadata }) => {
+export async function getServerSideProps(context) {
+  const { id } = context.params;
+
+  try {
+    const docRef = db.collection("news").doc(id);
+    const docSnap = await docRef.get();
+
+    if (!docSnap.exists) {
+      return { notFound: true };
+    }
+
+    const news = {
+      id: docSnap.id,
+      ...docSnap.data(),
+    };
+
+    delete news["created_at"];
+    delete news["updated_at"];
+
+    console.log("NEWS:", news);
+
+    return {
+      props: { news },
+    };
+  } catch (error) {
+    console.error("Error fetching news:", error);
+    return { notFound: true };
+  }
+}
+
+const NewsPage = ({ news }) => {
   return (
     <>
       <Head>
-        <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} />
-        <meta property="og:title" content={metadata.title} />
-        <meta property="og:description" content={metadata.description} />
+        <title>{news.title_ka}</title>
+        <meta name="description" content={news.description_ka} />
+        <meta name="image" content={news?.photos?.[0]?.url} />
+        <meta property="og:title" content={news.title_ka} />
+        <meta property="og:description" content={news.description_ka} />
         <meta
           property="og:image"
-          content={metadata.image || "/default-og.png"}
+          content={news?.photos?.[0]?.url || "/default-og.png"}
         />
       </Head>
-      <NewsDetails ssrNews={news} />
+      <NewsDetails news={news} />
     </>
   );
 };
 
-Page.getLayout = (page) => <Layout>{page}</Layout>;
+NewsPage.getLayout = (page) => <Layout>{page}</Layout>;
 
-export async function getServerSideProps(context) {
-  const { params } = context;
-  const { id } = params;
-
-  try {
-    const docRef = doc(db, "news", id);
-    const docSnapshot = await getDoc(docRef);
-
-    if (docSnapshot.exists) {
-      const data = docSnapshot.data();
-      data.id = docSnapshot.id;
-      data.created_at = docSnapshot.data().created_at.toDate().toISOString();
-
-      // Extract metadata from data
-      const metadata = {
-        title: data.title_ka, // Update with correct field
-        description: data.description_ka, // Update with correct field
-        image: data.photos[0]?.url || "", // Update with correct field and handle empty case
-      };
-
-      return {
-        props: {
-          metadata,
-          news: JSON.stringify(data),
-        },
-      };
-    } else {
-      return {
-        notFound: true,
-      };
-    }
-  } catch (error) {
-    console.error("Error fetching document:", error);
-    return {
-      notFound: true,
-    };
-  }
-}
-
-export default Page;
+export default NewsPage;
