@@ -3,7 +3,7 @@ import NewsDetails from "src/components/news-details/news-details";
 import { Layout } from "src/layouts/main/layout";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "src/lib/firebase-config"; // adjust path
+import { firebaseConfig } from "src/firebase/firebase";
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
